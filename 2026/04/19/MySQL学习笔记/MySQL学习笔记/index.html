@@ -6,13 +6,15 @@
   
   <title>祁雪的网安学习笔记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="记录网络安全，编程，个人生活的个人博客">
-<meta property="og:type" content="website">
+  <meta name="description" content="MySQL基础知识点总结（至事务部分完结）本文总结MySQL基础部分核心知识点，涵盖从MySQL入门到事务的全部基础内容，适合新手入门梳理，适配个人博客呈现，知识点详细且逻辑连贯，重点内容加粗标注，所有sql语句均使用小写，贴合日常使用习惯。 一、MySQL入门基础1.1 MySQL简介 mysql是一款开源的关系型数据库管理系统（rdbms），由oracle公司维护，支持多平台（windows、">
+<meta property="og:type" content="article">
 <meta property="og:title" content="祁雪的网安学习笔记">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2026/04/19/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="祁雪的网安学习笔记">
-<meta property="og:description" content="记录网络安全，编程，个人生活的个人博客">
+<meta property="og:description" content="MySQL基础知识点总结（至事务部分完结）本文总结MySQL基础部分核心知识点，涵盖从MySQL入门到事务的全部基础内容，适合新手入门梳理，适配个人博客呈现，知识点详细且逻辑连贯，重点内容加粗标注，所有sql语句均使用小写，贴合日常使用习惯。 一、MySQL入门基础1.1 MySQL简介 mysql是一款开源的关系型数据库管理系统（rdbms），由oracle公司维护，支持多平台（windows、">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-19T13:00:41.330Z">
+<meta property="article:modified_time" content="2026-04-19T12:59:16.248Z">
 <meta property="article:author" content="祁雪">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
@@ -76,422 +78,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Linux学习笔记/Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E5%AE%9E%E5%BD%95%EF%BC%9AElasticsearch%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E7%9C%9F%E5%AE%9E%E8%AF%95%E9%94%99%E6%80%BB%E7%BB%93%EF%BC%89/" class="article-date">
-  <time class="dt-published" datetime="2026-04-19T13:01:34.955Z" itemprop="datePublished">2026-04-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）"><a href="#Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）" class="headerlink" title="Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）"></a>Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）</h1><p>在Linux学习过程中，安装Elasticsearch（ES）是我遇到的第一个大坎。原本以为跟着教程一步步来就能顺利完成，没想到实际操作中频频出错，反复折腾了很久才找到解决办法，以下是我真实踩过的每一个坑，无夸张、无编造，全是实操中实打实遇到的问题，希望能给同样初学的小伙伴避坑。</p>
-<h2 id="一、真实踩坑过程（逐条对应实际报错）"><a href="#一、真实踩坑过程（逐条对应实际报错）" class="headerlink" title="一、真实踩坑过程（逐条对应实际报错）"></a>一、真实踩坑过程（逐条对应实际报错）</h2><p>我最初选择了压缩包手动安装的方式，本以为手动操作能更熟悉流程，结果从配置到启动，问题接连不断，每一个错误都让我卡壳很久。</p>
-<h3 id="1-配置文件被注释，导致network-host不生效"><a href="#1-配置文件被注释，导致network-host不生效" class="headerlink" title="1. 配置文件被注释，导致network.host不生效"></a>1. 配置文件被注释，导致network.host不生效</h3><p>编辑elasticsearch.yml配置文件时，我看到文件中已有「network.host: 0.0.0.0」这一行，没注意到前面有「#」注释符号，误以为配置已经生效。等到启动ES后才发现，ES只监听本地地址，浏览器输入服务器IP:9200根本无法访问，排查了很久才发现是注释没取消，配置等于没写。</p>
-<h3 id="2-启动时报错：max-file-descriptors太小、vm-max-map-count不足"><a href="#2-启动时报错：max-file-descriptors太小、vm-max-map-count不足" class="headerlink" title="2. 启动时报错：max file descriptors太小、vm.max_map_count不足"></a>2. 启动时报错：max file descriptors太小、vm.max_map_count不足</h3><p>这是最常见也最让人头疼的报错，启动ES时直接提示启动失败，终端输出两条关键错误信息：</p>
-<ul>
-<li><p>max file descriptors [4096] too low，需要至少 65535</p>
-</li>
-<li><p>vm.max_map_count [65530] too low，需要至少 262144</p>
-</li>
-</ul>
-<p>因为我刚接触Linux，不知道需要修改系统配置文件来调整这两个参数，只能反复重启ES，结果每次都报同样的错，一度以为是压缩包下载损坏。</p>
-<h3 id="3-权限混乱，ES用户无法读写目录"><a href="#3-权限混乱，ES用户无法读写目录" class="headerlink" title="3. 权限混乱，ES用户无法读写目录"></a>3. 权限混乱，ES用户无法读写目录</h3><p>ES不允许用root用户启动，所以我创建了es用户，但操作时太随意，一会儿用root用户解压文件、创建目录，一会儿切换到es用户启动服务，导致data（数据目录）和logs（日志目录）的权限混乱。启动时直接报错“Permission denied”，ES无法写入数据和日志，哪怕用chmod命令修改权限，也因为之前的操作混乱，始终无法彻底解决。</p>
-<h3 id="4-进程残留-锁文件导致无法再次启动"><a href="#4-进程残留-锁文件导致无法再次启动" class="headerlink" title="4. 进程残留 + 锁文件导致无法再次启动"></a>4. 进程残留 + 锁文件导致无法再次启动</h3><p>有一次启动失败后，我没有检查进程是否正常退出，就直接重新执行启动命令，结果提示「failed to obtain node locks」，无法获取节点锁。后来才知道，之前启动失败的ES进程残留，加上data目录下生成的锁文件，导致新的进程无法启动，只能先kill残留进程，删除锁文件，才能重新尝试启动。</p>
-<h3 id="5-手动写systemd服务文件，路径写错导致服务异常"><a href="#5-手动写systemd服务文件，路径写错导致服务异常" class="headerlink" title="5. 手动写systemd服务文件，路径写错导致服务异常"></a>5. 手动写systemd服务文件，路径写错导致服务异常</h3><p>为了方便后续启动ES，我参考教程手动创建elasticsearch.service服务文件，但因为对Linux路径不熟悉，把PID文件路径、ES执行路径写错了。执行「systemctl start elasticsearch」时，要么提示“找不到PID文件”，要么提示“无法启动服务”，反复修改路径好几次，还是无法正常启动服务。</p>
-<h3 id="6-ES进程看似在运行，但9200端口不通"><a href="#6-ES进程看似在运行，但9200端口不通" class="headerlink" title="6. ES进程看似在运行，但9200端口不通"></a>6. ES进程看似在运行，但9200端口不通</h3><p>有一次启动后，用「ps -ef | grep elasticsearch」能看到ES进程在运行，以为这次终于成功了，结果用「curl 127.0.0.1:9200」测试时，一直提示「Connection refused」。排查后发现，ES虽然启动了进程，但因为之前的系统配置（max file descriptors、vm.max_map_count）还是没改对，启动到一半就自动退出了，进程只是“假运行”状态。</p>
-<h3 id="7-Linux操作不熟练，不等提示符就乱输入命令"><a href="#7-Linux操作不熟练，不等提示符就乱输入命令" class="headerlink" title="7. Linux操作不熟练，不等提示符就乱输入命令"></a>7. Linux操作不熟练，不等提示符就乱输入命令</h3><p>这是我自己的操作失误，因为刚接触Linux命令行，耐心不足，经常在一条命令还没执行完、终端还没出现提示符时，就着急输入下一条命令。导致命令排队执行、执行顺序混乱，有时候甚至会覆盖之前的配置，引发一些莫名其妙的错误，比如权限修改不生效、文件解压不完整等。</p>
-<h3 id="8-压缩包与YUM安装路径混淆，出现冲突"><a href="#8-压缩包与YUM安装路径混淆，出现冲突" class="headerlink" title="8. 压缩包与YUM安装路径混淆，出现冲突"></a>8. 压缩包与YUM安装路径混淆，出现冲突</h3><p>手动安装多次失败后，我想着换一种方式，用YUM安装试试，但没有彻底删除之前用压缩包安装的ES文件（安装在&#x2F;usr&#x2F;local&#x2F;elasticsearch目录下）。结果YUM安装后，系统默认的安装路径和手动安装的路径冲突，导致服务找不到ES执行文件、PID冲突，启动时要么提示文件不存在，要么提示端口被占用。</p>
-<h2 id="二、最终解决结果"><a href="#二、最终解决结果" class="headerlink" title="二、最终解决结果"></a>二、最终解决结果</h2><p>折腾了大半天，我意识到手动安装对新手来说太容易出错，而且自己对Linux系统配置、权限管理还不熟练。于是我先把之前手动安装的ES文件、残留进程、锁文件、错误的服务文件全部彻底删除干净，然后按照教程，全程使用YUM方式安装Elasticsearch。</p>
-<p>YUM安装的优势在于，所有用户创建、权限配置、系统参数调整、服务注册都由系统自动处理，不需要手动修改配置文件、调整权限，全程按照提示执行命令，最终一次启动成功，用浏览器访问IP:9200，顺利看到了ES的默认响应页面，悬着的心终于放下了。</p>
-<h2 id="三、学习收获与总结"><a href="#三、学习收获与总结" class="headerlink" title="三、学习收获与总结"></a>三、学习收获与总结</h2><p>这次安装ES的踩坑经历，虽然折腾，但也让我对Linux操作、ES安装配置有了更深刻的理解，也总结了几个新手避坑要点：</p>
-<ul>
-<li><p>新手安装ES，优先选择YUM（或apt）方式，避免手动压缩包安装，减少配置和权限带来的麻烦；</p>
-</li>
-<li><p>修改配置文件时，一定要注意取消注释符号（#），否则配置不生效；</p>
-</li>
-<li><p>ES启动前，必须先修改系统的max file descriptors和vm.max_map_count参数，否则一定会启动失败；</p>
-</li>
-<li><p>操作Linux时，一定要耐心，等一条命令执行完再输入下一条，避免命令混乱；</p>
-</li>
-<li><p>更换安装方式时，一定要彻底删除之前的安装残留，避免路径、PID冲突。</p>
-</li>
-</ul>
-<p>作为Linux初学者，踩坑是难免的，但每解决一个问题，都是一次进步。记录下这些真实的试错过程，既是对自己学习的总结，也希望能帮助到和我一样初学的小伙伴，少走一些弯路。</p>
-<blockquote>
-<p>（注：文档部分内容可能由 AI 生成）</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E5%AE%9E%E5%BD%95%EF%BC%9AElasticsearch%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E7%9C%9F%E5%AE%9E%E8%AF%95%E9%94%99%E6%80%BB%E7%BB%93%EF%BC%89/" data-id="cuid_rcdqhrPsD8aUepA7hNpn" data-title="" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Linux学习笔记/Linux学习笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time class="dt-published" datetime="2026-04-19T13:01:01.666Z" itemprop="datePublished">2026-04-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Linux学习全套总结"><a href="#Linux学习全套总结" class="headerlink" title="Linux学习全套总结"></a>Linux学习全套总结</h1><p>---</p>
-<p>title: Linux学习全套总结</p>
-<p>date: 2026-04-15</p>
-<p>categories: 后端基础</p>
-<p>tags: Linux, 学习笔记, 黑马程序员</p>
-<p>---</p>
-<p>跟着黑马程序员学完Linux，整理了全套核心知识点，涵盖课程重点、实操命令、必背考点，适合新手回顾复盘，也可作为日常开发备查笔记，纯干货无冗余～</p>
-<h1 id="一、Linux基础认知"><a href="#一、Linux基础认知" class="headerlink" title="一、Linux基础认知"></a>一、Linux基础认知</h1><h2 id="1-1-什么是Linux"><a href="#1-1-什么是Linux" class="headerlink" title="1.1 什么是Linux"></a>1.1 什么是Linux</h2><ul>
-<li><p>Linux是一款<strong>开源、免费、多用户、多任务</strong>的操作系统，核心优势是稳定、安全、占用资源少</p>
-</li>
-<li><p>与Windows的区别：Windows面向桌面用户，Linux面向服务器（占服务器领域90%以上市场）</p>
-</li>
-<li><p>常见发行版（黑马重点提及）：CentOS（企业级首选，稳定）、Ubuntu（桌面&#x2F;服务器通用，易用）、RedHat（收费，企业级）、Debian</p>
-</li>
-</ul>
-<h2 id="1-2-Linux核心思想"><a href="#1-2-Linux核心思想" class="headerlink" title="1.2 Linux核心思想"></a>1.2 Linux核心思想</h2><p>✅ 一切皆文件：无论是硬件（CPU、硬盘）、软件、配置，在Linux中都以文件形式存在</p>
-<p>✅ 命令行优先：Linux的核心操作是命令行，图形界面仅为辅助（服务器一般无图形界面）</p>
-<h1 id="二、Linux文件系统结构（必背）"><a href="#二、Linux文件系统结构（必背）" class="headerlink" title="二、Linux文件系统结构（必背）"></a>二、Linux文件系统结构（必背）</h1><p>Linux的文件系统是<strong>树形结构</strong>，所有文件&#x2F;目录都挂载在根目录 <code>/</code> 下，黑马强调以下目录必须记牢：</p>
-<ul>
-<li><p><code>/</code>：根目录，所有文件的顶层目录，不可删除</p>
-</li>
-<li><p><code>/root</code>：超级用户（root）的家目录，只有root能访问</p>
-</li>
-<li><p><code>/home/用户名</code>：普通用户的家目录（如 <code>/home/test</code>），普通用户只能操作自己的家目录</p>
-</li>
-<li><p><code>/etc</code>：系统核心配置文件目录（重中之重），如网络配置、服务配置</p>
-</li>
-<li><p><code>/bin</code>、<code>/usr/bin</code>：系统可执行命令目录（如 <code>ls</code>、<code>cd</code> 等常用命令）</p>
-</li>
-<li><p><code>/var</code>：动态文件目录，存放日志（<code>/var/log</code>）、缓存、临时数据</p>
-</li>
-<li><p><code>/tmp</code>：临时文件目录，重启系统后文件会清空</p>
-</li>
-<li><p><code>/usr</code>：用户程序目录，存放软件安装包、库文件</p>
-</li>
-<li><p><code>/boot</code>：系统启动目录，存放启动相关文件（不可删除）</p>
-</li>
-</ul>
-<h1 id="三、Linux常用基础命令（黑马实操重点）"><a href="#三、Linux常用基础命令（黑马实操重点）" class="headerlink" title="三、Linux常用基础命令（黑马实操重点）"></a>三、Linux常用基础命令（黑马实操重点）</h1><p>所有命令均为黑马课程高频实操命令，标注 <strong>必背</strong> 的是日常开发最常用的，建议熟练掌握。</p>
-<h2 id="3-1-文件-目录操作命令（必背）"><a href="#3-1-文件-目录操作命令（必背）" class="headerlink" title="3.1 文件&#x2F;目录操作命令（必背）"></a>3.1 文件&#x2F;目录操作命令（必背）</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-<th>常用示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>ls</code></td>
-<td>查看当前目录下的文件&#x2F;目录</td>
-<td><code>ls</code>（简单查看）、<code>ls \-l</code>（详细查看，简写 <code>ll</code>）</td>
-</tr>
-<tr>
-<td><code>cd</code></td>
-<td>切换目录</td>
-<td><code>cd /home</code>（切换到&#x2F;home）、<code>cd \.\.</code>（返回上一级）、<code>cd \~</code>（回到家目录）</td>
-</tr>
-<tr>
-<td><code>pwd</code></td>
-<td>显示当前所在路径（必背）</td>
-<td><code>pwd</code></td>
-</tr>
-<tr>
-<td><code>mkdir</code></td>
-<td>创建目录</td>
-<td><code>mkdir test</code>（创建单个目录）、<code>mkdir \-p a/b/c</code>（创建多级目录）</td>
-</tr>
-<tr>
-<td><code>touch</code></td>
-<td>创建空文件</td>
-<td><code>touch test\.txt</code></td>
-</tr>
-<tr>
-<td><code>cp</code></td>
-<td>复制文件&#x2F;目录</td>
-<td><code>cp test\.txt /home</code>（复制文件）、<code>cp \-r a /home</code>（复制目录，需加-r）</td>
-</tr>
-<tr>
-<td><code>mv</code></td>
-<td>移动&#x2F;重命名文件&#x2F;目录</td>
-<td><code>mv test\.txt /home</code>（移动）、<code>mv test\.txt test1\.txt</code>（重命名）</td>
-</tr>
-<tr>
-<td><code>rm</code></td>
-<td>删除文件&#x2F;目录（慎用）</td>
-<td><code>rm test\.txt</code>（删除文件）、<code>rm \-rf test</code>（强制删除目录，必背，谨慎使用）</td>
-</tr>
-</tbody></table>
-<h2 id="3-2-文件查看命令（必背）"><a href="#3-2-文件查看命令（必背）" class="headerlink" title="3.2 文件查看命令（必背）"></a>3.2 文件查看命令（必背）</h2><ul>
-<li><p><code>cat 文件名</code>：查看文件全部内容（适合小文件），示例：<code>cat /etc/hosts</code></p>
-</li>
-<li><p><code>more 文件名</code>：分页查看文件，按 <code>space</code> 翻页，<code>q</code> 退出</p>
-</li>
-<li><p><code>less 文件名</code>：灵活翻页查看，按 <code>↑↓</code> 滚动，<code>q</code> 退出（适合大文件，必背）</p>
-</li>
-<li><p><code>head \-n 数字 文件名</code>：查看文件前n行，示例：<code>head \-10 /var/log/messages</code>（查看前10行日志）</p>
-</li>
-<li><p><code>tail \-n 数字 文件名</code>：查看文件后n行，示例：<code>tail \-5 test\.txt</code></p>
-</li>
-<li><p><code>tail \-f 文件名</code>：实时查看文件变化（重点，常用于查看日志），示例：<code>tail \-f /var/log/nginx/access\.log</code></p>
-</li>
-</ul>
-<h2 id="3-3-搜索与查找命令"><a href="#3-3-搜索与查找命令" class="headerlink" title="3.3 搜索与查找命令"></a>3.3 搜索与查找命令</h2><ul>
-<li><p><code>find 路径 \-name 文件名</code>：按文件名查找文件&#x2F;目录（必背），示例：<code>find / \-name test\.txt</code>（从根目录查找test.txt）</p>
-</li>
-<li><p><code>grep \&amp;\#34;关键词\&amp;\#34; 文件名</code>：过滤文件内容，查找包含关键词的行（必背），示例：<code>grep \&amp;\#34;error\&amp;\#34; /var/log/messages</code>（查找日志中的错误信息）</p>
-</li>
-<li><p><code>grep \-n \&amp;\#34;关键词\&amp;\#34; 文件名</code>：显示匹配行的行号</p>
-</li>
-</ul>
-<h2 id="3-4-权限操作命令（黑马重点，必背）"><a href="#3-4-权限操作命令（黑马重点，必背）" class="headerlink" title="3.4 权限操作命令（黑马重点，必背）"></a>3.4 权限操作命令（黑马重点，必背）</h2><p>Linux中每个文件&#x2F;目录都有3种权限：读（r）、写（w）、执行（x），对应3类用户：所有者（u）、所属组（g）、其他用户（o）</p>
-<ul>
-<li><p>权限数值：<code>r=4</code>、<code>w=2</code>、<code>x=1</code>，权限组合为数值之和（如 rwx&#x3D;7、rw-&#x3D;6、r--&#x3D;4）</p>
-</li>
-<li><p><code>chmod 权限值 文件名</code>：修改文件&#x2F;目录权限（必背），示例：<code>chmod 755 test\.txt</code>（所有者rwx，其他用户r--x）</p>
-</li>
-<li><p><code>chown 用户名:组名 文件名</code>：修改文件&#x2F;目录的所有者和所属组，示例：<code>chown root:root test\.txt</code>（修改为root所有）</p>
-</li>
-</ul>
-<p>常用权限：755（文件可执行、目录可访问）、644（普通文件，只读）</p>
-<h2 id="3-5-进程与服务命令（必背）"><a href="#3-5-进程与服务命令（必背）" class="headerlink" title="3.5 进程与服务命令（必背）"></a>3.5 进程与服务命令（必背）</h2><ul>
-<li><p><code>ps \-ef</code>：查看所有进程（必背），示例：<code>ps \-ef \| grep nginx</code>（查看nginx进程）</p>
-</li>
-<li><p><code>top</code>：实时监控进程占用（CPU、内存），按 <code>q</code> 退出</p>
-</li>
-<li><p><code>kill \-9 进程ID（PID）</code>：强制终止进程（必背），示例：<code>kill \-9 1234</code>（终止PID为1234的进程）</p>
-</li>
-<li><p><code>systemctl start 服务名</code>：启动服务，示例：<code>systemctl start nginx</code></p>
-</li>
-<li><p><code>systemctl stop 服务名</code>：停止服务</p>
-</li>
-<li><p><code>systemctl restart 服务名</code>：重启服务（必背）</p>
-</li>
-<li><p><code>systemctl enable 服务名</code>：设置服务开机自启（必背）</p>
-</li>
-<li><p><code>systemctl status 服务名</code>：查看服务运行状态</p>
-</li>
-</ul>
-<h2 id="3-6-网络相关命令（必背）"><a href="#3-6-网络相关命令（必背）" class="headerlink" title="3.6 网络相关命令（必背）"></a>3.6 网络相关命令（必背）</h2><ul>
-<li><p><code>ifconfig</code> &#x2F; <code>ip addr</code>：查看服务器IP地址（必背），CentOS7+推荐用 <code>ip addr</code></p>
-</li>
-<li><p><code>ping 目标IP/域名</code>：测试网络连通性，示例：<code>ping www\.baidu\.com</code></p>
-</li>
-<li><p><code>netstat \-ntlp</code>：查看端口占用情况（必背），示例：<code>netstat \-ntlp \| grep 80</code>（查看80端口占用）</p>
-</li>
-<li><p><code>hostname</code>：查看服务器主机名</p>
-</li>
-</ul>
-<h2 id="3-7-压缩与解压命令（必背）"><a href="#3-7-压缩与解压命令（必背）" class="headerlink" title="3.7 压缩与解压命令（必背）"></a>3.7 压缩与解压命令（必背）</h2><p>Linux中最常用的压缩格式是 <code>\.tar\.gz</code>，黑马重点讲解：</p>
-<ul>
-<li><p>打包压缩：<code>tar \-zcvf 压缩包名\.tar\.gz 要压缩的文件/目录</code>，示例：<code>tar \-zcvf test\.tar\.gz test/</code></p>
-</li>
-<li><p>解压：<code>tar \-zxvf 压缩包名\.tar\.gz</code>（解压到当前目录），示例：<code>tar \-zxvf test\.tar\.gz</code></p>
-</li>
-<li><p>解压到指定目录：<code>tar \-zxvf 压缩包名\.tar\.gz \-C 目标目录</code>，示例：<code>tar \-zxvf test\.tar\.gz \-C /home</code></p>
-</li>
-</ul>
-<h2 id="3-8-用户与组命令"><a href="#3-8-用户与组命令" class="headerlink" title="3.8 用户与组命令"></a>3.8 用户与组命令</h2><ul>
-<li><p><code>useradd 用户名</code>：创建普通用户，示例：<code>useradd test</code></p>
-</li>
-<li><p><code>passwd 用户名</code>：设置用户密码（必背），示例：<code>passwd test</code>（输入密码时不显示）</p>
-</li>
-<li><p><code>su 用户名</code>：切换用户，示例：<code>su test</code>（从root切换到test）、<code>su \-</code>（切换到root）</p>
-</li>
-<li><p><code>sudo</code>：普通用户临时提权（执行root权限命令），需配置sudoers文件</p>
-</li>
-<li><p><code>userdel \-r 用户名</code>：删除用户（-r 同时删除家目录）</p>
-</li>
-</ul>
-<h1 id="四、Vim编辑器（黑马必会，必背）"><a href="#四、Vim编辑器（黑马必会，必背）" class="headerlink" title="四、Vim编辑器（黑马必会，必背）"></a>四、Vim编辑器（黑马必会，必背）</h1><p>Vim是Linux中默认的文本编辑器，用于修改配置文件、编写脚本，核心是3种模式切换，黑马反复强调：</p>
-<h2 id="4-1-三种模式及切换"><a href="#4-1-三种模式及切换" class="headerlink" title="4.1 三种模式及切换"></a>4.1 三种模式及切换</h2><ul>
-<li><p>命令模式（默认模式）：打开文件后默认进入，用于执行编辑命令（如删除、撤销）</p>
-</li>
-<li><p>输入模式：用于输入文本，从命令模式按 <code>i</code> 进入（i&#x3D;insert）</p>
-</li>
-<li><p>末行模式：用于保存、退出，从命令模式按 <code>:</code> 进入</p>
-</li>
-<li><p>模式切换：输入模式 → 命令模式（按 <code>ESC</code>）；命令模式 → 末行模式（按 <code>:</code>）</p>
-</li>
-</ul>
-<h2 id="4-2-常用Vim命令（必背）"><a href="#4-2-常用Vim命令（必背）" class="headerlink" title="4.2 常用Vim命令（必背）"></a>4.2 常用Vim命令（必背）</h2><ul>
-<li><p>命令模式：</p>
-<ul>
-<li><p><code>dd</code>：删除当前行（必背）</p>
-</li>
-<li><p><code>ndd</code>：删除n行（如 <code>3dd</code> 删除3行）</p>
-</li>
-<li><p><code>u</code>：撤销上一步操作（必背）</p>
-</li>
-<li><p><code>yy</code>：复制当前行</p>
-</li>
-<li><p><code>nyy</code>：复制n行</p>
-</li>
-<li><p><code>p</code>：粘贴复制的内容（必背）</p>
-</li>
-<li><p><code>shift \+ g</code>：跳转到文件末尾</p>
-</li>
-<li><p><code>gg</code>：跳转到文件开头</p>
-</li>
-</ul>
-</li>
-<li><p>末行模式（必背）：</p>
-<ul>
-<li><p><code>:w</code>：保存文件</p>
-</li>
-<li><p><code>:q</code>：退出Vim（文件未修改时）</p>
-</li>
-<li><p><code>:wq</code>：保存并退出（必背）</p>
-</li>
-<li><p><code>:q\!</code>：强制退出，不保存修改（必背）</p>
-</li>
-<li><p><code>:set nu</code>：显示行号</p>
-</li>
-<li><p><code>:set nonu</code>：隐藏行号</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>常用场景：修改配置文件 → <code>vim /etc/profile</code> → 按 <code>i</code>编辑 → 按 <code>ESC</code> → <code>:wq</code> 保存退出</p>
-<h1 id="五、Shell脚本基础（黑马实操拓展）"><a href="#五、Shell脚本基础（黑马实操拓展）" class="headerlink" title="五、Shell脚本基础（黑马实操拓展）"></a>五、Shell脚本基础（黑马实操拓展）</h1><p>Shell是Linux的命令解释器，Shell脚本（.sh）用于自动化执行一系列命令，黑马讲解基础脚本编写：</p>
-<h2 id="5-1-脚本规范"><a href="#5-1-脚本规范" class="headerlink" title="5.1 脚本规范"></a>5.1 脚本规范</h2><ul>
-<li><p>脚本文件后缀为 <code>\.sh</code>（如<code>test\.sh</code>）</p>
-</li>
-<li><p>脚本第一行必须写 <code>\#\!/bin/bash</code>（指定解释器）</p>
-</li>
-<li><p>执行脚本：<code>bash test\.sh</code> 或 <code>\./test\.sh</code>（需给脚本加执行权限 <code>chmod 755 test\.sh</code>）</p>
-</li>
-</ul>
-<h2 id="5-2-基础脚本示例（黑马演示案例）"><a href="#5-2-基础脚本示例（黑马演示案例）" class="headerlink" title="5.2 基础脚本示例（黑马演示案例）"></a>5.2 基础脚本示例（黑马演示案例）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 注释：这是一个简单的Shell脚本，输出当前时间和系统信息</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;当前时间：<span class="subst">$(date)</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;当前用户：<span class="subst">$(whoami)</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;服务器IP：<span class="subst">$(ip addr | grep inet | grep -v 127.0.0.1 | awk &#x27;&#123;print $2&#125;&#x27; | cut -d &#x27;/&#x27; -f1)</span>&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="5-3-脚本核心语法（基础）"><a href="#5-3-脚本核心语法（基础）" class="headerlink" title="5.3 脚本核心语法（基础）"></a>5.3 脚本核心语法（基础）</h2><ul>
-<li><p>变量：<code>name=\&amp;\#34;test\&amp;\#34;</code>，使用时 <code>echo $name</code></p>
-</li>
-<li><p>if判断：<br>  <code>if \[ $name == \&amp;\#34;test\&amp;\#34; \]; then   echo \&amp;\#34;正确\&amp;\#34; else   echo \&amp;\#34;错误\&amp;\#34; fi </code></p>
-</li>
-<li><p>for循环：<br>  <code>for i in 1 2 3 4 5; do   echo $i done </code></p>
-</li>
-</ul>
-<p>常用场景：日志备份、服务重启、批量执行命令</p>
-<h1 id="六、Linux软件安装方式（黑马重点）"><a href="#六、Linux软件安装方式（黑马重点）" class="headerlink" title="六、Linux软件安装方式（黑马重点）"></a>六、Linux软件安装方式（黑马重点）</h1><p>Linux软件安装有3种常用方式，黑马按“易用性”排序讲解：</p>
-<h2 id="6-1-在线安装（最常用，必背）"><a href="#6-1-在线安装（最常用，必背）" class="headerlink" title="6.1 在线安装（最常用，必背）"></a>6.1 在线安装（最常用，必背）</h2><ul>
-<li><p>CentOS&#x2F;RHEL：使用 <code>yum</code> 命令，自动解决依赖</p>
-<ul>
-<li><p>安装：<code>yum install 软件名 \-y</code>（-y 自动确认），示例：<code>yum install nginx \-y</code></p>
-</li>
-<li><p>卸载：<code>yum remove 软件名 \-y</code></p>
-</li>
-<li><p>更新：<code>yum update 软件名</code></p>
-</li>
-</ul>
-</li>
-<li><p>Ubuntu&#x2F;Debian：使用 <code>apt\-get</code> 命令</p>
-<ul>
-<li><p>安装：<code>apt\-get install 软件名 \-y</code></p>
-</li>
-<li><p>卸载：<code>apt\-get remove 软件名 \-y</code></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="6-2-rpm包安装（手动安装，适合无网络）"><a href="#6-2-rpm包安装（手动安装，适合无网络）" class="headerlink" title="6.2  rpm包安装（手动安装，适合无网络）"></a>6.2  rpm包安装（手动安装，适合无网络）</h2><p>rpm是Linux的软件包格式，需手动下载rpm包，示例：</p>
-<ul>
-<li><p>安装：<code>rpm \-ivh 软件包\.rpm</code>（ivh：安装、显示进度、显示详细信息）</p>
-</li>
-<li><p>卸载：<code>rpm \-e 软件名</code></p>
-</li>
-<li><p>缺点：需手动解决依赖关系，不如yum方便</p>
-</li>
-</ul>
-<h2 id="6-3-源码编译安装（最灵活，适合定制）"><a href="#6-3-源码编译安装（最灵活，适合定制）" class="headerlink" title="6.3 源码编译安装（最灵活，适合定制）"></a>6.3 源码编译安装（最灵活，适合定制）</h2><p>步骤（黑马标准流程）：</p>
-<ol>
-<li><p>下载源码包（如 <code>wget 源码包地址</code>）</p>
-</li>
-<li><p>解压源码包：<code>tar \-zxvf 源码包\.tar\.gz</code></p>
-</li>
-<li><p>进入解压目录：<code>cd 源码目录</code></p>
-</li>
-<li><p>配置：<code>\./configure</code>（可指定安装路径）</p>
-</li>
-<li><p>编译：<code>make</code></p>
-</li>
-<li><p>安装：<code>make install</code></p>
-</li>
-</ol>
-<p>常用场景：安装特定版本的软件（如自定义nginx安装路径）</p>
-<h1 id="七、防火墙与端口配置（黑马重点，必背）"><a href="#七、防火墙与端口配置（黑马重点，必背）" class="headerlink" title="七、防火墙与端口配置（黑马重点，必背）"></a>七、防火墙与端口配置（黑马重点，必背）</h1><p>Linux防火墙用于控制端口访问，黑马重点讲解CentOS7+的 <code>firewalld</code>（替代旧版iptables）：</p>
-<h2 id="7-1-firewalld常用命令"><a href="#7-1-firewalld常用命令" class="headerlink" title="7.1 firewalld常用命令"></a>7.1 firewalld常用命令</h2><ul>
-<li><p><code>systemctl start firewalld</code>：启动防火墙</p>
-</li>
-<li><p><code>systemctl stop firewalld</code>：停止防火墙（测试环境常用）</p>
-</li>
-<li><p><code>systemctl enable firewalld</code>：防火墙开机自启</p>
-</li>
-<li><p><code>firewall\-cmd \-\-list\-ports</code>：查看已开放的端口</p>
-</li>
-<li><p><code>firewall\-cmd \-\-add\-port=端口号/tcp \-\-permanent</code>：永久开放端口（必背），示例：<code>firewall\-cmd \-\-add\-port=80/tcp \-\-permanent</code></p>
-</li>
-<li><p><code>firewall\-cmd \-\-reload</code>：重新加载防火墙（开放端口后必须执行，必背）</p>
-</li>
-<li><p><code>firewall\-cmd \-\-remove\-port=端口号/tcp \-\-permanent</code>：永久关闭端口</p>
-</li>
-</ul>
-<p>注意：云服务器（如阿里云、腾讯云）还需在控制台开放对应端口，否则防火墙开放也无法访问。</p>
-<h1 id="八、学习总结与注意事项"><a href="#八、学习总结与注意事项" class="headerlink" title="八、学习总结与注意事项"></a>八、学习总结与注意事项</h1><h2 id="8-1-核心重点回顾"><a href="#8-1-核心重点回顾" class="headerlink" title="8.1 核心重点回顾"></a>8.1 核心重点回顾</h2><ul>
-<li><p>必背：文件系统结构、常用命令（ls、cd、pwd、rm、chmod、systemctl等）</p>
-</li>
-<li><p>必会：Vim编辑器（三种模式、保存退出）、防火墙配置、软件安装</p>
-</li>
-<li><p>常用：进程查看、日志查看、端口查看</p>
-</li>
-</ul>
-<h2 id="8-2-黑马强调的注意事项"><a href="#8-2-黑马强调的注意事项" class="headerlink" title="8.2 黑马强调的注意事项"></a>8.2 黑马强调的注意事项</h2><ul>
-<li><p>慎用 <code>rm \-rf /</code>（删除根目录，会导致系统崩溃）</p>
-</li>
-<li><p>修改配置文件前，建议备份（如 <code>cp /etc/profile /etc/profile\.bak</code>）</p>
-</li>
-<li><p>执行命令时，注意用户权限（普通用户无法修改系统配置，需用root或sudo）</p>
-</li>
-<li><p>服务器尽量关闭不必要的服务，开放必要的端口，提升安全性</p>
-</li>
-</ul>
-<h2 id="8-3-个人收获"><a href="#8-3-个人收获" class="headerlink" title="8.3 个人收获"></a>8.3 个人收获</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="cuideXmQr0-HrNTAileRHfq7G" data-title="" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-MySQL学习笔记/MySQL学习笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-MySQL学习笔记/MySQL学习笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2026/04/19/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
   <time class="dt-published" datetime="2026-04-19T13:00:41.330Z" itemprop="datePublished">2026-04-19</time>
@@ -836,11 +423,23 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
+  
+    <a href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
   
+</article>
 
 
 </section>

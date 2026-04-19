@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>祁雪的网安学习笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）在Linux学习过程中，安装Elasticsearch（ES）是我遇到的第一个大坎。原本以为跟着教程一步步来就能顺利完成，没想到实际操作中频频出错，反复折腾了很久才找到解决办法，以下是我真实踩过的每一个坑，无夸张、无编造，全是实操中实打实遇到的问题，希望能给同样初学的小伙伴避坑。 一、真实踩坑过程（逐条对应实际报错）我最初">
+<meta property="og:type" content="article">
+<meta property="og:title" content="祁雪的网安学习笔记">
+<meta property="og:url" content="http://example.com/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E5%AE%9E%E5%BD%95%EF%BC%9AElasticsearch%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E7%9C%9F%E5%AE%9E%E8%AF%95%E9%94%99%E6%80%BB%E7%BB%93%EF%BC%89/index.html">
+<meta property="og:site_name" content="祁雪的网安学习笔记">
+<meta property="og:description" content="Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）在Linux学习过程中，安装Elasticsearch（ES）是我遇到的第一个大坎。原本以为跟着教程一步步来就能顺利完成，没想到实际操作中频频出错，反复折腾了很久才找到解决办法，以下是我真实踩过的每一个坑，无夸张、无编造，全是实操中实打实遇到的问题，希望能给同样初学的小伙伴避坑。 一、真实踩坑过程（逐条对应实际报错）我最初">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-19T13:01:34.955Z">
+<meta property="article:modified_time" content="2026-04-19T12:56:58.712Z">
+<meta property="article:author" content="祁雪">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="祁雪的网安学习笔记" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">祁雪的网安学习笔记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">持续成长中</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Linux学习笔记/Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E5%AE%9E%E5%BD%95%EF%BC%9AElasticsearch%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E7%9C%9F%E5%AE%9E%E8%AF%95%E9%94%99%E6%80%BB%E7%BB%93%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2026-04-19T13:01:34.955Z" itemprop="datePublished">2026-04-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）"><a href="#Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）" class="headerlink" title="Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）"></a>Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）</h1><p>在Linux学习过程中，安装Elasticsearch（ES）是我遇到的第一个大坎。原本以为跟着教程一步步来就能顺利完成，没想到实际操作中频频出错，反复折腾了很久才找到解决办法，以下是我真实踩过的每一个坑，无夸张、无编造，全是实操中实打实遇到的问题，希望能给同样初学的小伙伴避坑。</p>
+<h2 id="一、真实踩坑过程（逐条对应实际报错）"><a href="#一、真实踩坑过程（逐条对应实际报错）" class="headerlink" title="一、真实踩坑过程（逐条对应实际报错）"></a>一、真实踩坑过程（逐条对应实际报错）</h2><p>我最初选择了压缩包手动安装的方式，本以为手动操作能更熟悉流程，结果从配置到启动，问题接连不断，每一个错误都让我卡壳很久。</p>
+<h3 id="1-配置文件被注释，导致network-host不生效"><a href="#1-配置文件被注释，导致network-host不生效" class="headerlink" title="1. 配置文件被注释，导致network.host不生效"></a>1. 配置文件被注释，导致network.host不生效</h3><p>编辑elasticsearch.yml配置文件时，我看到文件中已有「network.host: 0.0.0.0」这一行，没注意到前面有「#」注释符号，误以为配置已经生效。等到启动ES后才发现，ES只监听本地地址，浏览器输入服务器IP:9200根本无法访问，排查了很久才发现是注释没取消，配置等于没写。</p>
+<h3 id="2-启动时报错：max-file-descriptors太小、vm-max-map-count不足"><a href="#2-启动时报错：max-file-descriptors太小、vm-max-map-count不足" class="headerlink" title="2. 启动时报错：max file descriptors太小、vm.max_map_count不足"></a>2. 启动时报错：max file descriptors太小、vm.max_map_count不足</h3><p>这是最常见也最让人头疼的报错，启动ES时直接提示启动失败，终端输出两条关键错误信息：</p>
+<ul>
+<li><p>max file descriptors [4096] too low，需要至少 65535</p>
+</li>
+<li><p>vm.max_map_count [65530] too low，需要至少 262144</p>
+</li>
+</ul>
+<p>因为我刚接触Linux，不知道需要修改系统配置文件来调整这两个参数，只能反复重启ES，结果每次都报同样的错，一度以为是压缩包下载损坏。</p>
+<h3 id="3-权限混乱，ES用户无法读写目录"><a href="#3-权限混乱，ES用户无法读写目录" class="headerlink" title="3. 权限混乱，ES用户无法读写目录"></a>3. 权限混乱，ES用户无法读写目录</h3><p>ES不允许用root用户启动，所以我创建了es用户，但操作时太随意，一会儿用root用户解压文件、创建目录，一会儿切换到es用户启动服务，导致data（数据目录）和logs（日志目录）的权限混乱。启动时直接报错“Permission denied”，ES无法写入数据和日志，哪怕用chmod命令修改权限，也因为之前的操作混乱，始终无法彻底解决。</p>
+<h3 id="4-进程残留-锁文件导致无法再次启动"><a href="#4-进程残留-锁文件导致无法再次启动" class="headerlink" title="4. 进程残留 + 锁文件导致无法再次启动"></a>4. 进程残留 + 锁文件导致无法再次启动</h3><p>有一次启动失败后，我没有检查进程是否正常退出，就直接重新执行启动命令，结果提示「failed to obtain node locks」，无法获取节点锁。后来才知道，之前启动失败的ES进程残留，加上data目录下生成的锁文件，导致新的进程无法启动，只能先kill残留进程，删除锁文件，才能重新尝试启动。</p>
+<h3 id="5-手动写systemd服务文件，路径写错导致服务异常"><a href="#5-手动写systemd服务文件，路径写错导致服务异常" class="headerlink" title="5. 手动写systemd服务文件，路径写错导致服务异常"></a>5. 手动写systemd服务文件，路径写错导致服务异常</h3><p>为了方便后续启动ES，我参考教程手动创建elasticsearch.service服务文件，但因为对Linux路径不熟悉，把PID文件路径、ES执行路径写错了。执行「systemctl start elasticsearch」时，要么提示“找不到PID文件”，要么提示“无法启动服务”，反复修改路径好几次，还是无法正常启动服务。</p>
+<h3 id="6-ES进程看似在运行，但9200端口不通"><a href="#6-ES进程看似在运行，但9200端口不通" class="headerlink" title="6. ES进程看似在运行，但9200端口不通"></a>6. ES进程看似在运行，但9200端口不通</h3><p>有一次启动后，用「ps -ef | grep elasticsearch」能看到ES进程在运行，以为这次终于成功了，结果用「curl 127.0.0.1:9200」测试时，一直提示「Connection refused」。排查后发现，ES虽然启动了进程，但因为之前的系统配置（max file descriptors、vm.max_map_count）还是没改对，启动到一半就自动退出了，进程只是“假运行”状态。</p>
+<h3 id="7-Linux操作不熟练，不等提示符就乱输入命令"><a href="#7-Linux操作不熟练，不等提示符就乱输入命令" class="headerlink" title="7. Linux操作不熟练，不等提示符就乱输入命令"></a>7. Linux操作不熟练，不等提示符就乱输入命令</h3><p>这是我自己的操作失误，因为刚接触Linux命令行，耐心不足，经常在一条命令还没执行完、终端还没出现提示符时，就着急输入下一条命令。导致命令排队执行、执行顺序混乱，有时候甚至会覆盖之前的配置，引发一些莫名其妙的错误，比如权限修改不生效、文件解压不完整等。</p>
+<h3 id="8-压缩包与YUM安装路径混淆，出现冲突"><a href="#8-压缩包与YUM安装路径混淆，出现冲突" class="headerlink" title="8. 压缩包与YUM安装路径混淆，出现冲突"></a>8. 压缩包与YUM安装路径混淆，出现冲突</h3><p>手动安装多次失败后，我想着换一种方式，用YUM安装试试，但没有彻底删除之前用压缩包安装的ES文件（安装在&#x2F;usr&#x2F;local&#x2F;elasticsearch目录下）。结果YUM安装后，系统默认的安装路径和手动安装的路径冲突，导致服务找不到ES执行文件、PID冲突，启动时要么提示文件不存在，要么提示端口被占用。</p>
+<h2 id="二、最终解决结果"><a href="#二、最终解决结果" class="headerlink" title="二、最终解决结果"></a>二、最终解决结果</h2><p>折腾了大半天，我意识到手动安装对新手来说太容易出错，而且自己对Linux系统配置、权限管理还不熟练。于是我先把之前手动安装的ES文件、残留进程、锁文件、错误的服务文件全部彻底删除干净，然后按照教程，全程使用YUM方式安装Elasticsearch。</p>
+<p>YUM安装的优势在于，所有用户创建、权限配置、系统参数调整、服务注册都由系统自动处理，不需要手动修改配置文件、调整权限，全程按照提示执行命令，最终一次启动成功，用浏览器访问IP:9200，顺利看到了ES的默认响应页面，悬着的心终于放下了。</p>
+<h2 id="三、学习收获与总结"><a href="#三、学习收获与总结" class="headerlink" title="三、学习收获与总结"></a>三、学习收获与总结</h2><p>这次安装ES的踩坑经历，虽然折腾，但也让我对Linux操作、ES安装配置有了更深刻的理解，也总结了几个新手避坑要点：</p>
+<ul>
+<li><p>新手安装ES，优先选择YUM（或apt）方式，避免手动压缩包安装，减少配置和权限带来的麻烦；</p>
+</li>
+<li><p>修改配置文件时，一定要注意取消注释符号（#），否则配置不生效；</p>
+</li>
+<li><p>ES启动前，必须先修改系统的max file descriptors和vm.max_map_count参数，否则一定会启动失败；</p>
+</li>
+<li><p>操作Linux时，一定要耐心，等一条命令执行完再输入下一条，避免命令混乱；</p>
+</li>
+<li><p>更换安装方式时，一定要彻底删除之前的安装残留，避免路径、PID冲突。</p>
+</li>
+</ul>
+<p>作为Linux初学者，踩坑是难免的，但每解决一个问题，都是一次进步。记录下这些真实的试错过程，既是对自己学习的总结，也希望能帮助到和我一样初学的小伙伴，少走一些弯路。</p>
+<blockquote>
+<p>（注：文档部分内容可能由 AI 生成）</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E5%AE%9E%E5%BD%95%EF%BC%9AElasticsearch%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E7%9C%9F%E5%AE%9E%E8%AF%95%E9%94%99%E6%80%BB%E7%BB%93%EF%BC%89/" data-id="cuid_rcdqhrPsD8aUepA7hNpn" data-title="" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">四月 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E5%AE%9E%E5%BD%95%EF%BC%9AElasticsearch%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E7%9C%9F%E5%AE%9E%E8%AF%95%E9%94%99%E6%80%BB%E7%BB%93%EF%BC%89/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/19/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 祁雪<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

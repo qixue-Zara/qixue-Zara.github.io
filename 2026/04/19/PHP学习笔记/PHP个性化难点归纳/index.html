@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>PHP个性化难点分析 | 祁雪的网安学习笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="PHP学习笔记（难点解析）笔记一：个性化难点解析（菜鸟教程学习重点+难懂点纠正）本笔记聚焦学习过程中容易混淆、理解不透彻的知识点，结合自身疑问纠正偏差，重点突破个性化难点，适配Typora阅读和编辑，补充所有遗漏的核心难点，确保覆盖PHP全场景易踩坑点。 一、变量作用域（核心难点）核心结论：函数内无法直接访问全局变量，函数外也无法直接访问函数内的局部变量，需通过指定方式调用；静态变量是特殊的局部变">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP个性化难点分析">
+<meta property="og:url" content="http://example.com/2026/04/19/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PHP%E4%B8%AA%E6%80%A7%E5%8C%96%E9%9A%BE%E7%82%B9%E5%BD%92%E7%BA%B3/index.html">
+<meta property="og:site_name" content="祁雪的网安学习笔记">
+<meta property="og:description" content="PHP学习笔记（难点解析）笔记一：个性化难点解析（菜鸟教程学习重点+难懂点纠正）本笔记聚焦学习过程中容易混淆、理解不透彻的知识点，结合自身疑问纠正偏差，重点突破个性化难点，适配Typora阅读和编辑，补充所有遗漏的核心难点，确保覆盖PHP全场景易踩坑点。 一、变量作用域（核心难点）核心结论：函数内无法直接访问全局变量，函数外也无法直接访问函数内的局部变量，需通过指定方式调用；静态变量是特殊的局部变">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-19T13:30:37.205Z">
+<meta property="article:modified_time" content="2026-04-19T13:33:45.834Z">
+<meta property="article:author" content="祁雪">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="后端">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="祁雪的网安学习笔记" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">祁雪的网安学习笔记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">持续成长中</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-PHP学习笔记/PHP个性化难点归纳" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/04/19/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PHP%E4%B8%AA%E6%80%A7%E5%8C%96%E9%9A%BE%E7%82%B9%E5%BD%92%E7%BA%B3/" class="article-date">
+  <time class="dt-published" datetime="2026-04-19T13:30:37.205Z" itemprop="datePublished">2026-04-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-PHP/">学习笔记/PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      PHP个性化难点分析
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="PHP学习笔记（难点解析）"><a href="#PHP学习笔记（难点解析）" class="headerlink" title="PHP学习笔记（难点解析）"></a>PHP学习笔记（难点解析）</h1><h1 id="笔记一：个性化难点解析（菜鸟教程学习重点-难懂点纠正）"><a href="#笔记一：个性化难点解析（菜鸟教程学习重点-难懂点纠正）" class="headerlink" title="笔记一：个性化难点解析（菜鸟教程学习重点+难懂点纠正）"></a>笔记一：个性化难点解析（菜鸟教程学习重点+难懂点纠正）</h1><p>本笔记聚焦学习过程中容易混淆、理解不透彻的知识点，结合自身疑问纠正偏差，重点突破个性化难点，适配Typora阅读和编辑，补充所有遗漏的核心难点，确保覆盖PHP全场景易踩坑点。</p>
+<h2 id="一、变量作用域（核心难点）"><a href="#一、变量作用域（核心难点）" class="headerlink" title="一、变量作用域（核心难点）"></a>一、变量作用域（核心难点）</h2><p>核心结论：函数内无法直接访问全局变量，函数外也无法直接访问函数内的局部变量，需通过指定方式调用；静态变量是特殊的局部变量，需重点区分。</p>
+<ul>
+<li><p>全局变量调用：函数内访问全局变量，必须使用 <code>global</code> 关键字，或通过 <code>$GLOBALS\[\&amp;\#39;变量名\&amp;\#39;\]</code> 访问（两者等价，重点理解后者）。</p>
+<ul>
+<li>补充：<code>global $x</code> 本质是引用全局变量$x，与 <code>$GLOBALS\[\&amp;\#39;x\&amp;\#39;\]</code> 操作的是同一个变量，无区别。</li>
+</ul>
+</li>
+<li><p>关键解析（纠正理解偏差）：<br>  对于 <code>$GLOBALS\[\&amp;\#39;y\&amp;\#39;\] = $GLOBALS\[\&amp;\#39;x\&amp;\#39;\] \+ $GLOBALS\[\&amp;\#39;y\&amp;\#39;\];</code> 这句话，<strong>三个y是同一个全局变量</strong>，并非三个不同变量：<br><br>  等价于简化写法：<code>$y = $x \+ $y;</code>，逻辑完全一致，只是前者明确指定操作全局变量（避免与局部变量混淆）。</p>
+<ol>
+<li><p>右边的 <code>$GLOBALS\[\&amp;\#39;y\&amp;\#39;\]</code>：读取全局变量y的原始值；</p>
+</li>
+<li><p>左边的 <code>$GLOBALS\[\&amp;\#39;y\&amp;\#39;\]</code>：将计算后的新值，重新赋值给全局变量y；</p>
+</li>
+<li><p>后续 <code>echo $y</code>：输出的是被重新赋值后的全局变量y。</p>
+</li>
+</ol>
+</li>
+<li><p>局部变量限制：函数内定义的局部变量，仅在函数内部有效，函数执行结束后自动销毁，外部无法直接调用，只能通过调用函数间接使用其结果。</p>
+</li>
+<li><p>补充难点：静态变量（static）</p>
+<ul>
+<li><p>定义：在函数内用 <code>static $变量名 = 初始值;</code> 定义；</p>
+</li>
+<li><p>核心特性：函数执行结束后，变量值不销毁，保留上次执行的结果，下次调用函数时直接使用该值；</p>
+</li>
+<li><p>易错点：静态变量仅在第一次调用函数时初始化，后续调用不再重新赋值。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、Heredoc（定界符）语法（易踩坑点）"><a href="#二、Heredoc（定界符）语法（易踩坑点）" class="headerlink" title="二、Heredoc（定界符）语法（易踩坑点）"></a>二、Heredoc（定界符）语法（易踩坑点）</h2><p>Heredoc用于定义多行字符串，语法有严格要求，稍不注意就会报错，重点记3点，补充遗漏细节：</p>
+<ol>
+<li><p>标记规则：以 <code>\&amp;lt;\&amp;lt;\&amp;lt;EOF</code> 开始（EOF可替换为EOT、EOD、JSON、HTML等，自定义即可），以 <code>EOF;</code> 结束；</p>
+<ul>
+<li>补充：开始标记后的EOF（或自定义标记），后面不能加任何字符（包括空格、注释），否则报错。</li>
+</ul>
+</li>
+<li><p>结束标记要求：必须顶头写，<strong>不能有任何缩进、空格</strong>，且末尾必须加分号；</p>
+<ul>
+<li>易错点：结束标记前后不能有任何多余字符，哪怕是一个空格，都会导致解析失败。</li>
+</ul>
+</li>
+<li><p>解析规则：标记之间的变量可正常解析（无需用 <code>\.</code> 或 <code>,</code> 拼接），但函数无法解析；</p>
+<ul>
+<li><p>补充：若需在Heredoc中显示变量名（不解析），可在变量前加反斜杠 <code>\\$变量名</code>；</p>
+</li>
+<li><p>补充：Nowdoc语法（补充遗漏）：与Heredoc类似，标记用单引号包裹（如 <code>\&amp;lt;\&amp;lt;\&amp;lt;\&amp;\#39;EOF\&amp;\#39;</code>），标记之间的变量、转义字符都不解析，适合定义纯文本。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="三、var-dump-函数（易误用点）"><a href="#三、var-dump-函数（易误用点）" class="headerlink" title="三、var_dump()函数（易误用点）"></a>三、var_dump()函数（易误用点）</h2><p>核心注意：<code>var\_dump\(\)</code> 是<strong>自带输出功能</strong>的函数，无需搭配 <code>echo</code>，调用后会直接将变量的数据类型和值打印到页面，无需额外写输出语句。</p>
+<ul>
+<li><p>补充细节：</p>
+<ul>
+<li><p>可同时传入多个变量，用逗号分隔，如 <code>var\_dump\($a, $b, $c\);</code>；</p>
+</li>
+<li><p>与 <code>print\_r\(\)</code> 区别（补充遗漏）：<code>print\_r\(\)</code> 仅输出变量的值（数组会格式化显示），不输出数据类型；<code>var\_dump\(\)</code> 输出数据类型+值，更适合调试。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="四、PHP常量（易与变量混淆）"><a href="#四、PHP常量（易与变量混淆）" class="headerlink" title="四、PHP常量（易与变量混淆）"></a>四、PHP常量（易与变量混淆）</h2><p>常量与变量的核心区别和关键特性，纠正易混淆点，补充遗漏细节：</p>
+<ol>
+<li><p>不变性：一旦定义，值无法修改、无法删除，也无法重新定义；</p>
+</li>
+<li><p>作用域：全局作用域，定义后可在脚本任何地方使用（包括函数内、类内），<strong>无需用global关键字</strong>；</p>
+<ul>
+<li>补充：类常量（补充遗漏）：在类内用 <code>const 常量名 = 常量值;</code> 定义，只能通过 <code>类名::常量名</code> 或<code>对象名::常量名</code> 访问，不能用$this访问。</li>
+</ul>
+</li>
+<li><p>语法规范：名称无需加 <code>$</code> 修饰符，由字母、下划线、数字组成（数字不能开头）；</p>
+<ul>
+<li>补充：常量名建议全部大写，便于区分（规范写法，非强制）。</li>
+</ul>
+</li>
+<li><p>大小写：默认区分大小写，define()函数第三个参数设为true，可定义大小写不敏感的常量；</p>
+<ul>
+<li>补充：const定义的常量，默认区分大小写，且不能设置为不敏感；define()可设置，二者定义方式的区别见下文。</li>
+</ul>
+</li>
+<li><p>值的要求：只能是标量类型（布尔值、整数、浮点数、字符串）或PHP7及以上版本的数组，不能是变量、类属性、数学运算的结果或函数调用；</p>
+</li>
+<li><p>补充：define()与const的区别（遗漏重点）：</p>
+<ul>
+<li><p>定义位置：const可在类内、类外定义；define()只能在类外定义；</p>
+</li>
+<li><p>解析时间：const在编译时解析；define()在运行时解析；</p>
+</li>
+<li><p>灵活性：define()可通过变量动态定义常量名（如 <code>$name = \&amp;\#39;PI\&amp;\#39;; define\($name, 3\.14\);</code>）；const不行。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、字符串拼接（易出错点）"><a href="#五、字符串拼接（易出错点）" class="headerlink" title="五、字符串拼接（易出错点）"></a>五、字符串拼接（易出错点）</h2><p>PHP中字符串拼接使用 <code>\.</code>（并置运算符），而非 <code>\+</code>（+用于数值运算），重点记两种用法，补充遗漏细节：</p>
+<ol>
+<li><p>普通拼接：<code>$b = $a \. \&amp;\#34; world\!\&amp;\#34;;</code>（拼接变量和字符串，中间可加空格）；</p>
+<ul>
+<li>易错点：若拼接的变量为null、false，会被转为空字符串；若为数字，会被转为字符串后拼接。</li>
+</ul>
+</li>
+<li><p>复合赋值拼接：<code>$x \.= \&amp;\#34; world\!\&amp;\#34;;</code>（等价于 <code>$x = $x \. \&amp;\#34; world\!\&amp;\#34;;</code>，简化写法）。</p>
+</li>
+</ol>
+<p>示例验证：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$txt1</span>=<span class="string">&quot;Hello world!&quot;</span>;</span><br><span class="line"><span class="variable">$txt2</span>=<span class="string">&quot;What a nice day!&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$txt1</span> . <span class="string">&quot; &quot;</span> . <span class="variable">$txt2</span>; <span class="comment">// 输出：Hello world! What a nice day!</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>补充：字符串常用函数（遗漏重点，易忘）：<br>      <code>strlen\($str\)</code>：获取字符串长度（按字节计算，中文在UTF-8编码下占3个字节）；<code>mb\_strlen\($str, \&amp;\#39;utf\-8\&amp;\#39;\)</code>：获取字符串长度（按字符计算，支持中文，需开启mbstring扩展）；<code>strpos\($str, $substr\)</code>：查找子串在字符串中的首次出现位置，找到返回索引（从0开始），找不到返回false；<code>str\_replace\($old, $new, $str\)</code>：将字符串中的旧子串替换为新子串；<code>trim\($str\)</code>：去除字符串首尾的空格、换行符、制表符等空白字符。</p>
+<h2 id="六、运算符（难点：取反、异或、优先级，补充遗漏运算符）"><a href="#六、运算符（难点：取反、异或、优先级，补充遗漏运算符）" class="headerlink" title="六、运算符（难点：取反、异或、优先级，补充遗漏运算符）"></a>六、运算符（难点：取反、异或、优先级，补充遗漏运算符）</h2><h3 id="1-重点单目运算符（易混淆）"><a href="#1-重点单目运算符（易混淆）" class="headerlink" title="1. 重点单目运算符（易混淆）"></a>1. 重点单目运算符（易混淆）</h3><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>作用</th>
+<th>示例</th>
+<th>输出结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-x</td>
+<td>取x的相反符号</td>
+<td>$x&#x3D;2; echo -$x;</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>~x</td>
+<td>按二进制位取反（运算规则：~n &#x3D; -n-1）</td>
+<td>$x&#x3D;2; echo ~$x;</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>++x</td>
+<td>前置递增：先加1，再使用</td>
+<td>$x&#x3D;2; echo ++$x;</td>
+<td>3</td>
+</tr>
+<tr>
+<td>x++</td>
+<td>后置递增：先使用，再加1</td>
+<td>$x&#x3D;2; echo $x++;</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<h3 id="2-异或运算符（xor）"><a href="#2-异或运算符（xor）" class="headerlink" title="2. 异或运算符（xor）"></a>2. 异或运算符（xor）</h3><p>核心逻辑：<strong>两个条件有且仅有一个为true，返回true；否则返回false</strong>（同真同假均为false）。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$x</span>=<span class="number">6</span>;</span><br><span class="line"><span class="variable">$y</span>=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">echo</span> (<span class="variable">$x</span>==<span class="number">6</span> <span class="keyword">xor</span> <span class="variable">$y</span>==<span class="number">3</span>); <span class="comment">// 两个条件均为true，返回false</span></span><br><span class="line"><span class="keyword">echo</span> (<span class="variable">$x</span>==<span class="number">6</span> <span class="keyword">xor</span> <span class="variable">$y</span>==<span class="number">4</span>); <span class="comment">// 一个true、一个false，返回true</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-补充遗漏运算符（重点）"><a href="#3-补充遗漏运算符（重点）" class="headerlink" title="3. 补充遗漏运算符（重点）"></a>3. 补充遗漏运算符（重点）</h3><ul>
+<li><p>三元运算符（补充细节）：<code>$a = 条件 ? 值1 : 值2;</code>，条件为true返回值1，否则返回值2；</p>
+<ul>
+<li>易错点：三元运算符是右结合，如 <code>$a = 1 ? 2 : 3 ? 4 : 5;</code> 等价于 <code>$a = 1 ? 2 : \(3 ? 4 : 5\);</code>，结果为2。</li>
+</ul>
+</li>
+<li><p>组合比较运算符（补充遗漏）：<code>$a \&amp;lt;=\&amp;gt; $b</code>，用于比较两个值，返回-1（a&amp;lt;b）、0（a&#x3D;&#x3D;b）、1（a&amp;gt;b），适合排序场景；</p>
+</li>
+<li><p>逻辑运算符补充：<code>and</code> 和 <code>\&amp;amp;</code>&amp;amp;、<code>or</code> 和 <code>\|\|</code> 功能相同，但优先级不同（<code>\&amp;amp;\&amp;amp; \&amp;gt; \|\| \&amp;gt; and \&amp;gt; or</code>）；</p>
+<ul>
+<li><p>示例：<code>$a = false and true;</code> 等价于 <code>\($a = false\) and true;</code>，$a的值为false；</p>
+</li>
+<li><p>示例：<code>$a = false \&amp;amp;\&amp;amp; true;</code> 等价于 <code>$a = \(false \&amp;amp;\&amp;amp; true\);</code>，$a的值为false。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-运算符优先级（关键，避免运算错误）"><a href="#4-运算符优先级（关键，避免运算错误）" class="headerlink" title="4. 运算符优先级（关键，避免运算错误）"></a>4. 运算符优先级（关键，避免运算错误）</h3><p>优先级从高到低（完整版本，重点记常用，无需死记全部，关键是用括号改变优先级）：</p>
+<ol>
+<li><p>括号（()）：优先级最高，可强制改变运算顺序；</p>
+</li>
+<li><p>类型转换、递增&#x2F;递减（如：(int)、(float)、(string)、++、--、~）；</p>
+</li>
+<li><p>算术运算符（*、&#x2F;、% &amp;gt; +、-、.）；</p>
+</li>
+<li><p>位运算符（&amp;lt;&amp;lt;、&amp;gt;&amp;gt; &amp;gt; &amp;amp; &amp;gt; ^ &amp;gt; |）；</p>
+</li>
+<li><p>比较运算符（&#x3D;&#x3D;、!&#x3D;、&#x3D;&#x3D;&#x3D;、!&#x3D;&#x3D;、&amp;lt;&amp;gt; &amp;gt; &amp;gt;、&amp;lt;、&amp;gt;&#x3D;、&amp;lt;&#x3D; &amp;gt; &amp;lt;&#x3D;&amp;gt;）；</p>
+</li>
+<li><p>逻辑运算符（! &amp;amp;gt; &amp;amp;amp;&amp;amp;amp; &amp;amp;gt; ||）；</p>
+</li>
+<li><p>三元运算符（? :）；</p>
+</li>
+<li><p>赋值运算符（&#x3D;、+&#x3D;、-&#x3D;、*&#x3D;、&#x2F;&#x3D;、.&#x3D;、%&#x3D;、&amp;amp;&#x3D;、|&#x3D; 等）；</p>
+</li>
+<li><p>逻辑运算符（and &amp;gt; xor &amp;gt; or）；</p>
+</li>
+<li><p>逗号运算符（,）：优先级最低，用于分隔多个表达式，返回最后一个表达式的值。</p>
+</li>
+</ol>
+<p>关键提醒：赋值运算符遵循“左操作数 &#x3D; 左操作数 运算 右操作数”，如 <code>$x \+= $y</code> 等价于 <code>$x = $x \+ $y</code>；字符串拼接的复合赋值<code>$x \.= $y</code> 同理。</p>
+<h2 id="七、面向对象（核心难点，补充完整）"><a href="#七、面向对象（核心难点，补充完整）" class="headerlink" title="七、面向对象（核心难点，补充完整）"></a>七、面向对象（核心难点，补充完整）</h2><p>核心类比：类是“模板”（定义属性和方法），对象是“模板实例化后的具体个体”，与C语言结构体+操作函数等价，补充所有遗漏的面向对象知识点，重点记以下内容：</p>
+<ol>
+<li><p><code>$this</code>：代表当前对象，只能在类的非静态方法内部使用，用于访问当前对象的属性和方法；</p>
+<ul>
+<li>易错点：<code>$this</code> 不能在静态方法中使用，因为静态方法不依赖具体对象。</li>
+</ul>
+</li>
+<li><p>构造函数：用于对象初始化，创建对象时自动执行，用于给对象属性赋值；</p>
+<ul>
+<li><p>写法：<code>public function \_\_construct\(参数1, 参数2, \.\.\.\)\{ \.\.\. \}</code>；</p>
+</li>
+<li><p>补充：PHP7及以上支持构造函数属性提升（简化写法），如 <code>public function \_\_construct\(public $name, public $age\)\{\}</code>，无需单独定义属性。</p>
+</li>
+</ul>
+</li>
+<li><p>析构函数（补充遗漏）：<code>public function \_\_destruct\(\)\{ \.\.\. \}</code>，对象被销毁时自动执行（脚本结束时或手动unset()对象），常用于释放资源（如关闭文件、数据库连接）。</p>
+</li>
+<li><p>静态（static）：</p>
+<ul>
+<li><p>静态属性&#x2F;方法：无需实例化类，可直接通过 <code>类名::属性名</code>、<code>类名::方法名\(\)</code> 访问；</p>
+</li>
+<li><p>注意：静态方法中不能使用 <code>$this</code>（无具体对象），静态属性不能通过对象-&amp;gt;访问；</p>
+</li>
+<li><p>补充：静态属性是所有对象共享的，修改一个对象的静态属性，会影响所有该类的对象。</p>
+</li>
+</ul>
+</li>
+<li><p>访问控制修饰符（补充遗漏，核心重点）：</p>
+<ul>
+<li><p>public（公共）：类内、类外、子类均可访问；</p>
+</li>
+<li><p>private（私有）：仅类内可访问，类外、子类均不可访问；</p>
+</li>
+<li><p>protected（受保护）：类内、子类可访问，类外不可访问；</p>
+</li>
+<li><p>易错点：子类不能直接访问父类的private属性&#x2F;方法，需通过父类的public&#x2F;protected方法间接访问。</p>
+</li>
+</ul>
+</li>
+<li><p>继承（补充细节）：</p>
+<ul>
+<li><p>用extends关键字，子类继承父类的public&#x2F;protected属性和方法，private属性&#x2F;方法无法继承；</p>
+</li>
+<li><p>重写：子类可定义与父类同名的方法，重写时访问修饰符不能比父类更严格（如父类是public，子类不能是private）；</p>
+</li>
+<li><p>父类调用：子类中用 <code>parent::方法名\(\)</code> 调用父类的方法，用 <code>parent::\_\_construct\(\)</code> 调用父类的构造函数。</p>
+</li>
+</ul>
+</li>
+<li><p>抽象类与接口（补充遗漏，难点）：</p>
+<ul>
+<li><p>抽象类：用abstract关键字定义，不能实例化，只能被继承；类内可包含抽象方法（无方法体，用abstract定义）和普通方法；子类必须实现抽象类中所有的抽象方法；</p>
+</li>
+<li><p>接口：用interface关键字定义，不能实例化，只能被实现（implements）；接口内只能定义抽象方法（PHP8.0+可定义常量和默认方法）；一个类可实现多个接口，用逗号分隔。</p>
+</li>
+</ul>
+</li>
+<li><p>魔术方法（补充遗漏，常用）：</p>
+<ul>
+<li><p><code>\_\_get\($name\)</code>：访问不存在或不可访问的属性时自动调用；</p>
+</li>
+<li><p><code>\_\_set\($name, $value\)</code>：给不存在或不可访问的属性赋值时自动调用；</p>
+</li>
+<li><p><code>\_\_call\($name, $args\)</code>：调用不存在或不可访问的方法时自动调用；</p>
+</li>
+<li><p><code>\_\_toString\(\)</code>：将对象转为字符串时自动调用（如echo对象），需返回字符串。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="八、表单相关（易踩坑点，补充完整细节）"><a href="#八、表单相关（易踩坑点，补充完整细节）" class="headerlink" title="八、表单相关（易踩坑点，补充完整细节）"></a>八、表单相关（易踩坑点，补充完整细节）</h2><ol>
+<li><p>单选框（radio）：同一组选项的 <code>name</code> 属性必须相同，否则无法实现“单选”效果，提交的是 <code>value</code> 值，而非界面显示的文字；</p>
+<ul>
+<li>补充：若需默认选中某一个选项，给该选项添加 <code>checked=\&amp;\#34;checked\&amp;\#34;</code>（或简写为checked）。</li>
+</ul>
+</li>
+<li><p>复选框（checkbox，补充遗漏）：</p>
+<ul>
+<li><p>同一组选项的name属性需设为数组形式，如 <code>name=\&amp;\#34;hobby\[\]\&amp;\#34;</code>，否则只能获取最后一个选中的值；</p>
+</li>
+<li><p>提交后，通过 <code>$\_GET\[\&amp;\#39;hobby\&amp;\#39;\]</code> 或 <code>$\_POST\[\&amp;\#39;hobby\&amp;\#39;\]</code> 获取，返回的是数组（选中的所有value值）。</p>
+</li>
+</ul>
+</li>
+<li><p>文件上传：</p>
+<ul>
+<li><p>表单必须添加属性：<code>enctype=\&amp;\#34;multipart/form\-data\&amp;\#34;</code>，否则无法获取上传文件；</p>
+</li>
+<li><p>表单提交方式必须为POST，GET方式有长度限制，无法传递文件数据；</p>
+</li>
+<li><p>获取文件：通过 <code>$\_FILES</code> 超全局数组获取，核心参数：</p>
+<ul>
+<li><p><code>$\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;name\&amp;\#34;\]</code>：上传文件的原始名称；</p>
+</li>
+<li><p><code>$\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;type\&amp;\#34;\]</code>：上传文件的MIME类型（如image&#x2F;jpeg）；</p>
+</li>
+<li><p><code>$\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;tmp\_name\&amp;\#34;\]</code>：文件上传到服务器后的临时路径（必须用此路径操作文件）；</p>
+</li>
+<li><p><code>$\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;error\&amp;\#34;\]</code>：上传错误码（0表示成功，1表示文件超过php.ini限制，2表示文件超过表单限制等）；</p>
+</li>
+<li><p><code>$\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;size\&amp;\#34;\]</code>：上传文件的大小（单位：字节）。</p>
+</li>
+</ul>
+</li>
+<li><p>关键判断：<code>$\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;error\&amp;\#34;\] == 0</code> 表示文件上传成功；</p>
+</li>
+<li><p>常用操作：限制文件大小（<code>$\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;size\&amp;\#34;\]</code>）、获取文件后缀（<code>explode \+ end</code> 或 <code>pathinfo\(\)</code>）、保存文件（<code>move\_uploaded\_file\($\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;tmp\_name\&amp;\#34;\], 目标路径\)</code>）；</p>
+</li>
+<li><p>易错点：保存文件时，目标路径必须有可写权限（可通过chmod命令修改），否则保存失败。</p>
+</li>
+</ul>
+</li>
+<li><p>表单过滤：使用<code>filter\_input\_array\(\)</code> 过滤表单输入，第二个参数可指定过滤器，非法输入会返回false；</p>
+<ul>
+<li><p>补充：常用过滤器（遗漏）：</p>
+<ul>
+<li><p>FILTER_VALIDATE_EMAIL：验证邮箱格式；</p>
+</li>
+<li><p>FILTER_VALIDATE_URL：验证URL格式；</p>
+</li>
+<li><p>FILTER_VALIDATE_INT：验证是否为整数；</p>
+</li>
+<li><p>FILTER_SANITIZE_STRING：过滤HTML标签，保留纯文本。</p>
+</li>
+</ul>
+</li>
+<li><p>示例：<code>$filters = array\(\&amp;\#39;email\&amp;\#39; =\&amp;gt; FILTER\_VALIDATE\_EMAIL, \&amp;\#39;age\&amp;\#39; =\&amp;gt; FILTER\_VALIDATE\_INT\);</code>，过滤后若email格式错误，$result[&amp;#39;email&amp;#39;]为false。</p>
+</li>
+</ul>
+</li>
+<li><p>表单验证补充：除了过滤器，还需手动验证必填项（如 <code>empty\($\_POST\[\&amp;\#39;name\&amp;\#39;\]\)</code> 判断是否为空）、数据长度、数据格式等，避免非法数据提交。</p>
+</li>
+</ol>
+<h2 id="九、会话（Session，补充遗漏，核心重点）"><a href="#九、会话（Session，补充遗漏，核心重点）" class="headerlink" title="九、会话（Session，补充遗漏，核心重点）"></a>九、会话（Session，补充遗漏，核心重点）</h2><p>Session用于在多个页面之间保存用户信息（如登录状态），与Cookie的区别是：Session数据保存在服务器端，更安全；Cookie保存在客户端，易被篡改。</p>
+<ul>
+<li><p>核心操作：</p>
+<ol>
+<li><p>启动会话：<code>session\_start\(\);</code>（必须放在&amp;lt;html&amp;gt;标签之前，且页面无任何输出，否则报错）；</p>
+</li>
+<li><p>设置Session：<code>$\_SESSION\[\&amp;\#39;key\&amp;\#39;\] = value;</code>（如 <code>$\_SESSION\[\&amp;\#39;username\&amp;\#39;\] = \&amp;\#39;admin\&amp;\#39;;</code>）；</p>
+</li>
+<li><p>获取Session：<code>echo $\_SESSION\[\&amp;\#39;key\&amp;\#39;\];</code>（需先启动会话）；</p>
+</li>
+<li><p>销毁Session：</p>
+<ul>
+<li><p>销毁单个Session：<code>unset\($\_SESSION\[\&amp;\#39;key\&amp;\#39;\]\);</code>；</p>
+</li>
+<li><p>销毁所有Session：<code>session\_destroy\(\);</code>（需先启动会话，销毁后需手动清除$_SESSION数组）；</p>
+</li>
+<li><p>补充：销毁Session后，用户会话结束，下次访问需重新启动会话。</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>易错点：</p>
+<ul>
+<li><p>每个使用Session的页面，都必须先调用 <code>session\_start\(\);</code>，否则无法访问Session数据；</p>
+</li>
+<li><p>Session默认有效期为浏览器关闭后，若需设置长期有效，需修改php.ini中的session.cookie_lifetime参数，或手动设置Cookie有效期。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="十、Cookie（补充遗漏细节）"><a href="#十、Cookie（补充遗漏细节）" class="headerlink" title="十、Cookie（补充遗漏细节）"></a>十、Cookie（补充遗漏细节）</h2><ul>
+<li><p>设置Cookie：<code>setcookie\(\&amp;\#34;name\&amp;\#34;, \&amp;\#34;value\&amp;\#34;, 过期时间, 路径, 域名, 安全标志, HttpOnly标志\);</code>，必须放在 <code>\&amp;lt;html\&amp;gt;</code> 标签之前；</p>
+<ul>
+<li><p>补充参数说明：</p>
+<ul>
+<li><p>过期时间：Unix时间戳（如 <code>time\(\) \+ 3600</code> 表示1小时后过期），0表示浏览器关闭后过期；</p>
+</li>
+<li><p>路径：Cookie生效的路径（如 &amp;#39;&#x2F;&amp;#39; 表示整个网站生效，&amp;#39;&#x2F;admin&amp;#39; 表示仅admin目录生效）；</p>
+</li>
+<li><p>域名：Cookie生效的域名（如 &amp;#39;example.com&amp;#39;）；</p>
+</li>
+<li><p>安全标志：true表示仅在HTTPS协议下生效；</p>
+</li>
+<li><p>HttpOnly标志：true表示Cookie不能被JavaScript访问，防止XSS攻击。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>获取Cookie：<code>$\_COOKIE\[\&amp;\#34;name\&amp;\#34;\]</code>；</p>
+</li>
+<li><p>删除Cookie：设置过期时间为过去的时间（如<code>setcookie\(\&amp;\#34;name\&amp;\#34;, \&amp;\#34;\&amp;\#34;, time\(\) \- 3600\);</code>）；</p>
+</li>
+<li><p>易错点：</p>
+<ul>
+<li><p>Cookie是客户端存储，用户可手动删除、修改，不能用于存储敏感信息（如密码）；</p>
+</li>
+<li><p>若浏览器禁用Cookie，Session也无法正常使用（因为Session默认通过Cookie传递会话ID）。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="十一、错误处理与异常处理（补充遗漏，重点）"><a href="#十一、错误处理与异常处理（补充遗漏，重点）" class="headerlink" title="十一、错误处理与异常处理（补充遗漏，重点）"></a>十一、错误处理与异常处理（补充遗漏，重点）</h2><h3 id="1-错误处理"><a href="#1-错误处理" class="headerlink" title="1. 错误处理"></a>1. 错误处理</h3><ul>
+<li><p>错误级别（常用，补充）：</p>
+<ul>
+<li><p>E_ERROR：致命错误，脚本终止执行（如语法错误）；</p>
+</li>
+<li><p>E_WARNING：警告错误，脚本继续执行（如使用未定义变量）；</p>
+</li>
+<li><p>E_NOTICE：通知错误，脚本继续执行（如变量未初始化）；</p>
+</li>
+<li><p>E_PARSE：解析错误，脚本终止执行（如括号不匹配）。</p>
+</li>
+</ul>
+</li>
+<li><p>错误控制：</p>
+<ul>
+<li><p>抑制错误：在可能出错的函数前加 @ 符号，如 <code>@fopen\(\&amp;\#34;file\.txt\&amp;\#34;, \&amp;\#34;r\&amp;\#34;\);</code>，可抑制该函数的错误输出；</p>
+</li>
+<li><p>设置错误级别：<code>error\_reporting\(E\_ALL \&amp;amp; \~E\_NOTICE\);</code>，表示显示所有错误，排除通知错误；</p>
+</li>
+<li><p>自定义错误处理函数：<code>set\_error\_handler\(\&amp;\#34;自定义函数名\&amp;\#34;\);</code>，可自定义错误的显示方式（如写入日志）。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-异常处理"><a href="#2-异常处理" class="headerlink" title="2. 异常处理"></a>2. 异常处理</h3><p>异常是脚本执行过程中出现的可预测错误（如数据库连接失败），通过try...catch捕获，避免脚本终止执行。</p>
+<ul>
+<li>核心语法：<br>  &#96;&amp;lt;?php</li>
+</ul>
+<p>try {<br>    &#x2F;&#x2F; 可能出现异常的代码<br>    $conn &#x3D; new PDO(&amp;#34;mysql:host&#x3D;localhost;dbname&#x3D;test&amp;#34;, &amp;#34;root&amp;#34;, &amp;#34;123456&amp;#34;);<br>    if (!$conn) {<br>        throw new Exception(&amp;#34;数据库连接失败&amp;#34;); &#x2F;&#x2F; 手动抛出异常<br>    }<br>} catch (Exception $e) {<br>    &#x2F;&#x2F; 捕获异常，处理错误<br>    echo &amp;#34;异常信息：&amp;#34; . $e-&amp;gt;getMessage(); &#x2F;&#x2F; 获取异常信息<br>    echo &amp;#34;异常行号：&amp;#34; . $e-&amp;gt;getLine(); &#x2F;&#x2F; 获取异常所在行号<br>}<br>?&amp;gt;&#96;</p>
+<ul>
+<li>补充：可自定义异常类（继承Exception类），用于区分不同类型的异常（如数据库异常、文件异常）。</li>
+</ul>
+<h2 id="十二、文件操作（补充遗漏，重点）"><a href="#十二、文件操作（补充遗漏，重点）" class="headerlink" title="十二、文件操作（补充遗漏，重点）"></a>十二、文件操作（补充遗漏，重点）</h2><p>PHP可对服务器端文件进行读取、写入、删除等操作，需注意文件权限，常用操作如下：</p>
+<ul>
+<li><p>打开文件：<code>fopen\($filename, $mode\)</code>，返回文件资源句柄，$mode是打开模式（常用：r&#x3D;只读、w&#x3D;写入（覆盖原有内容）、a&#x3D;追加写入、r+&#x3D;读写、w+&#x3D;读写（覆盖）、a+&#x3D;读写（追加））；</p>
+</li>
+<li><p>读取文件：</p>
+<ul>
+<li><p><code>fread\($handle, $length\)</code>：读取指定长度的内容；</p>
+</li>
+<li><p><code>fgets\($handle\)</code>：读取一行内容；</p>
+</li>
+<li><p><code>file\_get\_contents\($filename\)</code>：一次性读取整个文件内容（简化写法，无需打开&#x2F;关闭文件）。</p>
+</li>
+</ul>
+</li>
+<li><p>写入文件：</p>
+<ul>
+<li><p><code>fwrite\($handle, $content\)</code>：将内容写入文件；</p>
+</li>
+<li><p><code>file\_put\_contents\($filename, $content\)</code>：一次性写入整个文件内容（简化写法，无需打开&#x2F;关闭文件）；</p>
+</li>
+<li><p>追加写入：用a&#x2F;a+模式打开文件，或 <code>file\_put\_contents\($filename, $content, FILE\_APPEND\)</code>。</p>
+</li>
+</ul>
+</li>
+<li><p>关闭文件：<code>fclose\($handle\)</code>，必须关闭文件资源，释放内存；</p>
+</li>
+<li><p>其他常用操作：</p>
+<ul>
+<li><p><code>file\_exists\($filename\)</code>：判断文件&#x2F;目录是否存在；</p>
+</li>
+<li><p><code>unlink\($filename\)</code>：删除文件；</p>
+</li>
+<li><p><code>mkdir\($dirname\)</code>：创建目录；</p>
+</li>
+<li><p><code>rmdir\($dirname\)</code>：删除空目录；</p>
+</li>
+<li><p><code>copy\($source, $dest\)</code>：复制文件。</p>
+</li>
+</ul>
+</li>
+<li><p>易错点：文件操作需确保服务器对目标文件&#x2F;目录有相应权限（如写入权限），否则操作失败。</p>
+</li>
+</ul>
+<h2 id="十三、其他难点（零散易忘点，补充完整）"><a href="#十三、其他难点（零散易忘点，补充完整）" class="headerlink" title="十三、其他难点（零散易忘点，补充完整）"></a>十三、其他难点（零散易忘点，补充完整）</h2><ol>
+<li><p>命名空间（namespace）：用于区分同名的类、函数、常量，不同命名空间中的同名元素互不冲突；</p>
+<ul>
+<li><p>使用方式：用 <code>namespace 命名空间名;</code> 定义，调用时用 <code>命名空间名\\类名</code> 或 <code>use 命名空间名\\类名;</code>（简化调用）；</p>
+</li>
+<li><p>全局代码需用 <code>namespace \{ \.\.\. \}</code> 包裹；</p>
+</li>
+<li><p>补充：命名空间可嵌套，如 <code>namespace MyProject\\Admin;</code>，调用时用 <code>MyProject\\Admin\\类名</code>。</p>
+</li>
+</ul>
+</li>
+<li><p>常用函数（补充遗漏）：</p>
+<ul>
+<li><p>页面重定向：<code>header\(\&amp;\#34;Location: 目标地址\&amp;\#34;\);</code>，必须放在<code>\&amp;lt;html\&amp;gt;</code> 标签之前，且重定向后需用 <code>exit\(\)</code> 终止脚本执行，避免后续代码执行；</p>
+</li>
+<li><p>时间戳：<code>time\(\)</code>，返回当前时间的Unix时间戳（秒数）；<code>date\($format, $timestamp\)</code>，将时间戳转为指定格式（如 <code>date\(\&amp;\#34;Y\-m\-d H:i:s\&amp;\#34;, time\(\)\)</code> 输出当前时间）；</p>
+</li>
+<li><p>终止脚本执行：<code>exit\(\)</code> 或 <code>die\(\)</code>（两者等价），执行后脚本后续代码不再执行；</p>
+</li>
+<li><p>数组相关函数（补充）：</p>
+<ul>
+<li><p><code>array\_push\($arr, $value\)</code>：向数组末尾添加元素；</p>
+</li>
+<li><p><code>array\_pop\($arr\)</code>：删除数组末尾的元素；</p>
+</li>
+<li><p><code>array\_shift\($arr\)</code>：删除数组开头的元素；</p>
+</li>
+<li><p><code>array\_unshift\($arr, $value\)</code>：向数组开头添加元素；</p>
+</li>
+<li><p><code>array\_merge\($arr1, $arr2\)</code>：合并两个数组；</p>
+</li>
+<li><p><code>in\_array\($value, $arr\)</code>：判断元素是否在数组中。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>关联数组：</p>
+<ul>
+<li><p>两种创建方式：<code>$age=array\(\&amp;\#34;Peter\&amp;\#34;=\&amp;gt;\&amp;\#34;35\&amp;\#34;,\&amp;\#34;Ben\&amp;\#34;=\&amp;gt;\&amp;\#34;37\&amp;\#34;\);</code> 或 <code>$age\[\&amp;\#39;Peter\&amp;\#39;\]=\&amp;\#34;35\&amp;\#34;;</code>；</p>
+</li>
+<li><p>访问方式：通过指定键名访问，如 <code>echo $age\[\&amp;\#39;Peter\&amp;\#39;\];</code>；</p>
+</li>
+<li><p>补充：遍历关联数组常用foreach，如 <code>foreach\($age as $key =\&amp;gt; $value\)\{ echo $key \. \&amp;\#34;:\&amp;\#34; \. $value; \}</code>。</p>
+</li>
+</ul>
+</li>
+<li><p>超全局数组（补充完整，核心重点）：PHP内置的超全局数组，可在脚本任何地方访问（无需global关键字），常用的有：</p>
+<ul>
+<li><p><code>$\_GET</code>：获取GET方式提交的表单数据或URL参数；</p>
+</li>
+<li><p><code>$\_POST</code>：获取POST方式提交的表单数据；</p>
+</li>
+<li><p><code>$\_FILES</code>：获取文件上传相关数据；</p>
+</li>
+<li><p><code>$\_COOKIE</code>：获取客户端的Cookie数据；</p>
+</li>
+<li><p><code>$\_SESSION</code>：获取服务器端的Session数据；</p>
+</li>
+<li><p><code>$GLOBALS</code>：包含所有全局变量的数组；</p>
+</li>
+<li><p><code>$\_SERVER</code>：包含服务器相关信息（如请求头、脚本路径、客户端IP等）；</p>
+</li>
+<li><p><code>$\_REQUEST</code>：包含$_GET、$_POST、$_COOKIE的数据（不推荐使用，安全性低）。</p>
+</li>
+</ul>
+</li>
+<li><p>类型转换（补充遗漏，易混淆）：</p>
+<ul>
+<li><p>自动转换：PHP会根据上下文自动转换类型（如字符串和数字运算时，字符串转为数字）；</p>
+</li>
+<li><p>强制转换：用 (类型) 语法，如 <code>\(int\)$str</code>（转为整数）、<code>\(float\)$str</code>（转为浮点数）、<code>\(string\)$num</code>（转为字符串）、<code>\(array\)$obj</code>（转为数组）；</p>
+</li>
+<li><p>易错点：字符串转整数时，若字符串开头是数字，会转为对应的数字（如 &amp;#34;123abc&amp;#34; 转为123）；若开头不是数字，转为0。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="笔记二：PHP完整知识点归纳（全面无遗漏，简洁易懂）"><a href="#笔记二：PHP完整知识点归纳（全面无遗漏，简洁易懂）" class="headerlink" title="笔记二：PHP完整知识点归纳（全面无遗漏，简洁易懂）"></a>笔记二：PHP完整知识点归纳（全面无遗漏，简洁易懂）</h1><p>本笔记全面归纳菜鸟教程PHP全部核心知识点，补充所有遗漏内容，简洁明了、重点突出，适合日常复习和快速查阅，无冗余内容，覆盖PHP基础、进阶全场景。</p>
+<h2 id="一、基础入门"><a href="#一、基础入门" class="headerlink" title="一、基础入门"></a>一、基础入门</h2><ol>
+<li><p>PHP简介：服务器端脚本语言，可嵌入HTML，运行在服务器端，输出HTML到客户端，用于开发动态网站。</p>
+</li>
+<li><p>PHP标记：<code>\&amp;lt;?php \.\.\. ?\&amp;gt;</code>（标准标记，必用）；<code>\&amp;lt;? \.\.\. ?\&amp;gt;</code>（短标记，需开启php.ini中的short_open_tag）；<code>\&amp;lt;% \.\.\. %\&amp;gt;</code>（ASP风格标记，不推荐）。</p>
+</li>
+<li><p>变量：</p>
+<ul>
+<li><p>无需声明，第一次赋值时自动创建，以 <code>$</code> 开头，区分大小写（$a和$A是两个不同变量）；</p>
+</li>
+<li><p>作用域：</p>
+<ul>
+<li><p>全局变量：函数外定义，函数内需用 <code>global $变量名</code> 或 <code>$GLOBALS\[\&amp;\#39;变量名\&amp;\#39;\]</code> 访问；</p>
+</li>
+<li><p>局部变量：函数内定义，仅在函数内部有效，函数执行结束后自动销毁；</p>
+</li>
+<li><p>静态变量：函数内用 <code>static $变量名</code> 定义，函数执行结束后值不销毁，保留上次执行结果。</p>
+</li>
+</ul>
+</li>
+<li><p>变量赋值：值赋值（默认，如 <code>$a = $b</code>，修改$a不影响$b）；引用赋值（如 <code>$a = \&amp;amp;$b</code>，修改$a会影响$b）。</p>
+</li>
+</ul>
+</li>
+<li><p>常量：</p>
+<ul>
+<li><p>定义：<code>define\(\&amp;\#34;常量名\&amp;\#34;, 常量值, 大小写不敏感\)</code>（类外可用）；<code>const 常量名 = 常量值;</code>（类内、类外均可，默认区分大小写）；</p>
+</li>
+<li><p>特性：值不变、全局作用域（类常量除外）、无需$修饰符、区分大小写（可设置不敏感）；</p>
+</li>
+<li><p>类常量：类内定义，通过 <code>类名::常量名</code> 访问，不能用$this访问。</p>
+</li>
+</ul>
+</li>
+<li><p>注释：</p>
+<ul>
+<li><p>单行注释：<code>// 注释内容</code> 或 <code>\# 注释内容</code>；</p>
+</li>
+<li><p>多行注释：<code>/\* 注释内容 \*/</code>（不能嵌套）。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、数据类型与运算符"><a href="#二、数据类型与运算符" class="headerlink" title="二、数据类型与运算符"></a>二、数据类型与运算符</h2><h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1. 数据类型"></a>1. 数据类型</h3><ul>
+<li><p>标量类型（单一值）：</p>
+<ul>
+<li><p>布尔值（bool）：true（1）、false（0），区分大小写（仅true&#x2F;false有效，TRUE&#x2F;FALSE也可）；</p>
+</li>
+<li><p>整数（int）：正负整数，支持十进制、八进制（0开头）、十六进制（0x开头）；</p>
+</li>
+<li><p>浮点数（float&#x2F;double）：带小数点的数或科学计数法（如3.14、1.2e3）；</p>
+</li>
+<li><p>字符串（string）：单引号（不解析变量、转义字符仅\和&amp;#39;有效）、双引号（解析变量、转义字符有效）、Heredoc（多行字符串，解析变量）、Nowdoc（多行字符串，不解析变量）。</p>
+</li>
+</ul>
+</li>
+<li><p>复合类型（多个值）：</p>
+<ul>
+<li>数组（array）：索引数组（默认从0开始）、关联数组（自定义键名）、多维数组（数组嵌套数组）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>（注：文档部分内容可能由 AI 生成）</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/04/19/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PHP%E4%B8%AA%E6%80%A7%E5%8C%96%E9%9A%BE%E7%82%B9%E5%BD%92%E7%BA%B3/" data-id="cuidTQYqMmsJOs9kV2Ds2Jg2O" data-title="PHP个性化难点分析" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E5%AE%9E%E5%BD%95%EF%BC%9AElasticsearch%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E7%9C%9F%E5%AE%9E%E8%AF%95%E9%94%99%E6%80%BB%E7%BB%93%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Linux问题解决</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Linux/">学习笔记/Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-MySQL/">学习笔记/MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-PHP/">学习笔记/PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%85%8D%E5%90%88p/">学习笔记/配合p</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 20px;">后端</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">四月 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/04/19/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PHP%E4%B8%AA%E6%80%A7%E5%8C%96%E9%9A%BE%E7%82%B9%E5%BD%92%E7%BA%B3/">PHP个性化难点分析</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E5%AE%9E%E5%BD%95%EF%BC%9AElasticsearch%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E7%9C%9F%E5%AE%9E%E8%AF%95%E9%94%99%E6%80%BB%E7%BB%93%EF%BC%89/">Linux问题解决</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Linux学习笔记01</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/19/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Linux学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/19/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PHP%E7%AC%94%E8%AE%B0/">PHP知识点总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 祁雪<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,2360 +1,434 @@
-<!DOCTYPE html>
-<html>
-<head>
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
   <meta charset="utf-8">
   
   
-  <title>祁雪的网安学习笔记</title>
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <title>
+    祁雪的网安学习笔记
+  </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="记录网络安全，编程，个人生活的个人博客">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="记录网络安全，编程，个人生活的个人博客">
 <meta property="og:type" content="website">
 <meta property="og:title" content="祁雪的网安学习笔记">
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="祁雪的网安学习笔记">
 <meta property="og:description" content="记录网络安全，编程，个人生活的个人博客">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/banner.webp">
 <meta property="article:author" content="祁雪">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
-  
+<meta name="twitter:image" content="http://example.com/images/banner.webp">
+      <meta name="keywords" content="网络安全">
     <link rel="alternate" href="/atom.xml" title="祁雪的网安学习笔记" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
+    <link rel="shortcut icon" href="/images/favicon.ico">
   
 <link rel="stylesheet" href="/css/style.css">
 
-  
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
 
-  
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
 
 <meta name="generator" content="Hexo 8.1.1"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">祁雪的网安学习笔记</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">持续成长中</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
       </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+      <picture>
+      </picture>
+        <img  fetchpriority="high" src="/images/banner.webp" alt="">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">祁雪的网安学习笔记</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+              <span id="subtitle">持续成长中</span>
+        </h2>
     </div>
   </div>
 </header>
 
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-PHP学习笔记/PHP个性化难点归纳" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/04/19/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PHP%E4%B8%AA%E6%80%A7%E5%8C%96%E9%9A%BE%E7%82%B9%E5%BD%92%E7%BA%B3/" class="article-date">
-  <time class="dt-published" datetime="2026-04-19T13:30:37.205Z" itemprop="datePublished">2026-04-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-PHP/">学习笔记/PHP</a>
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container ">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+        <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="祁雪" class="lazyload">
+  <div class="sidebar-author-name">祁雪</div>
+  <div class="sidebar-description">记录网络安全，编程，个人生活的个人博客</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">5</div>
   </div>
-
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">4</div>
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2026/04/19/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PHP%E4%B8%AA%E6%80%A7%E5%8C%96%E9%9A%BE%E7%82%B9%E5%BD%92%E7%BA%B3/">PHP个性化难点分析</a>
-    </h1>
-  
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="PHP学习笔记（难点解析）"><a href="#PHP学习笔记（难点解析）" class="headerlink" title="PHP学习笔记（难点解析）"></a>PHP学习笔记（难点解析）</h1><h1 id="笔记一：个性化难点解析（菜鸟教程学习重点-难懂点纠正）"><a href="#笔记一：个性化难点解析（菜鸟教程学习重点-难懂点纠正）" class="headerlink" title="笔记一：个性化难点解析（菜鸟教程学习重点+难懂点纠正）"></a>笔记一：个性化难点解析（菜鸟教程学习重点+难懂点纠正）</h1><p>本笔记聚焦学习过程中容易混淆、理解不透彻的知识点，结合自身疑问纠正偏差，重点突破个性化难点，适配Typora阅读和编辑，补充所有遗漏的核心难点，确保覆盖PHP全场景易踩坑点。</p>
-<h2 id="一、变量作用域（核心难点）"><a href="#一、变量作用域（核心难点）" class="headerlink" title="一、变量作用域（核心难点）"></a>一、变量作用域（核心难点）</h2><p>核心结论：函数内无法直接访问全局变量，函数外也无法直接访问函数内的局部变量，需通过指定方式调用；静态变量是特殊的局部变量，需重点区分。</p>
-<ul>
-<li><p>全局变量调用：函数内访问全局变量，必须使用 <code>global</code> 关键字，或通过 <code>$GLOBALS\[\&amp;\#39;变量名\&amp;\#39;\]</code> 访问（两者等价，重点理解后者）。</p>
-<ul>
-<li>补充：<code>global $x</code> 本质是引用全局变量$x，与 <code>$GLOBALS\[\&amp;\#39;x\&amp;\#39;\]</code> 操作的是同一个变量，无区别。</li>
-</ul>
-</li>
-<li><p>关键解析（纠正理解偏差）：<br>  对于 <code>$GLOBALS\[\&amp;\#39;y\&amp;\#39;\] = $GLOBALS\[\&amp;\#39;x\&amp;\#39;\] \+ $GLOBALS\[\&amp;\#39;y\&amp;\#39;\];</code> 这句话，<strong>三个y是同一个全局变量</strong>，并非三个不同变量：<br><br>  等价于简化写法：<code>$y = $x \+ $y;</code>，逻辑完全一致，只是前者明确指定操作全局变量（避免与局部变量混淆）。</p>
-<ol>
-<li><p>右边的 <code>$GLOBALS\[\&amp;\#39;y\&amp;\#39;\]</code>：读取全局变量y的原始值；</p>
-</li>
-<li><p>左边的 <code>$GLOBALS\[\&amp;\#39;y\&amp;\#39;\]</code>：将计算后的新值，重新赋值给全局变量y；</p>
-</li>
-<li><p>后续 <code>echo $y</code>：输出的是被重新赋值后的全局变量y。</p>
-</li>
-</ol>
-</li>
-<li><p>局部变量限制：函数内定义的局部变量，仅在函数内部有效，函数执行结束后自动销毁，外部无法直接调用，只能通过调用函数间接使用其结果。</p>
-</li>
-<li><p>补充难点：静态变量（static）</p>
-<ul>
-<li><p>定义：在函数内用 <code>static $变量名 = 初始值;</code> 定义；</p>
-</li>
-<li><p>核心特性：函数执行结束后，变量值不销毁，保留上次执行的结果，下次调用函数时直接使用该值；</p>
-</li>
-<li><p>易错点：静态变量仅在第一次调用函数时初始化，后续调用不再重新赋值。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="二、Heredoc（定界符）语法（易踩坑点）"><a href="#二、Heredoc（定界符）语法（易踩坑点）" class="headerlink" title="二、Heredoc（定界符）语法（易踩坑点）"></a>二、Heredoc（定界符）语法（易踩坑点）</h2><p>Heredoc用于定义多行字符串，语法有严格要求，稍不注意就会报错，重点记3点，补充遗漏细节：</p>
-<ol>
-<li><p>标记规则：以 <code>\&amp;lt;\&amp;lt;\&amp;lt;EOF</code> 开始（EOF可替换为EOT、EOD、JSON、HTML等，自定义即可），以 <code>EOF;</code> 结束；</p>
-<ul>
-<li>补充：开始标记后的EOF（或自定义标记），后面不能加任何字符（包括空格、注释），否则报错。</li>
-</ul>
-</li>
-<li><p>结束标记要求：必须顶头写，<strong>不能有任何缩进、空格</strong>，且末尾必须加分号；</p>
-<ul>
-<li>易错点：结束标记前后不能有任何多余字符，哪怕是一个空格，都会导致解析失败。</li>
-</ul>
-</li>
-<li><p>解析规则：标记之间的变量可正常解析（无需用 <code>\.</code> 或 <code>,</code> 拼接），但函数无法解析；</p>
-<ul>
-<li><p>补充：若需在Heredoc中显示变量名（不解析），可在变量前加反斜杠 <code>\\$变量名</code>；</p>
-</li>
-<li><p>补充：Nowdoc语法（补充遗漏）：与Heredoc类似，标记用单引号包裹（如 <code>\&amp;lt;\&amp;lt;\&amp;lt;\&amp;\#39;EOF\&amp;\#39;</code>），标记之间的变量、转义字符都不解析，适合定义纯文本。</p>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="三、var-dump-函数（易误用点）"><a href="#三、var-dump-函数（易误用点）" class="headerlink" title="三、var_dump()函数（易误用点）"></a>三、var_dump()函数（易误用点）</h2><p>核心注意：<code>var\_dump\(\)</code> 是<strong>自带输出功能</strong>的函数，无需搭配 <code>echo</code>，调用后会直接将变量的数据类型和值打印到页面，无需额外写输出语句。</p>
-<ul>
-<li><p>补充细节：</p>
-<ul>
-<li><p>可同时传入多个变量，用逗号分隔，如 <code>var\_dump\($a, $b, $c\);</code>；</p>
-</li>
-<li><p>与 <code>print\_r\(\)</code> 区别（补充遗漏）：<code>print\_r\(\)</code> 仅输出变量的值（数组会格式化显示），不输出数据类型；<code>var\_dump\(\)</code> 输出数据类型+值，更适合调试。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="四、PHP常量（易与变量混淆）"><a href="#四、PHP常量（易与变量混淆）" class="headerlink" title="四、PHP常量（易与变量混淆）"></a>四、PHP常量（易与变量混淆）</h2><p>常量与变量的核心区别和关键特性，纠正易混淆点，补充遗漏细节：</p>
-<ol>
-<li><p>不变性：一旦定义，值无法修改、无法删除，也无法重新定义；</p>
-</li>
-<li><p>作用域：全局作用域，定义后可在脚本任何地方使用（包括函数内、类内），<strong>无需用global关键字</strong>；</p>
-<ul>
-<li>补充：类常量（补充遗漏）：在类内用 <code>const 常量名 = 常量值;</code> 定义，只能通过 <code>类名::常量名</code> 或<code>对象名::常量名</code> 访问，不能用$this访问。</li>
-</ul>
-</li>
-<li><p>语法规范：名称无需加 <code>$</code> 修饰符，由字母、下划线、数字组成（数字不能开头）；</p>
-<ul>
-<li>补充：常量名建议全部大写，便于区分（规范写法，非强制）。</li>
-</ul>
-</li>
-<li><p>大小写：默认区分大小写，define()函数第三个参数设为true，可定义大小写不敏感的常量；</p>
-<ul>
-<li>补充：const定义的常量，默认区分大小写，且不能设置为不敏感；define()可设置，二者定义方式的区别见下文。</li>
-</ul>
-</li>
-<li><p>值的要求：只能是标量类型（布尔值、整数、浮点数、字符串）或PHP7及以上版本的数组，不能是变量、类属性、数学运算的结果或函数调用；</p>
-</li>
-<li><p>补充：define()与const的区别（遗漏重点）：</p>
-<ul>
-<li><p>定义位置：const可在类内、类外定义；define()只能在类外定义；</p>
-</li>
-<li><p>解析时间：const在编译时解析；define()在运行时解析；</p>
-</li>
-<li><p>灵活性：define()可通过变量动态定义常量名（如 <code>$name = \&amp;\#39;PI\&amp;\#39;; define\($name, 3\.14\);</code>）；const不行。</p>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="五、字符串拼接（易出错点）"><a href="#五、字符串拼接（易出错点）" class="headerlink" title="五、字符串拼接（易出错点）"></a>五、字符串拼接（易出错点）</h2><p>PHP中字符串拼接使用 <code>\.</code>（并置运算符），而非 <code>\+</code>（+用于数值运算），重点记两种用法，补充遗漏细节：</p>
-<ol>
-<li><p>普通拼接：<code>$b = $a \. \&amp;\#34; world\!\&amp;\#34;;</code>（拼接变量和字符串，中间可加空格）；</p>
-<ul>
-<li>易错点：若拼接的变量为null、false，会被转为空字符串；若为数字，会被转为字符串后拼接。</li>
-</ul>
-</li>
-<li><p>复合赋值拼接：<code>$x \.= \&amp;\#34; world\!\&amp;\#34;;</code>（等价于 <code>$x = $x \. \&amp;\#34; world\!\&amp;\#34;;</code>，简化写法）。</p>
-</li>
-</ol>
-<p>示例验证：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$txt1</span>=<span class="string">&quot;Hello world!&quot;</span>;</span><br><span class="line"><span class="variable">$txt2</span>=<span class="string">&quot;What a nice day!&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$txt1</span> . <span class="string">&quot; &quot;</span> . <span class="variable">$txt2</span>; <span class="comment">// 输出：Hello world! What a nice day!</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>补充：字符串常用函数（遗漏重点，易忘）：<br>      <code>strlen\($str\)</code>：获取字符串长度（按字节计算，中文在UTF-8编码下占3个字节）；<code>mb\_strlen\($str, \&amp;\#39;utf\-8\&amp;\#39;\)</code>：获取字符串长度（按字符计算，支持中文，需开启mbstring扩展）；<code>strpos\($str, $substr\)</code>：查找子串在字符串中的首次出现位置，找到返回索引（从0开始），找不到返回false；<code>str\_replace\($old, $new, $str\)</code>：将字符串中的旧子串替换为新子串；<code>trim\($str\)</code>：去除字符串首尾的空格、换行符、制表符等空白字符。</p>
-<h2 id="六、运算符（难点：取反、异或、优先级，补充遗漏运算符）"><a href="#六、运算符（难点：取反、异或、优先级，补充遗漏运算符）" class="headerlink" title="六、运算符（难点：取反、异或、优先级，补充遗漏运算符）"></a>六、运算符（难点：取反、异或、优先级，补充遗漏运算符）</h2><h3 id="1-重点单目运算符（易混淆）"><a href="#1-重点单目运算符（易混淆）" class="headerlink" title="1. 重点单目运算符（易混淆）"></a>1. 重点单目运算符（易混淆）</h3><table>
-<thead>
-<tr>
-<th>运算符</th>
-<th>作用</th>
-<th>示例</th>
-<th>输出结果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-x</td>
-<td>取x的相反符号</td>
-<td>$x&#x3D;2; echo -$x;</td>
-<td>-2</td>
-</tr>
-<tr>
-<td>~x</td>
-<td>按二进制位取反（运算规则：~n &#x3D; -n-1）</td>
-<td>$x&#x3D;2; echo ~$x;</td>
-<td>-3</td>
-</tr>
-<tr>
-<td>++x</td>
-<td>前置递增：先加1，再使用</td>
-<td>$x&#x3D;2; echo ++$x;</td>
-<td>3</td>
-</tr>
-<tr>
-<td>x++</td>
-<td>后置递增：先使用，再加1</td>
-<td>$x&#x3D;2; echo $x++;</td>
-<td>2</td>
-</tr>
-</tbody></table>
-<h3 id="2-异或运算符（xor）"><a href="#2-异或运算符（xor）" class="headerlink" title="2. 异或运算符（xor）"></a>2. 异或运算符（xor）</h3><p>核心逻辑：<strong>两个条件有且仅有一个为true，返回true；否则返回false</strong>（同真同假均为false）。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$x</span>=<span class="number">6</span>;</span><br><span class="line"><span class="variable">$y</span>=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">echo</span> (<span class="variable">$x</span>==<span class="number">6</span> <span class="keyword">xor</span> <span class="variable">$y</span>==<span class="number">3</span>); <span class="comment">// 两个条件均为true，返回false</span></span><br><span class="line"><span class="keyword">echo</span> (<span class="variable">$x</span>==<span class="number">6</span> <span class="keyword">xor</span> <span class="variable">$y</span>==<span class="number">4</span>); <span class="comment">// 一个true、一个false，返回true</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-补充遗漏运算符（重点）"><a href="#3-补充遗漏运算符（重点）" class="headerlink" title="3. 补充遗漏运算符（重点）"></a>3. 补充遗漏运算符（重点）</h3><ul>
-<li><p>三元运算符（补充细节）：<code>$a = 条件 ? 值1 : 值2;</code>，条件为true返回值1，否则返回值2；</p>
-<ul>
-<li>易错点：三元运算符是右结合，如 <code>$a = 1 ? 2 : 3 ? 4 : 5;</code> 等价于 <code>$a = 1 ? 2 : \(3 ? 4 : 5\);</code>，结果为2。</li>
-</ul>
-</li>
-<li><p>组合比较运算符（补充遗漏）：<code>$a \&amp;lt;=\&amp;gt; $b</code>，用于比较两个值，返回-1（a&amp;lt;b）、0（a&#x3D;&#x3D;b）、1（a&amp;gt;b），适合排序场景；</p>
-</li>
-<li><p>逻辑运算符补充：<code>and</code> 和 <code>\&amp;amp;</code>&amp;amp;、<code>or</code> 和 <code>\|\|</code> 功能相同，但优先级不同（<code>\&amp;amp;\&amp;amp; \&amp;gt; \|\| \&amp;gt; and \&amp;gt; or</code>）；</p>
-<ul>
-<li><p>示例：<code>$a = false and true;</code> 等价于 <code>\($a = false\) and true;</code>，$a的值为false；</p>
-</li>
-<li><p>示例：<code>$a = false \&amp;amp;\&amp;amp; true;</code> 等价于 <code>$a = \(false \&amp;amp;\&amp;amp; true\);</code>，$a的值为false。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="4-运算符优先级（关键，避免运算错误）"><a href="#4-运算符优先级（关键，避免运算错误）" class="headerlink" title="4. 运算符优先级（关键，避免运算错误）"></a>4. 运算符优先级（关键，避免运算错误）</h3><p>优先级从高到低（完整版本，重点记常用，无需死记全部，关键是用括号改变优先级）：</p>
-<ol>
-<li><p>括号（()）：优先级最高，可强制改变运算顺序；</p>
-</li>
-<li><p>类型转换、递增&#x2F;递减（如：(int)、(float)、(string)、++、--、~）；</p>
-</li>
-<li><p>算术运算符（*、&#x2F;、% &amp;gt; +、-、.）；</p>
-</li>
-<li><p>位运算符（&amp;lt;&amp;lt;、&amp;gt;&amp;gt; &amp;gt; &amp;amp; &amp;gt; ^ &amp;gt; |）；</p>
-</li>
-<li><p>比较运算符（&#x3D;&#x3D;、!&#x3D;、&#x3D;&#x3D;&#x3D;、!&#x3D;&#x3D;、&amp;lt;&amp;gt; &amp;gt; &amp;gt;、&amp;lt;、&amp;gt;&#x3D;、&amp;lt;&#x3D; &amp;gt; &amp;lt;&#x3D;&amp;gt;）；</p>
-</li>
-<li><p>逻辑运算符（! &amp;amp;gt; &amp;amp;amp;&amp;amp;amp; &amp;amp;gt; ||）；</p>
-</li>
-<li><p>三元运算符（? :）；</p>
-</li>
-<li><p>赋值运算符（&#x3D;、+&#x3D;、-&#x3D;、*&#x3D;、&#x2F;&#x3D;、.&#x3D;、%&#x3D;、&amp;amp;&#x3D;、|&#x3D; 等）；</p>
-</li>
-<li><p>逻辑运算符（and &amp;gt; xor &amp;gt; or）；</p>
-</li>
-<li><p>逗号运算符（,）：优先级最低，用于分隔多个表达式，返回最后一个表达式的值。</p>
-</li>
-</ol>
-<p>关键提醒：赋值运算符遵循“左操作数 &#x3D; 左操作数 运算 右操作数”，如 <code>$x \+= $y</code> 等价于 <code>$x = $x \+ $y</code>；字符串拼接的复合赋值<code>$x \.= $y</code> 同理。</p>
-<h2 id="七、面向对象（核心难点，补充完整）"><a href="#七、面向对象（核心难点，补充完整）" class="headerlink" title="七、面向对象（核心难点，补充完整）"></a>七、面向对象（核心难点，补充完整）</h2><p>核心类比：类是“模板”（定义属性和方法），对象是“模板实例化后的具体个体”，与C语言结构体+操作函数等价，补充所有遗漏的面向对象知识点，重点记以下内容：</p>
-<ol>
-<li><p><code>$this</code>：代表当前对象，只能在类的非静态方法内部使用，用于访问当前对象的属性和方法；</p>
-<ul>
-<li>易错点：<code>$this</code> 不能在静态方法中使用，因为静态方法不依赖具体对象。</li>
-</ul>
-</li>
-<li><p>构造函数：用于对象初始化，创建对象时自动执行，用于给对象属性赋值；</p>
-<ul>
-<li><p>写法：<code>public function \_\_construct\(参数1, 参数2, \.\.\.\)\{ \.\.\. \}</code>；</p>
-</li>
-<li><p>补充：PHP7及以上支持构造函数属性提升（简化写法），如 <code>public function \_\_construct\(public $name, public $age\)\{\}</code>，无需单独定义属性。</p>
-</li>
-</ul>
-</li>
-<li><p>析构函数（补充遗漏）：<code>public function \_\_destruct\(\)\{ \.\.\. \}</code>，对象被销毁时自动执行（脚本结束时或手动unset()对象），常用于释放资源（如关闭文件、数据库连接）。</p>
-</li>
-<li><p>静态（static）：</p>
-<ul>
-<li><p>静态属性&#x2F;方法：无需实例化类，可直接通过 <code>类名::属性名</code>、<code>类名::方法名\(\)</code> 访问；</p>
-</li>
-<li><p>注意：静态方法中不能使用 <code>$this</code>（无具体对象），静态属性不能通过对象-&amp;gt;访问；</p>
-</li>
-<li><p>补充：静态属性是所有对象共享的，修改一个对象的静态属性，会影响所有该类的对象。</p>
-</li>
-</ul>
-</li>
-<li><p>访问控制修饰符（补充遗漏，核心重点）：</p>
-<ul>
-<li><p>public（公共）：类内、类外、子类均可访问；</p>
-</li>
-<li><p>private（私有）：仅类内可访问，类外、子类均不可访问；</p>
-</li>
-<li><p>protected（受保护）：类内、子类可访问，类外不可访问；</p>
-</li>
-<li><p>易错点：子类不能直接访问父类的private属性&#x2F;方法，需通过父类的public&#x2F;protected方法间接访问。</p>
-</li>
-</ul>
-</li>
-<li><p>继承（补充细节）：</p>
-<ul>
-<li><p>用extends关键字，子类继承父类的public&#x2F;protected属性和方法，private属性&#x2F;方法无法继承；</p>
-</li>
-<li><p>重写：子类可定义与父类同名的方法，重写时访问修饰符不能比父类更严格（如父类是public，子类不能是private）；</p>
-</li>
-<li><p>父类调用：子类中用 <code>parent::方法名\(\)</code> 调用父类的方法，用 <code>parent::\_\_construct\(\)</code> 调用父类的构造函数。</p>
-</li>
-</ul>
-</li>
-<li><p>抽象类与接口（补充遗漏，难点）：</p>
-<ul>
-<li><p>抽象类：用abstract关键字定义，不能实例化，只能被继承；类内可包含抽象方法（无方法体，用abstract定义）和普通方法；子类必须实现抽象类中所有的抽象方法；</p>
-</li>
-<li><p>接口：用interface关键字定义，不能实例化，只能被实现（implements）；接口内只能定义抽象方法（PHP8.0+可定义常量和默认方法）；一个类可实现多个接口，用逗号分隔。</p>
-</li>
-</ul>
-</li>
-<li><p>魔术方法（补充遗漏，常用）：</p>
-<ul>
-<li><p><code>\_\_get\($name\)</code>：访问不存在或不可访问的属性时自动调用；</p>
-</li>
-<li><p><code>\_\_set\($name, $value\)</code>：给不存在或不可访问的属性赋值时自动调用；</p>
-</li>
-<li><p><code>\_\_call\($name, $args\)</code>：调用不存在或不可访问的方法时自动调用；</p>
-</li>
-<li><p><code>\_\_toString\(\)</code>：将对象转为字符串时自动调用（如echo对象），需返回字符串。</p>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="八、表单相关（易踩坑点，补充完整细节）"><a href="#八、表单相关（易踩坑点，补充完整细节）" class="headerlink" title="八、表单相关（易踩坑点，补充完整细节）"></a>八、表单相关（易踩坑点，补充完整细节）</h2><ol>
-<li><p>单选框（radio）：同一组选项的 <code>name</code> 属性必须相同，否则无法实现“单选”效果，提交的是 <code>value</code> 值，而非界面显示的文字；</p>
-<ul>
-<li>补充：若需默认选中某一个选项，给该选项添加 <code>checked=\&amp;\#34;checked\&amp;\#34;</code>（或简写为checked）。</li>
-</ul>
-</li>
-<li><p>复选框（checkbox，补充遗漏）：</p>
-<ul>
-<li><p>同一组选项的name属性需设为数组形式，如 <code>name=\&amp;\#34;hobby\[\]\&amp;\#34;</code>，否则只能获取最后一个选中的值；</p>
-</li>
-<li><p>提交后，通过 <code>$\_GET\[\&amp;\#39;hobby\&amp;\#39;\]</code> 或 <code>$\_POST\[\&amp;\#39;hobby\&amp;\#39;\]</code> 获取，返回的是数组（选中的所有value值）。</p>
-</li>
-</ul>
-</li>
-<li><p>文件上传：</p>
-<ul>
-<li><p>表单必须添加属性：<code>enctype=\&amp;\#34;multipart/form\-data\&amp;\#34;</code>，否则无法获取上传文件；</p>
-</li>
-<li><p>表单提交方式必须为POST，GET方式有长度限制，无法传递文件数据；</p>
-</li>
-<li><p>获取文件：通过 <code>$\_FILES</code> 超全局数组获取，核心参数：</p>
-<ul>
-<li><p><code>$\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;name\&amp;\#34;\]</code>：上传文件的原始名称；</p>
-</li>
-<li><p><code>$\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;type\&amp;\#34;\]</code>：上传文件的MIME类型（如image&#x2F;jpeg）；</p>
-</li>
-<li><p><code>$\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;tmp\_name\&amp;\#34;\]</code>：文件上传到服务器后的临时路径（必须用此路径操作文件）；</p>
-</li>
-<li><p><code>$\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;error\&amp;\#34;\]</code>：上传错误码（0表示成功，1表示文件超过php.ini限制，2表示文件超过表单限制等）；</p>
-</li>
-<li><p><code>$\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;size\&amp;\#34;\]</code>：上传文件的大小（单位：字节）。</p>
-</li>
-</ul>
-</li>
-<li><p>关键判断：<code>$\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;error\&amp;\#34;\] == 0</code> 表示文件上传成功；</p>
-</li>
-<li><p>常用操作：限制文件大小（<code>$\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;size\&amp;\#34;\]</code>）、获取文件后缀（<code>explode \+ end</code> 或 <code>pathinfo\(\)</code>）、保存文件（<code>move\_uploaded\_file\($\_FILES\[\&amp;\#34;file\&amp;\#34;\]\[\&amp;\#34;tmp\_name\&amp;\#34;\], 目标路径\)</code>）；</p>
-</li>
-<li><p>易错点：保存文件时，目标路径必须有可写权限（可通过chmod命令修改），否则保存失败。</p>
-</li>
-</ul>
-</li>
-<li><p>表单过滤：使用<code>filter\_input\_array\(\)</code> 过滤表单输入，第二个参数可指定过滤器，非法输入会返回false；</p>
-<ul>
-<li><p>补充：常用过滤器（遗漏）：</p>
-<ul>
-<li><p>FILTER_VALIDATE_EMAIL：验证邮箱格式；</p>
-</li>
-<li><p>FILTER_VALIDATE_URL：验证URL格式；</p>
-</li>
-<li><p>FILTER_VALIDATE_INT：验证是否为整数；</p>
-</li>
-<li><p>FILTER_SANITIZE_STRING：过滤HTML标签，保留纯文本。</p>
-</li>
-</ul>
-</li>
-<li><p>示例：<code>$filters = array\(\&amp;\#39;email\&amp;\#39; =\&amp;gt; FILTER\_VALIDATE\_EMAIL, \&amp;\#39;age\&amp;\#39; =\&amp;gt; FILTER\_VALIDATE\_INT\);</code>，过滤后若email格式错误，$result[&amp;#39;email&amp;#39;]为false。</p>
-</li>
-</ul>
-</li>
-<li><p>表单验证补充：除了过滤器，还需手动验证必填项（如 <code>empty\($\_POST\[\&amp;\#39;name\&amp;\#39;\]\)</code> 判断是否为空）、数据长度、数据格式等，避免非法数据提交。</p>
-</li>
-</ol>
-<h2 id="九、会话（Session，补充遗漏，核心重点）"><a href="#九、会话（Session，补充遗漏，核心重点）" class="headerlink" title="九、会话（Session，补充遗漏，核心重点）"></a>九、会话（Session，补充遗漏，核心重点）</h2><p>Session用于在多个页面之间保存用户信息（如登录状态），与Cookie的区别是：Session数据保存在服务器端，更安全；Cookie保存在客户端，易被篡改。</p>
-<ul>
-<li><p>核心操作：</p>
-<ol>
-<li><p>启动会话：<code>session\_start\(\);</code>（必须放在&amp;lt;html&amp;gt;标签之前，且页面无任何输出，否则报错）；</p>
-</li>
-<li><p>设置Session：<code>$\_SESSION\[\&amp;\#39;key\&amp;\#39;\] = value;</code>（如 <code>$\_SESSION\[\&amp;\#39;username\&amp;\#39;\] = \&amp;\#39;admin\&amp;\#39;;</code>）；</p>
-</li>
-<li><p>获取Session：<code>echo $\_SESSION\[\&amp;\#39;key\&amp;\#39;\];</code>（需先启动会话）；</p>
-</li>
-<li><p>销毁Session：</p>
-<ul>
-<li><p>销毁单个Session：<code>unset\($\_SESSION\[\&amp;\#39;key\&amp;\#39;\]\);</code>；</p>
-</li>
-<li><p>销毁所有Session：<code>session\_destroy\(\);</code>（需先启动会话，销毁后需手动清除$_SESSION数组）；</p>
-</li>
-<li><p>补充：销毁Session后，用户会话结束，下次访问需重新启动会话。</p>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>易错点：</p>
-<ul>
-<li><p>每个使用Session的页面，都必须先调用 <code>session\_start\(\);</code>，否则无法访问Session数据；</p>
-</li>
-<li><p>Session默认有效期为浏览器关闭后，若需设置长期有效，需修改php.ini中的session.cookie_lifetime参数，或手动设置Cookie有效期。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="十、Cookie（补充遗漏细节）"><a href="#十、Cookie（补充遗漏细节）" class="headerlink" title="十、Cookie（补充遗漏细节）"></a>十、Cookie（补充遗漏细节）</h2><ul>
-<li><p>设置Cookie：<code>setcookie\(\&amp;\#34;name\&amp;\#34;, \&amp;\#34;value\&amp;\#34;, 过期时间, 路径, 域名, 安全标志, HttpOnly标志\);</code>，必须放在 <code>\&amp;lt;html\&amp;gt;</code> 标签之前；</p>
-<ul>
-<li><p>补充参数说明：</p>
-<ul>
-<li><p>过期时间：Unix时间戳（如 <code>time\(\) \+ 3600</code> 表示1小时后过期），0表示浏览器关闭后过期；</p>
-</li>
-<li><p>路径：Cookie生效的路径（如 &amp;#39;&#x2F;&amp;#39; 表示整个网站生效，&amp;#39;&#x2F;admin&amp;#39; 表示仅admin目录生效）；</p>
-</li>
-<li><p>域名：Cookie生效的域名（如 &amp;#39;example.com&amp;#39;）；</p>
-</li>
-<li><p>安全标志：true表示仅在HTTPS协议下生效；</p>
-</li>
-<li><p>HttpOnly标志：true表示Cookie不能被JavaScript访问，防止XSS攻击。</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>获取Cookie：<code>$\_COOKIE\[\&amp;\#34;name\&amp;\#34;\]</code>；</p>
-</li>
-<li><p>删除Cookie：设置过期时间为过去的时间（如<code>setcookie\(\&amp;\#34;name\&amp;\#34;, \&amp;\#34;\&amp;\#34;, time\(\) \- 3600\);</code>）；</p>
-</li>
-<li><p>易错点：</p>
-<ul>
-<li><p>Cookie是客户端存储，用户可手动删除、修改，不能用于存储敏感信息（如密码）；</p>
-</li>
-<li><p>若浏览器禁用Cookie，Session也无法正常使用（因为Session默认通过Cookie传递会话ID）。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="十一、错误处理与异常处理（补充遗漏，重点）"><a href="#十一、错误处理与异常处理（补充遗漏，重点）" class="headerlink" title="十一、错误处理与异常处理（补充遗漏，重点）"></a>十一、错误处理与异常处理（补充遗漏，重点）</h2><h3 id="1-错误处理"><a href="#1-错误处理" class="headerlink" title="1. 错误处理"></a>1. 错误处理</h3><ul>
-<li><p>错误级别（常用，补充）：</p>
-<ul>
-<li><p>E_ERROR：致命错误，脚本终止执行（如语法错误）；</p>
-</li>
-<li><p>E_WARNING：警告错误，脚本继续执行（如使用未定义变量）；</p>
-</li>
-<li><p>E_NOTICE：通知错误，脚本继续执行（如变量未初始化）；</p>
-</li>
-<li><p>E_PARSE：解析错误，脚本终止执行（如括号不匹配）。</p>
-</li>
-</ul>
-</li>
-<li><p>错误控制：</p>
-<ul>
-<li><p>抑制错误：在可能出错的函数前加 @ 符号，如 <code>@fopen\(\&amp;\#34;file\.txt\&amp;\#34;, \&amp;\#34;r\&amp;\#34;\);</code>，可抑制该函数的错误输出；</p>
-</li>
-<li><p>设置错误级别：<code>error\_reporting\(E\_ALL \&amp;amp; \~E\_NOTICE\);</code>，表示显示所有错误，排除通知错误；</p>
-</li>
-<li><p>自定义错误处理函数：<code>set\_error\_handler\(\&amp;\#34;自定义函数名\&amp;\#34;\);</code>，可自定义错误的显示方式（如写入日志）。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-异常处理"><a href="#2-异常处理" class="headerlink" title="2. 异常处理"></a>2. 异常处理</h3><p>异常是脚本执行过程中出现的可预测错误（如数据库连接失败），通过try...catch捕获，避免脚本终止执行。</p>
-<ul>
-<li>核心语法：<br>  &#96;&amp;lt;?php</li>
-</ul>
-<p>try {<br>    &#x2F;&#x2F; 可能出现异常的代码<br>    $conn &#x3D; new PDO(&amp;#34;mysql:host&#x3D;localhost;dbname&#x3D;test&amp;#34;, &amp;#34;root&amp;#34;, &amp;#34;123456&amp;#34;);<br>    if (!$conn) {<br>        throw new Exception(&amp;#34;数据库连接失败&amp;#34;); &#x2F;&#x2F; 手动抛出异常<br>    }<br>} catch (Exception $e) {<br>    &#x2F;&#x2F; 捕获异常，处理错误<br>    echo &amp;#34;异常信息：&amp;#34; . $e-&amp;gt;getMessage(); &#x2F;&#x2F; 获取异常信息<br>    echo &amp;#34;异常行号：&amp;#34; . $e-&amp;gt;getLine(); &#x2F;&#x2F; 获取异常所在行号<br>}<br>?&amp;gt;&#96;</p>
-<ul>
-<li>补充：可自定义异常类（继承Exception类），用于区分不同类型的异常（如数据库异常、文件异常）。</li>
-</ul>
-<h2 id="十二、文件操作（补充遗漏，重点）"><a href="#十二、文件操作（补充遗漏，重点）" class="headerlink" title="十二、文件操作（补充遗漏，重点）"></a>十二、文件操作（补充遗漏，重点）</h2><p>PHP可对服务器端文件进行读取、写入、删除等操作，需注意文件权限，常用操作如下：</p>
-<ul>
-<li><p>打开文件：<code>fopen\($filename, $mode\)</code>，返回文件资源句柄，$mode是打开模式（常用：r&#x3D;只读、w&#x3D;写入（覆盖原有内容）、a&#x3D;追加写入、r+&#x3D;读写、w+&#x3D;读写（覆盖）、a+&#x3D;读写（追加））；</p>
-</li>
-<li><p>读取文件：</p>
-<ul>
-<li><p><code>fread\($handle, $length\)</code>：读取指定长度的内容；</p>
-</li>
-<li><p><code>fgets\($handle\)</code>：读取一行内容；</p>
-</li>
-<li><p><code>file\_get\_contents\($filename\)</code>：一次性读取整个文件内容（简化写法，无需打开&#x2F;关闭文件）。</p>
-</li>
-</ul>
-</li>
-<li><p>写入文件：</p>
-<ul>
-<li><p><code>fwrite\($handle, $content\)</code>：将内容写入文件；</p>
-</li>
-<li><p><code>file\_put\_contents\($filename, $content\)</code>：一次性写入整个文件内容（简化写法，无需打开&#x2F;关闭文件）；</p>
-</li>
-<li><p>追加写入：用a&#x2F;a+模式打开文件，或 <code>file\_put\_contents\($filename, $content, FILE\_APPEND\)</code>。</p>
-</li>
-</ul>
-</li>
-<li><p>关闭文件：<code>fclose\($handle\)</code>，必须关闭文件资源，释放内存；</p>
-</li>
-<li><p>其他常用操作：</p>
-<ul>
-<li><p><code>file\_exists\($filename\)</code>：判断文件&#x2F;目录是否存在；</p>
-</li>
-<li><p><code>unlink\($filename\)</code>：删除文件；</p>
-</li>
-<li><p><code>mkdir\($dirname\)</code>：创建目录；</p>
-</li>
-<li><p><code>rmdir\($dirname\)</code>：删除空目录；</p>
-</li>
-<li><p><code>copy\($source, $dest\)</code>：复制文件。</p>
-</li>
-</ul>
-</li>
-<li><p>易错点：文件操作需确保服务器对目标文件&#x2F;目录有相应权限（如写入权限），否则操作失败。</p>
-</li>
-</ul>
-<h2 id="十三、其他难点（零散易忘点，补充完整）"><a href="#十三、其他难点（零散易忘点，补充完整）" class="headerlink" title="十三、其他难点（零散易忘点，补充完整）"></a>十三、其他难点（零散易忘点，补充完整）</h2><ol>
-<li><p>命名空间（namespace）：用于区分同名的类、函数、常量，不同命名空间中的同名元素互不冲突；</p>
-<ul>
-<li><p>使用方式：用 <code>namespace 命名空间名;</code> 定义，调用时用 <code>命名空间名\\类名</code> 或 <code>use 命名空间名\\类名;</code>（简化调用）；</p>
-</li>
-<li><p>全局代码需用 <code>namespace \{ \.\.\. \}</code> 包裹；</p>
-</li>
-<li><p>补充：命名空间可嵌套，如 <code>namespace MyProject\\Admin;</code>，调用时用 <code>MyProject\\Admin\\类名</code>。</p>
-</li>
-</ul>
-</li>
-<li><p>常用函数（补充遗漏）：</p>
-<ul>
-<li><p>页面重定向：<code>header\(\&amp;\#34;Location: 目标地址\&amp;\#34;\);</code>，必须放在<code>\&amp;lt;html\&amp;gt;</code> 标签之前，且重定向后需用 <code>exit\(\)</code> 终止脚本执行，避免后续代码执行；</p>
-</li>
-<li><p>时间戳：<code>time\(\)</code>，返回当前时间的Unix时间戳（秒数）；<code>date\($format, $timestamp\)</code>，将时间戳转为指定格式（如 <code>date\(\&amp;\#34;Y\-m\-d H:i:s\&amp;\#34;, time\(\)\)</code> 输出当前时间）；</p>
-</li>
-<li><p>终止脚本执行：<code>exit\(\)</code> 或 <code>die\(\)</code>（两者等价），执行后脚本后续代码不再执行；</p>
-</li>
-<li><p>数组相关函数（补充）：</p>
-<ul>
-<li><p><code>array\_push\($arr, $value\)</code>：向数组末尾添加元素；</p>
-</li>
-<li><p><code>array\_pop\($arr\)</code>：删除数组末尾的元素；</p>
-</li>
-<li><p><code>array\_shift\($arr\)</code>：删除数组开头的元素；</p>
-</li>
-<li><p><code>array\_unshift\($arr, $value\)</code>：向数组开头添加元素；</p>
-</li>
-<li><p><code>array\_merge\($arr1, $arr2\)</code>：合并两个数组；</p>
-</li>
-<li><p><code>in\_array\($value, $arr\)</code>：判断元素是否在数组中。</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>关联数组：</p>
-<ul>
-<li><p>两种创建方式：<code>$age=array\(\&amp;\#34;Peter\&amp;\#34;=\&amp;gt;\&amp;\#34;35\&amp;\#34;,\&amp;\#34;Ben\&amp;\#34;=\&amp;gt;\&amp;\#34;37\&amp;\#34;\);</code> 或 <code>$age\[\&amp;\#39;Peter\&amp;\#39;\]=\&amp;\#34;35\&amp;\#34;;</code>；</p>
-</li>
-<li><p>访问方式：通过指定键名访问，如 <code>echo $age\[\&amp;\#39;Peter\&amp;\#39;\];</code>；</p>
-</li>
-<li><p>补充：遍历关联数组常用foreach，如 <code>foreach\($age as $key =\&amp;gt; $value\)\{ echo $key \. \&amp;\#34;:\&amp;\#34; \. $value; \}</code>。</p>
-</li>
-</ul>
-</li>
-<li><p>超全局数组（补充完整，核心重点）：PHP内置的超全局数组，可在脚本任何地方访问（无需global关键字），常用的有：</p>
-<ul>
-<li><p><code>$\_GET</code>：获取GET方式提交的表单数据或URL参数；</p>
-</li>
-<li><p><code>$\_POST</code>：获取POST方式提交的表单数据；</p>
-</li>
-<li><p><code>$\_FILES</code>：获取文件上传相关数据；</p>
-</li>
-<li><p><code>$\_COOKIE</code>：获取客户端的Cookie数据；</p>
-</li>
-<li><p><code>$\_SESSION</code>：获取服务器端的Session数据；</p>
-</li>
-<li><p><code>$GLOBALS</code>：包含所有全局变量的数组；</p>
-</li>
-<li><p><code>$\_SERVER</code>：包含服务器相关信息（如请求头、脚本路径、客户端IP等）；</p>
-</li>
-<li><p><code>$\_REQUEST</code>：包含$_GET、$_POST、$_COOKIE的数据（不推荐使用，安全性低）。</p>
-</li>
-</ul>
-</li>
-<li><p>类型转换（补充遗漏，易混淆）：</p>
-<ul>
-<li><p>自动转换：PHP会根据上下文自动转换类型（如字符串和数字运算时，字符串转为数字）；</p>
-</li>
-<li><p>强制转换：用 (类型) 语法，如 <code>\(int\)$str</code>（转为整数）、<code>\(float\)$str</code>（转为浮点数）、<code>\(string\)$num</code>（转为字符串）、<code>\(array\)$obj</code>（转为数组）；</p>
-</li>
-<li><p>易错点：字符串转整数时，若字符串开头是数字，会转为对应的数字（如 &amp;#34;123abc&amp;#34; 转为123）；若开头不是数字，转为0。</p>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="笔记二：PHP完整知识点归纳（全面无遗漏，简洁易懂）"><a href="#笔记二：PHP完整知识点归纳（全面无遗漏，简洁易懂）" class="headerlink" title="笔记二：PHP完整知识点归纳（全面无遗漏，简洁易懂）"></a>笔记二：PHP完整知识点归纳（全面无遗漏，简洁易懂）</h1><p>本笔记全面归纳菜鸟教程PHP全部核心知识点，补充所有遗漏内容，简洁明了、重点突出，适合日常复习和快速查阅，无冗余内容，覆盖PHP基础、进阶全场景。</p>
-<h2 id="一、基础入门"><a href="#一、基础入门" class="headerlink" title="一、基础入门"></a>一、基础入门</h2><ol>
-<li><p>PHP简介：服务器端脚本语言，可嵌入HTML，运行在服务器端，输出HTML到客户端，用于开发动态网站。</p>
-</li>
-<li><p>PHP标记：<code>\&amp;lt;?php \.\.\. ?\&amp;gt;</code>（标准标记，必用）；<code>\&amp;lt;? \.\.\. ?\&amp;gt;</code>（短标记，需开启php.ini中的short_open_tag）；<code>\&amp;lt;% \.\.\. %\&amp;gt;</code>（ASP风格标记，不推荐）。</p>
-</li>
-<li><p>变量：</p>
-<ul>
-<li><p>无需声明，第一次赋值时自动创建，以 <code>$</code> 开头，区分大小写（$a和$A是两个不同变量）；</p>
-</li>
-<li><p>作用域：</p>
-<ul>
-<li><p>全局变量：函数外定义，函数内需用 <code>global $变量名</code> 或 <code>$GLOBALS\[\&amp;\#39;变量名\&amp;\#39;\]</code> 访问；</p>
-</li>
-<li><p>局部变量：函数内定义，仅在函数内部有效，函数执行结束后自动销毁；</p>
-</li>
-<li><p>静态变量：函数内用 <code>static $变量名</code> 定义，函数执行结束后值不销毁，保留上次执行结果。</p>
-</li>
-</ul>
-</li>
-<li><p>变量赋值：值赋值（默认，如 <code>$a = $b</code>，修改$a不影响$b）；引用赋值（如 <code>$a = \&amp;amp;$b</code>，修改$a会影响$b）。</p>
-</li>
-</ul>
-</li>
-<li><p>常量：</p>
-<ul>
-<li><p>定义：<code>define\(\&amp;\#34;常量名\&amp;\#34;, 常量值, 大小写不敏感\)</code>（类外可用）；<code>const 常量名 = 常量值;</code>（类内、类外均可，默认区分大小写）；</p>
-</li>
-<li><p>特性：值不变、全局作用域（类常量除外）、无需$修饰符、区分大小写（可设置不敏感）；</p>
-</li>
-<li><p>类常量：类内定义，通过 <code>类名::常量名</code> 访问，不能用$this访问。</p>
-</li>
-</ul>
-</li>
-<li><p>注释：</p>
-<ul>
-<li><p>单行注释：<code>// 注释内容</code> 或 <code>\# 注释内容</code>；</p>
-</li>
-<li><p>多行注释：<code>/\* 注释内容 \*/</code>（不能嵌套）。</p>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="二、数据类型与运算符"><a href="#二、数据类型与运算符" class="headerlink" title="二、数据类型与运算符"></a>二、数据类型与运算符</h2><h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1. 数据类型"></a>1. 数据类型</h3><ul>
-<li><p>标量类型（单一值）：</p>
-<ul>
-<li><p>布尔值（bool）：true（1）、false（0），区分大小写（仅true&#x2F;false有效，TRUE&#x2F;FALSE也可）；</p>
-</li>
-<li><p>整数（int）：正负整数，支持十进制、八进制（0开头）、十六进制（0x开头）；</p>
-</li>
-<li><p>浮点数（float&#x2F;double）：带小数点的数或科学计数法（如3.14、1.2e3）；</p>
-</li>
-<li><p>字符串（string）：单引号（不解析变量、转义字符仅\和&amp;#39;有效）、双引号（解析变量、转义字符有效）、Heredoc（多行字符串，解析变量）、Nowdoc（多行字符串，不解析变量）。</p>
-</li>
-</ul>
-</li>
-<li><p>复合类型（多个值）：</p>
-<ul>
-<li>数组（array）：索引数组（默认从0开始）、关联数组（自定义键名）、多维数组（数组嵌套数组）</li>
-</ul>
-</li>
-</ul>
-
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/04/19/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PHP%E4%B8%AA%E6%80%A7%E5%8C%96%E9%9A%BE%E7%82%B9%E5%BD%92%E7%BA%B3/" data-id="cuideEywwEQOsfSR5eio06Y0I" data-title="PHP个性化难点分析" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li></ul>
-
-    </footer>
   </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Linux学习笔记/Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E5%AE%9E%E5%BD%95%EF%BC%9AElasticsearch%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E7%9C%9F%E5%AE%9E%E8%AF%95%E9%94%99%E6%80%BB%E7%BB%93%EF%BC%89/" class="article-date">
-  <time class="dt-published" datetime="2026-04-19T13:01:34.955Z" itemprop="datePublished">2026-04-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Linux/">学习笔记/Linux</a>
+  <div class="sidebar-widget">
   </div>
-
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E5%AE%9E%E5%BD%95%EF%BC%9AElasticsearch%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E7%9C%9F%E5%AE%9E%E8%AF%95%E9%94%99%E6%80%BB%E7%BB%93%EF%BC%89/">Linux问题解决</a>
-    </h1>
-  
+</aside>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）"><a href="#Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）" class="headerlink" title="Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）"></a>Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）</h1><p>在Linux学习过程中，安装Elasticsearch（ES）是我遇到的第一个大坎。原本以为跟着教程一步步来就能顺利完成，没想到实际操作中频频出错，反复折腾了很久才找到解决办法，以下是我真实踩过的每一个坑，无夸张、无编造，全是实操中实打实遇到的问题，希望能给同样初学的小伙伴避坑。</p>
-<h2 id="一、真实踩坑过程（逐条对应实际报错）"><a href="#一、真实踩坑过程（逐条对应实际报错）" class="headerlink" title="一、真实踩坑过程（逐条对应实际报错）"></a>一、真实踩坑过程（逐条对应实际报错）</h2><p>我最初选择了压缩包手动安装的方式，本以为手动操作能更熟悉流程，结果从配置到启动，问题接连不断，每一个错误都让我卡壳很久。</p>
-<h3 id="1-配置文件被注释，导致network-host不生效"><a href="#1-配置文件被注释，导致network-host不生效" class="headerlink" title="1. 配置文件被注释，导致network.host不生效"></a>1. 配置文件被注释，导致network.host不生效</h3><p>编辑elasticsearch.yml配置文件时，我看到文件中已有「network.host: 0.0.0.0」这一行，没注意到前面有「#」注释符号，误以为配置已经生效。等到启动ES后才发现，ES只监听本地地址，浏览器输入服务器IP:9200根本无法访问，排查了很久才发现是注释没取消，配置等于没写。</p>
-<h3 id="2-启动时报错：max-file-descriptors太小、vm-max-map-count不足"><a href="#2-启动时报错：max-file-descriptors太小、vm-max-map-count不足" class="headerlink" title="2. 启动时报错：max file descriptors太小、vm.max_map_count不足"></a>2. 启动时报错：max file descriptors太小、vm.max_map_count不足</h3><p>这是最常见也最让人头疼的报错，启动ES时直接提示启动失败，终端输出两条关键错误信息：</p>
-<ul>
-<li><p>max file descriptors [4096] too low，需要至少 65535</p>
-</li>
-<li><p>vm.max_map_count [65530] too low，需要至少 262144</p>
-</li>
-</ul>
-<p>因为我刚接触Linux，不知道需要修改系统配置文件来调整这两个参数，只能反复重启ES，结果每次都报同样的错，一度以为是压缩包下载损坏。</p>
-<h3 id="3-权限混乱，ES用户无法读写目录"><a href="#3-权限混乱，ES用户无法读写目录" class="headerlink" title="3. 权限混乱，ES用户无法读写目录"></a>3. 权限混乱，ES用户无法读写目录</h3><p>ES不允许用root用户启动，所以我创建了es用户，但操作时太随意，一会儿用root用户解压文件、创建目录，一会儿切换到es用户启动服务，导致data（数据目录）和logs（日志目录）的权限混乱。启动时直接报错“Permission denied”，ES无法写入数据和日志，哪怕用chmod命令修改权限，也因为之前的操作混乱，始终无法彻底解决。</p>
-<h3 id="4-进程残留-锁文件导致无法再次启动"><a href="#4-进程残留-锁文件导致无法再次启动" class="headerlink" title="4. 进程残留 + 锁文件导致无法再次启动"></a>4. 进程残留 + 锁文件导致无法再次启动</h3><p>有一次启动失败后，我没有检查进程是否正常退出，就直接重新执行启动命令，结果提示「failed to obtain node locks」，无法获取节点锁。后来才知道，之前启动失败的ES进程残留，加上data目录下生成的锁文件，导致新的进程无法启动，只能先kill残留进程，删除锁文件，才能重新尝试启动。</p>
-<h3 id="5-手动写systemd服务文件，路径写错导致服务异常"><a href="#5-手动写systemd服务文件，路径写错导致服务异常" class="headerlink" title="5. 手动写systemd服务文件，路径写错导致服务异常"></a>5. 手动写systemd服务文件，路径写错导致服务异常</h3><p>为了方便后续启动ES，我参考教程手动创建elasticsearch.service服务文件，但因为对Linux路径不熟悉，把PID文件路径、ES执行路径写错了。执行「systemctl start elasticsearch」时，要么提示“找不到PID文件”，要么提示“无法启动服务”，反复修改路径好几次，还是无法正常启动服务。</p>
-<h3 id="6-ES进程看似在运行，但9200端口不通"><a href="#6-ES进程看似在运行，但9200端口不通" class="headerlink" title="6. ES进程看似在运行，但9200端口不通"></a>6. ES进程看似在运行，但9200端口不通</h3><p>有一次启动后，用「ps -ef | grep elasticsearch」能看到ES进程在运行，以为这次终于成功了，结果用「curl 127.0.0.1:9200」测试时，一直提示「Connection refused」。排查后发现，ES虽然启动了进程，但因为之前的系统配置（max file descriptors、vm.max_map_count）还是没改对，启动到一半就自动退出了，进程只是“假运行”状态。</p>
-<h3 id="7-Linux操作不熟练，不等提示符就乱输入命令"><a href="#7-Linux操作不熟练，不等提示符就乱输入命令" class="headerlink" title="7. Linux操作不熟练，不等提示符就乱输入命令"></a>7. Linux操作不熟练，不等提示符就乱输入命令</h3><p>这是我自己的操作失误，因为刚接触Linux命令行，耐心不足，经常在一条命令还没执行完、终端还没出现提示符时，就着急输入下一条命令。导致命令排队执行、执行顺序混乱，有时候甚至会覆盖之前的配置，引发一些莫名其妙的错误，比如权限修改不生效、文件解压不完整等。</p>
-<h3 id="8-压缩包与YUM安装路径混淆，出现冲突"><a href="#8-压缩包与YUM安装路径混淆，出现冲突" class="headerlink" title="8. 压缩包与YUM安装路径混淆，出现冲突"></a>8. 压缩包与YUM安装路径混淆，出现冲突</h3><p>手动安装多次失败后，我想着换一种方式，用YUM安装试试，但没有彻底删除之前用压缩包安装的ES文件（安装在&#x2F;usr&#x2F;local&#x2F;elasticsearch目录下）。结果YUM安装后，系统默认的安装路径和手动安装的路径冲突，导致服务找不到ES执行文件、PID冲突，启动时要么提示文件不存在，要么提示端口被占用。</p>
-<h2 id="二、最终解决结果"><a href="#二、最终解决结果" class="headerlink" title="二、最终解决结果"></a>二、最终解决结果</h2><p>折腾了大半天，我意识到手动安装对新手来说太容易出错，而且自己对Linux系统配置、权限管理还不熟练。于是我先把之前手动安装的ES文件、残留进程、锁文件、错误的服务文件全部彻底删除干净，然后按照教程，全程使用YUM方式安装Elasticsearch。</p>
-<p>YUM安装的优势在于，所有用户创建、权限配置、系统参数调整、服务注册都由系统自动处理，不需要手动修改配置文件、调整权限，全程按照提示执行命令，最终一次启动成功，用浏览器访问IP:9200，顺利看到了ES的默认响应页面，悬着的心终于放下了。</p>
-<h2 id="三、学习收获与总结"><a href="#三、学习收获与总结" class="headerlink" title="三、学习收获与总结"></a>三、学习收获与总结</h2><p>这次安装ES的踩坑经历，虽然折腾，但也让我对Linux操作、ES安装配置有了更深刻的理解，也总结了几个新手避坑要点：</p>
-<ul>
-<li><p>新手安装ES，优先选择YUM（或apt）方式，避免手动压缩包安装，减少配置和权限带来的麻烦；</p>
-</li>
-<li><p>修改配置文件时，一定要注意取消注释符号（#），否则配置不生效；</p>
-</li>
-<li><p>ES启动前，必须先修改系统的max file descriptors和vm.max_map_count参数，否则一定会启动失败；</p>
-</li>
-<li><p>操作Linux时，一定要耐心，等一条命令执行完再输入下一条，避免命令混乱；</p>
-</li>
-<li><p>更换安装方式时，一定要彻底删除之前的安装残留，避免路径、PID冲突。</p>
-</li>
-</ul>
-<p>作为Linux初学者，踩坑是难免的，但每解决一个问题，都是一次进步。记录下这些真实的试错过程，既是对自己学习的总结，也希望能帮助到和我一样初学的小伙伴，少走一些弯路。</p>
-
-      
+          <section id="main" aria-label="Main content">      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/19/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PHP%E4%B8%AA%E6%80%A7%E5%8C%96%E9%9A%BE%E7%82%B9%E5%BD%92%E7%BA%B3/" aria-label="PHP个性化难点分析" title="PHP个性化难点分析"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="PHP个性化难点分析" class="lazyload">
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E5%AE%9E%E5%BD%95%EF%BC%9AElasticsearch%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E7%9C%9F%E5%AE%9E%E8%AF%95%E9%94%99%E6%80%BB%E7%BB%93%EF%BC%89/" data-id="cuid1s-xahIoO6U68tG_S_mZI" data-title="Linux问题解决" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li></ul>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-19</span>
+        <span><span class="icon-pencil"></span>6.4k 字</span>
+        <span><span class="icon-clock"></span>26 分钟</span>
+      </div>
+      <h2 class="post-title">PHP个性化难点分析</h2>
+      <article class="post-article">
+          PHP学习笔记（难点解析）笔记一：个性化难点解析（菜鸟教程学习重点+难懂点纠正）本笔记聚焦学习过程中容易混淆、理解不透彻的知识点，结合自身疑问纠正偏差，重点突破个性化难点，适配Typora阅读和编辑，补充所有遗漏的核心难点，确保覆盖PHP全场景易踩坑点。
+一、变量作用域（核心难点）核心结论：函数内无法直接访问全局变量，函数外也无法直接访问函数内的局部变量，需通过指定方式调用；静态变量是特殊的局部变量，需重点区分。
 
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Linux学习笔记/Linux学习笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time class="dt-published" datetime="2026-04-19T13:01:01.666Z" itemprop="datePublished">2026-04-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Linux/">学习笔记/Linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Linux学习笔记01</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Linux学习全套总结"><a href="#Linux学习全套总结" class="headerlink" title="Linux学习全套总结"></a>Linux学习全套总结</h1><p>---</p>
-<p>title: Linux学习全套总结</p>
-<p>date: 2026-04-15</p>
-<p>categories: 后端基础</p>
-<p>tags: Linux, 学习笔记, 黑马程序员</p>
-<p>---</p>
-<p>跟着黑马程序员学完Linux，整理了全套核心知识点，涵盖课程重点、实操命令、必背考点，适合新手回顾复盘，也可作为日常开发备查笔记，纯干货无冗余～</p>
-<h1 id="一、Linux基础认知"><a href="#一、Linux基础认知" class="headerlink" title="一、Linux基础认知"></a>一、Linux基础认知</h1><h2 id="1-1-什么是Linux"><a href="#1-1-什么是Linux" class="headerlink" title="1.1 什么是Linux"></a>1.1 什么是Linux</h2><ul>
-<li><p>Linux是一款<strong>开源、免费、多用户、多任务</strong>的操作系统，核心优势是稳定、安全、占用资源少</p>
-</li>
-<li><p>与Windows的区别：Windows面向桌面用户，Linux面向服务器（占服务器领域90%以上市场）</p>
-</li>
-<li><p>常见发行版（黑马重点提及）：CentOS（企业级首选，稳定）、Ubuntu（桌面&#x2F;服务器通用，易用）、RedHat（收费，企业级）、Debian</p>
-</li>
-</ul>
-<h2 id="1-2-Linux核心思想"><a href="#1-2-Linux核心思想" class="headerlink" title="1.2 Linux核心思想"></a>1.2 Linux核心思想</h2><p>✅ 一切皆文件：无论是硬件（CPU、硬盘）、软件、配置，在Linux中都以文件形式存在</p>
-<p>✅ 命令行优先：Linux的核心操作是命令行，图形界面仅为辅助（服务器一般无图形界面）</p>
-<h1 id="二、Linux文件系统结构（必背）"><a href="#二、Linux文件系统结构（必背）" class="headerlink" title="二、Linux文件系统结构（必背）"></a>二、Linux文件系统结构（必背）</h1><p>Linux的文件系统是<strong>树形结构</strong>，所有文件&#x2F;目录都挂载在根目录 <code>/</code> 下，黑马强调以下目录必须记牢：</p>
-<ul>
-<li><p><code>/</code>：根目录，所有文件的顶层目录，不可删除</p>
-</li>
-<li><p><code>/root</code>：超级用户（root）的家目录，只有root能访问</p>
-</li>
-<li><p><code>/home/用户名</code>：普通用户的家目录（如 <code>/home/test</code>），普通用户只能操作自己的家目录</p>
-</li>
-<li><p><code>/etc</code>：系统核心配置文件目录（重中之重），如网络配置、服务配置</p>
-</li>
-<li><p><code>/bin</code>、<code>/usr/bin</code>：系统可执行命令目录（如 <code>ls</code>、<code>cd</code> 等常用命令）</p>
-</li>
-<li><p><code>/var</code>：动态文件目录，存放日志（<code>/var/log</code>）、缓存、临时数据</p>
-</li>
-<li><p><code>/tmp</code>：临时文件目录，重启系统后文件会清空</p>
-</li>
-<li><p><code>/usr</code>：用户程序目录，存放软件安装包、库文件</p>
-</li>
-<li><p><code>/boot</code>：系统启动目录，存放启动相关文件（不可删除）</p>
-</li>
-</ul>
-<h1 id="三、Linux常用基础命令（黑马实操重点）"><a href="#三、Linux常用基础命令（黑马实操重点）" class="headerlink" title="三、Linux常用基础命令（黑马实操重点）"></a>三、Linux常用基础命令（黑马实操重点）</h1><p>所有命令均为黑马课程高频实操命令，标注 <strong>必背</strong> 的是日常开发最常用的，建议熟练掌握。</p>
-<h2 id="3-1-文件-目录操作命令（必背）"><a href="#3-1-文件-目录操作命令（必背）" class="headerlink" title="3.1 文件&#x2F;目录操作命令（必背）"></a>3.1 文件&#x2F;目录操作命令（必背）</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-<th>常用示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>ls</code></td>
-<td>查看当前目录下的文件&#x2F;目录</td>
-<td><code>ls</code>（简单查看）、<code>ls \-l</code>（详细查看，简写 <code>ll</code>）</td>
-</tr>
-<tr>
-<td><code>cd</code></td>
-<td>切换目录</td>
-<td><code>cd /home</code>（切换到&#x2F;home）、<code>cd \.\.</code>（返回上一级）、<code>cd \~</code>（回到家目录）</td>
-</tr>
-<tr>
-<td><code>pwd</code></td>
-<td>显示当前所在路径（必背）</td>
-<td><code>pwd</code></td>
-</tr>
-<tr>
-<td><code>mkdir</code></td>
-<td>创建目录</td>
-<td><code>mkdir test</code>（创建单个目录）、<code>mkdir \-p a/b/c</code>（创建多级目录）</td>
-</tr>
-<tr>
-<td><code>touch</code></td>
-<td>创建空文件</td>
-<td><code>touch test\.txt</code></td>
-</tr>
-<tr>
-<td><code>cp</code></td>
-<td>复制文件&#x2F;目录</td>
-<td><code>cp test\.txt /home</code>（复制文件）、<code>cp \-r a /home</code>（复制目录，需加-r）</td>
-</tr>
-<tr>
-<td><code>mv</code></td>
-<td>移动&#x2F;重命名文件&#x2F;目录</td>
-<td><code>mv test\.txt /home</code>（移动）、<code>mv test\.txt test1\.txt</code>（重命名）</td>
-</tr>
-<tr>
-<td><code>rm</code></td>
-<td>删除文件&#x2F;目录（慎用）</td>
-<td><code>rm test\.txt</code>（删除文件）、<code>rm \-rf test</code>（强制删除目录，必背，谨慎使用）</td>
-</tr>
-</tbody></table>
-<h2 id="3-2-文件查看命令（必背）"><a href="#3-2-文件查看命令（必背）" class="headerlink" title="3.2 文件查看命令（必背）"></a>3.2 文件查看命令（必背）</h2><ul>
-<li><p><code>cat 文件名</code>：查看文件全部内容（适合小文件），示例：<code>cat /etc/hosts</code></p>
-</li>
-<li><p><code>more 文件名</code>：分页查看文件，按 <code>space</code> 翻页，<code>q</code> 退出</p>
-</li>
-<li><p><code>less 文件名</code>：灵活翻页查看，按 <code>↑↓</code> 滚动，<code>q</code> 退出（适合大文件，必背）</p>
-</li>
-<li><p><code>head \-n 数字 文件名</code>：查看文件前n行，示例：<code>head \-10 /var/log/messages</code>（查看前10行日志）</p>
-</li>
-<li><p><code>tail \-n 数字 文件名</code>：查看文件后n行，示例：<code>tail \-5 test\.txt</code></p>
-</li>
-<li><p><code>tail \-f 文件名</code>：实时查看文件变化（重点，常用于查看日志），示例：<code>tail \-f /var/log/nginx/access\.log</code></p>
-</li>
-</ul>
-<h2 id="3-3-搜索与查找命令"><a href="#3-3-搜索与查找命令" class="headerlink" title="3.3 搜索与查找命令"></a>3.3 搜索与查找命令</h2><ul>
-<li><p><code>find 路径 \-name 文件名</code>：按文件名查找文件&#x2F;目录（必背），示例：<code>find / \-name test\.txt</code>（从根目录查找test.txt）</p>
-</li>
-<li><p><code>grep \&amp;\#34;关键词\&amp;\#34; 文件名</code>：过滤文件内容，查找包含关键词的行（必背），示例：<code>grep \&amp;\#34;error\&amp;\#34; /var/log/messages</code>（查找日志中的错误信息）</p>
-</li>
-<li><p><code>grep \-n \&amp;\#34;关键词\&amp;\#34; 文件名</code>：显示匹配行的行号</p>
-</li>
-</ul>
-<h2 id="3-4-权限操作命令（黑马重点，必背）"><a href="#3-4-权限操作命令（黑马重点，必背）" class="headerlink" title="3.4 权限操作命令（黑马重点，必背）"></a>3.4 权限操作命令（黑马重点，必背）</h2><p>Linux中每个文件&#x2F;目录都有3种权限：读（r）、写（w）、执行（x），对应3类用户：所有者（u）、所属组（g）、其他用户（o）</p>
-<ul>
-<li><p>权限数值：<code>r=4</code>、<code>w=2</code>、<code>x=1</code>，权限组合为数值之和（如 rwx&#x3D;7、rw-&#x3D;6、r--&#x3D;4）</p>
-</li>
-<li><p><code>chmod 权限值 文件名</code>：修改文件&#x2F;目录权限（必背），示例：<code>chmod 755 test\.txt</code>（所有者rwx，其他用户r--x）</p>
-</li>
-<li><p><code>chown 用户名:组名 文件名</code>：修改文件&#x2F;目录的所有者和所属组，示例：<code>chown root:root test\.txt</code>（修改为root所有）</p>
-</li>
-</ul>
-<p>常用权限：755（文件可执行、目录可访问）、644（普通文件，只读）</p>
-<h2 id="3-5-进程与服务命令（必背）"><a href="#3-5-进程与服务命令（必背）" class="headerlink" title="3.5 进程与服务命令（必背）"></a>3.5 进程与服务命令（必背）</h2><ul>
-<li><p><code>ps \-ef</code>：查看所有进程（必背），示例：<code>ps \-ef \| grep nginx</code>（查看nginx进程）</p>
-</li>
-<li><p><code>top</code>：实时监控进程占用（CPU、内存），按 <code>q</code> 退出</p>
-</li>
-<li><p><code>kill \-9 进程ID（PID）</code>：强制终止进程（必背），示例：<code>kill \-9 1234</code>（终止PID为1234的进程）</p>
-</li>
-<li><p><code>systemctl start 服务名</code>：启动服务，示例：<code>systemctl start nginx</code></p>
-</li>
-<li><p><code>systemctl stop 服务名</code>：停止服务</p>
-</li>
-<li><p><code>systemctl restart 服务名</code>：重启服务（必背）</p>
-</li>
-<li><p><code>systemctl enable 服务名</code>：设置服务开机自启（必背）</p>
-</li>
-<li><p><code>systemctl status 服务名</code>：查看服务运行状态</p>
-</li>
-</ul>
-<h2 id="3-6-网络相关命令（必背）"><a href="#3-6-网络相关命令（必背）" class="headerlink" title="3.6 网络相关命令（必背）"></a>3.6 网络相关命令（必背）</h2><ul>
-<li><p><code>ifconfig</code> &#x2F; <code>ip addr</code>：查看服务器IP地址（必背），CentOS7+推荐用 <code>ip addr</code></p>
-</li>
-<li><p><code>ping 目标IP/域名</code>：测试网络连通性，示例：<code>ping www\.baidu\.com</code></p>
-</li>
-<li><p><code>netstat \-ntlp</code>：查看端口占用情况（必背），示例：<code>netstat \-ntlp \| grep 80</code>（查看80端口占用）</p>
-</li>
-<li><p><code>hostname</code>：查看服务器主机名</p>
-</li>
-</ul>
-<h2 id="3-7-压缩与解压命令（必背）"><a href="#3-7-压缩与解压命令（必背）" class="headerlink" title="3.7 压缩与解压命令（必背）"></a>3.7 压缩与解压命令（必背）</h2><p>Linux中最常用的压缩格式是 <code>\.tar\.gz</code>，黑马重点讲解：</p>
-<ul>
-<li><p>打包压缩：<code>tar \-zcvf 压缩包名\.tar\.gz 要压缩的文件/目录</code>，示例：<code>tar \-zcvf test\.tar\.gz test/</code></p>
-</li>
-<li><p>解压：<code>tar \-zxvf 压缩包名\.tar\.gz</code>（解压到当前目录），示例：<code>tar \-zxvf test\.tar\.gz</code></p>
-</li>
-<li><p>解压到指定目录：<code>tar \-zxvf 压缩包名\.tar\.gz \-C 目标目录</code>，示例：<code>tar \-zxvf test\.tar\.gz \-C /home</code></p>
-</li>
-</ul>
-<h2 id="3-8-用户与组命令"><a href="#3-8-用户与组命令" class="headerlink" title="3.8 用户与组命令"></a>3.8 用户与组命令</h2><ul>
-<li><p><code>useradd 用户名</code>：创建普通用户，示例：<code>useradd test</code></p>
-</li>
-<li><p><code>passwd 用户名</code>：设置用户密码（必背），示例：<code>passwd test</code>（输入密码时不显示）</p>
-</li>
-<li><p><code>su 用户名</code>：切换用户，示例：<code>su test</code>（从root切换到test）、<code>su \-</code>（切换到root）</p>
-</li>
-<li><p><code>sudo</code>：普通用户临时提权（执行root权限命令），需配置sudoers文件</p>
-</li>
-<li><p><code>userdel \-r 用户名</code>：删除用户（-r 同时删除家目录）</p>
-</li>
-</ul>
-<h1 id="四、Vim编辑器（黑马必会，必背）"><a href="#四、Vim编辑器（黑马必会，必背）" class="headerlink" title="四、Vim编辑器（黑马必会，必背）"></a>四、Vim编辑器（黑马必会，必背）</h1><p>Vim是Linux中默认的文本编辑器，用于修改配置文件、编写脚本，核心是3种模式切换，黑马反复强调：</p>
-<h2 id="4-1-三种模式及切换"><a href="#4-1-三种模式及切换" class="headerlink" title="4.1 三种模式及切换"></a>4.1 三种模式及切换</h2><ul>
-<li><p>命令模式（默认模式）：打开文件后默认进入，用于执行编辑命令（如删除、撤销）</p>
-</li>
-<li><p>输入模式：用于输入文本，从命令模式按 <code>i</code> 进入（i&#x3D;insert）</p>
-</li>
-<li><p>末行模式：用于保存、退出，从命令模式按 <code>:</code> 进入</p>
-</li>
-<li><p>模式切换：输入模式 → 命令模式（按 <code>ESC</code>）；命令模式 → 末行模式（按 <code>:</code>）</p>
-</li>
-</ul>
-<h2 id="4-2-常用Vim命令（必背）"><a href="#4-2-常用Vim命令（必背）" class="headerlink" title="4.2 常用Vim命令（必背）"></a>4.2 常用Vim命令（必背）</h2><ul>
-<li><p>命令模式：</p>
-<ul>
-<li><p><code>dd</code>：删除当前行（必背）</p>
-</li>
-<li><p><code>ndd</code>：删除n行（如 <code>3dd</code> 删除3行）</p>
-</li>
-<li><p><code>u</code>：撤销上一步操作（必背）</p>
-</li>
-<li><p><code>yy</code>：复制当前行</p>
-</li>
-<li><p><code>nyy</code>：复制n行</p>
-</li>
-<li><p><code>p</code>：粘贴复制的内容（必背）</p>
-</li>
-<li><p><code>shift \+ g</code>：跳转到文件末尾</p>
-</li>
-<li><p><code>gg</code>：跳转到文件开头</p>
-</li>
-</ul>
-</li>
-<li><p>末行模式（必背）：</p>
-<ul>
-<li><p><code>:w</code>：保存文件</p>
-</li>
-<li><p><code>:q</code>：退出Vim（文件未修改时）</p>
-</li>
-<li><p><code>:wq</code>：保存并退出（必背）</p>
-</li>
-<li><p><code>:q\!</code>：强制退出，不保存修改（必背）</p>
-</li>
-<li><p><code>:set nu</code>：显示行号</p>
-</li>
-<li><p><code>:set nonu</code>：隐藏行号</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>常用场景：修改配置文件 → <code>vim /etc/profile</code> → 按 <code>i</code>编辑 → 按 <code>ESC</code> → <code>:wq</code> 保存退出</p>
-<h1 id="五、Shell脚本基础（黑马实操拓展）"><a href="#五、Shell脚本基础（黑马实操拓展）" class="headerlink" title="五、Shell脚本基础（黑马实操拓展）"></a>五、Shell脚本基础（黑马实操拓展）</h1><p>Shell是Linux的命令解释器，Shell脚本（.sh）用于自动化执行一系列命令，黑马讲解基础脚本编写：</p>
-<h2 id="5-1-脚本规范"><a href="#5-1-脚本规范" class="headerlink" title="5.1 脚本规范"></a>5.1 脚本规范</h2><ul>
-<li><p>脚本文件后缀为 <code>\.sh</code>（如<code>test\.sh</code>）</p>
-</li>
-<li><p>脚本第一行必须写 <code>\#\!/bin/bash</code>（指定解释器）</p>
-</li>
-<li><p>执行脚本：<code>bash test\.sh</code> 或 <code>\./test\.sh</code>（需给脚本加执行权限 <code>chmod 755 test\.sh</code>）</p>
-</li>
-</ul>
-<h2 id="5-2-基础脚本示例（黑马演示案例）"><a href="#5-2-基础脚本示例（黑马演示案例）" class="headerlink" title="5.2 基础脚本示例（黑马演示案例）"></a>5.2 基础脚本示例（黑马演示案例）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 注释：这是一个简单的Shell脚本，输出当前时间和系统信息</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;当前时间：<span class="subst">$(date)</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;当前用户：<span class="subst">$(whoami)</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;服务器IP：<span class="subst">$(ip addr | grep inet | grep -v 127.0.0.1 | awk &#x27;&#123;print $2&#125;&#x27; | cut -d &#x27;/&#x27; -f1)</span>&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="5-3-脚本核心语法（基础）"><a href="#5-3-脚本核心语法（基础）" class="headerlink" title="5.3 脚本核心语法（基础）"></a>5.3 脚本核心语法（基础）</h2><ul>
-<li><p>变量：<code>name=\&amp;\#34;test\&amp;\#34;</code>，使用时 <code>echo $name</code></p>
-</li>
-<li><p>if判断：<br>  <code>if \[ $name == \&amp;\#34;test\&amp;\#34; \]; then   echo \&amp;\#34;正确\&amp;\#34; else   echo \&amp;\#34;错误\&amp;\#34; fi </code></p>
-</li>
-<li><p>for循环：<br>  <code>for i in 1 2 3 4 5; do   echo $i done </code></p>
-</li>
-</ul>
-<p>常用场景：日志备份、服务重启、批量执行命令</p>
-<h1 id="六、Linux软件安装方式（黑马重点）"><a href="#六、Linux软件安装方式（黑马重点）" class="headerlink" title="六、Linux软件安装方式（黑马重点）"></a>六、Linux软件安装方式（黑马重点）</h1><p>Linux软件安装有3种常用方式，黑马按“易用性”排序讲解：</p>
-<h2 id="6-1-在线安装（最常用，必背）"><a href="#6-1-在线安装（最常用，必背）" class="headerlink" title="6.1 在线安装（最常用，必背）"></a>6.1 在线安装（最常用，必背）</h2><ul>
-<li><p>CentOS&#x2F;RHEL：使用 <code>yum</code> 命令，自动解决依赖</p>
-<ul>
-<li><p>安装：<code>yum install 软件名 \-y</code>（-y 自动确认），示例：<code>yum install nginx \-y</code></p>
-</li>
-<li><p>卸载：<code>yum remove 软件名 \-y</code></p>
-</li>
-<li><p>更新：<code>yum update 软件名</code></p>
-</li>
-</ul>
-</li>
-<li><p>Ubuntu&#x2F;Debian：使用 <code>apt\-get</code> 命令</p>
-<ul>
-<li><p>安装：<code>apt\-get install 软件名 \-y</code></p>
-</li>
-<li><p>卸载：<code>apt\-get remove 软件名 \-y</code></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="6-2-rpm包安装（手动安装，适合无网络）"><a href="#6-2-rpm包安装（手动安装，适合无网络）" class="headerlink" title="6.2  rpm包安装（手动安装，适合无网络）"></a>6.2  rpm包安装（手动安装，适合无网络）</h2><p>rpm是Linux的软件包格式，需手动下载rpm包，示例：</p>
-<ul>
-<li><p>安装：<code>rpm \-ivh 软件包\.rpm</code>（ivh：安装、显示进度、显示详细信息）</p>
-</li>
-<li><p>卸载：<code>rpm \-e 软件名</code></p>
-</li>
-<li><p>缺点：需手动解决依赖关系，不如yum方便</p>
-</li>
-</ul>
-<h2 id="6-3-源码编译安装（最灵活，适合定制）"><a href="#6-3-源码编译安装（最灵活，适合定制）" class="headerlink" title="6.3 源码编译安装（最灵活，适合定制）"></a>6.3 源码编译安装（最灵活，适合定制）</h2><p>步骤（黑马标准流程）：</p>
-<ol>
-<li><p>下载源码包（如 <code>wget 源码包地址</code>）</p>
-</li>
-<li><p>解压源码包：<code>tar \-zxvf 源码包\.tar\.gz</code></p>
-</li>
-<li><p>进入解压目录：<code>cd 源码目录</code></p>
-</li>
-<li><p>配置：<code>\./configure</code>（可指定安装路径）</p>
-</li>
-<li><p>编译：<code>make</code></p>
-</li>
-<li><p>安装：<code>make install</code></p>
-</li>
-</ol>
-<p>常用场景：安装特定版本的软件（如自定义nginx安装路径）</p>
-<h1 id="七、防火墙与端口配置（黑马重点，必背）"><a href="#七、防火墙与端口配置（黑马重点，必背）" class="headerlink" title="七、防火墙与端口配置（黑马重点，必背）"></a>七、防火墙与端口配置（黑马重点，必背）</h1><p>Linux防火墙用于控制端口访问，黑马重点讲解CentOS7+的 <code>firewalld</code>（替代旧版iptables）：</p>
-<h2 id="7-1-firewalld常用命令"><a href="#7-1-firewalld常用命令" class="headerlink" title="7.1 firewalld常用命令"></a>7.1 firewalld常用命令</h2><ul>
-<li><p><code>systemctl start firewalld</code>：启动防火墙</p>
-</li>
-<li><p><code>systemctl stop firewalld</code>：停止防火墙（测试环境常用）</p>
-</li>
-<li><p><code>systemctl enable firewalld</code>：防火墙开机自启</p>
-</li>
-<li><p><code>firewall\-cmd \-\-list\-ports</code>：查看已开放的端口</p>
-</li>
-<li><p><code>firewall\-cmd \-\-add\-port=端口号/tcp \-\-permanent</code>：永久开放端口（必背），示例：<code>firewall\-cmd \-\-add\-port=80/tcp \-\-permanent</code></p>
-</li>
-<li><p><code>firewall\-cmd \-\-reload</code>：重新加载防火墙（开放端口后必须执行，必背）</p>
-</li>
-<li><p><code>firewall\-cmd \-\-remove\-port=端口号/tcp \-\-permanent</code>：永久关闭端口</p>
-</li>
-</ul>
-<p>注意：云服务器（如阿里云、腾讯云）还需在控制台开放对应端口，否则防火墙开放也无法访问。</p>
-<h1 id="八、学习总结与注意事项"><a href="#八、学习总结与注意事项" class="headerlink" title="八、学习总结与注意事项"></a>八、学习总结与注意事项</h1><h2 id="8-1-核心重点回顾"><a href="#8-1-核心重点回顾" class="headerlink" title="8.1 核心重点回顾"></a>8.1 核心重点回顾</h2><ul>
-<li><p>必背：文件系统结构、常用命令（ls、cd、pwd、rm、chmod、systemctl等）</p>
-</li>
-<li><p>必会：Vim编辑器（三种模式、保存退出）、防火墙配置、软件安装</p>
-</li>
-<li><p>常用：进程查看、日志查看、端口查看</p>
-</li>
-</ul>
-<h2 id="8-2-黑马强调的注意事项"><a href="#8-2-黑马强调的注意事项" class="headerlink" title="8.2 黑马强调的注意事项"></a>8.2 黑马强调的注意事项</h2><ul>
-<li><p>慎用 <code>rm \-rf /</code>（删除根目录，会导致系统崩溃）</p>
-</li>
-<li><p>修改配置文件前，建议备份（如 <code>cp /etc/profile /etc/profile\.bak</code>）</p>
-</li>
-<li><p>执行命令时，注意用户权限（普通用户无法修改系统配置，需用root或sudo）</p>
-</li>
-<li><p>服务器尽量关闭不必要的服务，开放必要的端口，提升安全性</p>
-</li>
-</ul>
-
-      
+全局变量调用：函数内访问全局变量，必须使用 global 关键字，或通过 $GLOBALS\[\&amp;amp;\#39;变量名\&amp;amp;\#39;\] 访问（两者等价，重点理解后者）
+      </article>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="cuidgHnWy8oOi_v_y1rS3Pg2M" data-title="Linux学习笔记01" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li></ul>
-
-    </footer>
   </div>
-  
-</article>
-
-
-
-  
-    <article id="post-MySQL学习笔记/MySQL学习笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/04/19/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time class="dt-published" datetime="2026-04-19T13:00:41.330Z" itemprop="datePublished">2026-04-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-MySQL/">学习笔记/MySQL</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2026/04/19/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Linux学习笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="MySQL基础知识点总结（至事务部分完结）"><a href="#MySQL基础知识点总结（至事务部分完结）" class="headerlink" title="MySQL基础知识点总结（至事务部分完结）"></a>MySQL基础知识点总结（至事务部分完结）</h1><p>本文总结MySQL基础部分核心知识点，涵盖从MySQL入门到事务的全部基础内容，适合新手入门梳理，适配个人博客呈现，知识点详细且逻辑连贯，重点内容加粗标注，所有sql语句均使用小写，贴合日常使用习惯。</p>
-<h1 id="一、MySQL入门基础"><a href="#一、MySQL入门基础" class="headerlink" title="一、MySQL入门基础"></a>一、MySQL入门基础</h1><h2 id="1-1-MySQL简介"><a href="#1-1-MySQL简介" class="headerlink" title="1.1 MySQL简介"></a>1.1 MySQL简介</h2><ul>
-<li><p>mysql是一款开源的关系型数据库管理系统（rdbms），由oracle公司维护，支持多平台（windows、linux、mac）。</p>
-</li>
-<li><p>核心特点：体积小、速度快、开源免费、支持多用户多线程、兼容性强，广泛应用于中小型网站、后台系统的数据存储。</p>
-</li>
-<li><p>mysql的核心组件：数据库（database）、表（table）、字段（field）、索引（index）、sql语句，数据以表格形式组织，遵循关系模型。</p>
-</li>
-</ul>
-<h2 id="1-2-MySQL安装与环境配置（windows）"><a href="#1-2-MySQL安装与环境配置（windows）" class="headerlink" title="1.2 MySQL安装与环境配置（windows）"></a>1.2 MySQL安装与环境配置（windows）</h2><h3 id="1-2-1-安装步骤"><a href="#1-2-1-安装步骤" class="headerlink" title="1.2.1 安装步骤"></a>1.2.1 安装步骤</h3><ol>
-<li><p>下载mysql安装包（推荐社区版，官网或国内镜像），选择自定义安装，勾选mysql server、mysql workbench（可视化工具）。</p>
-</li>
-<li><p>配置安装路径（建议非c盘，如d:\mysql\mysql server 8.0），避免中文路径。</p>
-</li>
-<li><p>配置服务器：选择“独立服务器”模式，端口默认3306（可修改，避免冲突），设置root用户密码（牢记，后续登录用）。</p>
-</li>
-<li><p>安装完成后，启动mysql服务：控制面板→服务→找到mysql，设置“自动启动”，确保服务正常运行。</p>
-</li>
-</ol>
-<h3 id="1-2-2-登录mysql（两种方式）"><a href="#1-2-2-登录mysql（两种方式）" class="headerlink" title="1.2.2 登录mysql（两种方式）"></a>1.2.2 登录mysql（两种方式）</h3><ol>
-<li>命令行登录（推荐，适合博客演示操作）：<br> &#96;mysql -u root -p</li>
-</ol>
-<p># 输入设置的root密码，回车即可登录成功&#96;</p>
-<ol start="2">
-<li>可视化工具登录（mysql workbench）：打开工具，新建连接，输入主机（localhost）、端口（3306）、用户名（root）、密码，点击连接即可。</li>
-</ol>
-<h3 id="1-2-3-常见问题解决"><a href="#1-2-3-常见问题解决" class="headerlink" title="1.2.3 常见问题解决"></a>1.2.3 常见问题解决</h3><ul>
-<li><p>服务启动失败：检查端口是否被占用（用netstat -ano | findstr 3306查看），或重新配置mysql服务。</p>
-</li>
-<li><p>登录失败：确认密码正确，若忘记密码，可通过重置密码脚本（mysqld --skip-grant-tables）重置。</p>
-</li>
-</ul>
-<h2 id="1-3-数据库基础概念"><a href="#1-3-数据库基础概念" class="headerlink" title="1.3 数据库基础概念"></a>1.3 数据库基础概念</h2><ul>
-<li><p>数据库（database）：是一个存储数据的容器，本质是一个或多个文件的集合，用于组织和管理数据（如：blog_db、user_db）。</p>
-</li>
-<li><p>表（table）：数据库中的基本存储单元，用于存储具体的数据，每个表有唯一的名称，由行（记录）和列（字段）组成。</p>
-</li>
-<li><p>字段（field）：表中的一列，用于描述数据的某个属性（如：user表中的id、name、age字段），每个字段有对应的数据类型。</p>
-</li>
-<li><p>记录（row）：表中的一行，对应一条具体的数据（如：user表中id&#x3D;1、name&#x3D;张三、age&#x3D;20，就是一条记录）。</p>
-</li>
-<li><p>sql：结构化查询语言，用于操作mysql数据库的标准语言，分为ddl、dml、dql、dcl四类（后续详细讲解）。</p>
-</li>
-</ul>
-<h1 id="二、sql基础（核心）"><a href="#二、sql基础（核心）" class="headerlink" title="二、sql基础（核心）"></a>二、sql基础（核心）</h1><p>sql（structured query language）是操作关系型数据库的标准语言，所有关系型数据库（mysql、oracle、sql server）都支持sql，语法基本一致，重点掌握mysql的专属语法细节，以下所有sql语句均使用小写。</p>
-<h2 id="2-1-sql分类"><a href="#2-1-sql分类" class="headerlink" title="2.1 sql分类"></a>2.1 sql分类</h2><table>
-<thead>
-<tr>
-<th>分类</th>
-<th>作用</th>
-<th>核心关键字</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ddl（数据定义语言）</td>
-<td>定义数据库、表的结构，创建&#x2F;删除&#x2F;修改数据库、表</td>
-<td>create、drop、alter</td>
-</tr>
-<tr>
-<td>dml（数据操纵语言）</td>
-<td>操作表中的数据（新增、修改、删除）</td>
-<td>insert、update、delete</td>
-</tr>
-<tr>
-<td>dql（数据查询语言）</td>
-<td>查询表中的数据（核心，最常用）</td>
-<td>select</td>
-</tr>
-<tr>
-<td>dcl（数据控制语言）</td>
-<td>控制用户权限、事务管理</td>
-<td>grant、revoke、commit、rollback</td>
-</tr>
-</tbody></table>
-<h2 id="2-2-ddl语句（数据定义语言）"><a href="#2-2-ddl语句（数据定义语言）" class="headerlink" title="2.2 ddl语句（数据定义语言）"></a>2.2 ddl语句（数据定义语言）</h2><h3 id="2-2-1-数据库操作（create-drop-use）"><a href="#2-2-1-数据库操作（create-drop-use）" class="headerlink" title="2.2.1 数据库操作（create&#x2F;drop&#x2F;use）"></a>2.2.1 数据库操作（create&#x2F;drop&#x2F;use）</h3><ol>
-<li>创建数据库（核心）：<br> &#96;-- 语法：create database 数据库名 [字符集设置];</li>
-</ol>
-<p>create database blog_db; -- 默认字符集（utf8mb4，支持中文、emoji）<br>create database user_db character set utf8mb4 collate utf8mb4_general_ci; -- 手动指定字符集&#96;</p>
-<ol start="2">
-<li><p>查看所有数据库：<br> <code>show databases;</code></p>
-</li>
-<li><p>使用数据库（切换数据库，操作表前必须执行）：<br> <code>use blog\_db;</code></p>
-</li>
-<li><p>删除数据库（谨慎操作，删除后无法恢复）：<br> &#96;-- 语法：drop database 数据库名;</p>
-</li>
-</ol>
-<p>drop database user_db;&#96;</p>
-<h3 id="2-2-2-表操作（create-drop-alter）"><a href="#2-2-2-表操作（create-drop-alter）" class="headerlink" title="2.2.2 表操作（create&#x2F;drop&#x2F;alter）"></a>2.2.2 表操作（create&#x2F;drop&#x2F;alter）</h3><h4 id="1-创建表（核心）"><a href="#1-创建表（核心）" class="headerlink" title="1. 创建表（核心）"></a>1. 创建表（核心）</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法：create table 表名 (</span></span><br><span class="line"><span class="comment">--  字段名1 数据类型 [约束],</span></span><br><span class="line"><span class="comment">--  字段名2 数据类型 [约束],</span></span><br><span class="line"><span class="comment">--  ...</span></span><br><span class="line"><span class="comment">--  字段名n 数据类型 [约束]</span></span><br><span class="line"><span class="comment">-- );</span></span><br><span class="line"><span class="comment">-- 示例：创建user表（存储用户信息）</span></span><br><span class="line"><span class="keyword">create table</span> <span class="keyword">user</span> (</span><br><span class="line">    id <span class="type">int</span> <span class="keyword">primary key</span> auto_increment, <span class="comment">-- 主键，自增（唯一标识每条记录）</span></span><br><span class="line">    name <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">not null</span>, <span class="comment">-- 用户名，非空（不能为空）</span></span><br><span class="line">    age <span class="type">int</span> <span class="keyword">default</span> <span class="number">18</span>, <span class="comment">-- 年龄，默认值18</span></span><br><span class="line">    gender <span class="type">varchar</span>(<span class="number">10</span>), <span class="comment">-- 性别，可空</span></span><br><span class="line">    create_time datetime <span class="keyword">default</span> <span class="built_in">current_timestamp</span> <span class="comment">-- 创建时间，默认当前时间</span></span><br><span class="line">) <span class="keyword">character set</span> utf8mb4 <span class="keyword">collate</span> utf8mb4_general_ci;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-数据类型（重点）"><a href="#2-数据类型（重点）" class="headerlink" title="2. 数据类型（重点）"></a>2. 数据类型（重点）</h4><p>mysql常用数据类型，按类别划分，重点记住高频类型：</p>
-<ul>
-<li><p>整数类型：int（常用，占4字节，范围-2147483648~2147483647）、tinyint（占1字节，适合存储0-255的数字，如性别、状态）。</p>
-</li>
-<li><p>字符串类型：varchar(n)（常用，可变长度，n表示最大长度，如name varchar(50)）、char(n)（固定长度，适合存储固定长度数据，如手机号、身份证号）。</p>
-</li>
-<li><p>日期时间类型：datetime（常用，格式yyyy-mm-dd hh:mm:ss，范围1000-01-01~9999-12-31）、date（仅日期，yyyy-mm-dd）、time（仅时间，hh:mm:ss）。</p>
-</li>
-<li><p>其他类型：text（存储长文本，如文章内容）、decimal(10,2)（存储小数，如金额，10表示总长度，2表示小数位数）。</p>
-</li>
-</ul>
-<h4 id="3-表约束（核心，保证数据完整性）"><a href="#3-表约束（核心，保证数据完整性）" class="headerlink" title="3. 表约束（核心，保证数据完整性）"></a>3. 表约束（核心，保证数据完整性）</h4><p>约束是对表中字段的限制，防止无效、错误的数据插入，常用约束如下：</p>
-<table>
-<thead>
-<tr>
-<th>约束名称</th>
-<th>关键字</th>
-<th>作用</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>主键约束</td>
-<td>primary key</td>
-<td>唯一标识每条记录，非空且唯一</td>
-<td>id int primary key</td>
-</tr>
-<tr>
-<td>自增约束</td>
-<td>auto_increment</td>
-<td>配合主键使用，自动生成唯一值（从1开始，每次+1）</td>
-<td>id int primary key auto_increment</td>
-</tr>
-<tr>
-<td>非空约束</td>
-<td>not null</td>
-<td>字段不能为空</td>
-<td>name varchar(50) not null</td>
-</tr>
-<tr>
-<td>默认约束</td>
-<td>default</td>
-<td>字段未赋值时，使用默认值</td>
-<td>age int default 18</td>
-</tr>
-<tr>
-<td>唯一约束</td>
-<td>unique</td>
-<td>字段值唯一（可空，但只能有一个null）</td>
-<td>phone varchar(11) unique</td>
-</tr>
-</tbody></table>
-<h4 id="4-查看表结构"><a href="#4-查看表结构" class="headerlink" title="4. 查看表结构"></a>4. 查看表结构</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 方式1：查看表的字段、类型、约束（推荐）</span></span><br><span class="line"><span class="keyword">desc</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="comment">-- 方式2：查看创建表的完整sql语句</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">create table</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-修改表（alter-table）"><a href="#5-修改表（alter-table）" class="headerlink" title="5. 修改表（alter table）"></a>5. 修改表（alter table）</h4><p>常用修改操作，避免频繁删除表重建：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1. 添加字段</span></span><br><span class="line"><span class="keyword">alter table</span> <span class="keyword">user</span> <span class="keyword">add</span> email <span class="type">varchar</span>(<span class="number">100</span>) <span class="keyword">unique</span>; <span class="comment">-- 给user表添加email字段，唯一约束</span></span><br><span class="line"><span class="comment">-- 2. 修改字段类型</span></span><br><span class="line"><span class="keyword">alter table</span> <span class="keyword">user</span> modify age tinyint <span class="keyword">default</span> <span class="number">18</span>; <span class="comment">-- 将age字段类型从int改为tinyint</span></span><br><span class="line"><span class="comment">-- 3. 修改字段名</span></span><br><span class="line"><span class="keyword">alter table</span> <span class="keyword">user</span> change gender sex <span class="type">varchar</span>(<span class="number">10</span>); <span class="comment">-- 将gender字段名改为sex</span></span><br><span class="line"><span class="comment">-- 4. 删除字段</span></span><br><span class="line"><span class="keyword">alter table</span> <span class="keyword">user</span> <span class="keyword">drop</span> email; <span class="comment">-- 删除user表的email字段</span></span><br><span class="line"><span class="comment">-- 5. 修改表名</span></span><br><span class="line"><span class="keyword">alter table</span> <span class="keyword">user</span> rename <span class="keyword">to</span> users;</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-删除表（谨慎操作）"><a href="#6-删除表（谨慎操作）" class="headerlink" title="6. 删除表（谨慎操作）"></a>6. 删除表（谨慎操作）</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法：drop table 表名;</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> users;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-3-dml语句（数据操纵语言）"><a href="#2-3-dml语句（数据操纵语言）" class="headerlink" title="2.3 dml语句（数据操纵语言）"></a>2.3 dml语句（数据操纵语言）</h2><p>用于操作表中的数据，核心是新增、修改、删除，操作后需提交（默认自动提交，后续事务部分会详细说明）。</p>
-<h3 id="2-3-1-新增数据（insert-into）"><a href="#2-3-1-新增数据（insert-into）" class="headerlink" title="2.3.1 新增数据（insert into）"></a>2.3.1 新增数据（insert into）</h3><p>三种方式，重点掌握前两种：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 方式1：指定字段新增（推荐，灵活，即使表结构变化也不影响）</span></span><br><span class="line"><span class="keyword">insert into</span> <span class="keyword">user</span> (name, age, gender) <span class="keyword">values</span> (<span class="string">&#x27;张三&#x27;</span>, <span class="number">20</span>, <span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="comment">-- 方式2：不指定字段，按表字段顺序新增（需与表字段顺序一致，不推荐）</span></span><br><span class="line"><span class="keyword">insert into</span> <span class="keyword">user</span> <span class="keyword">values</span> (<span class="keyword">null</span>, <span class="string">&#x27;李四&#x27;</span>, <span class="number">22</span>, <span class="string">&#x27;女&#x27;</span>, <span class="keyword">default</span>); <span class="comment">-- id自增，填null即可</span></span><br><span class="line"><span class="comment">-- 方式3：批量新增（高效，减少数据库交互）</span></span><br><span class="line"><span class="keyword">insert into</span> <span class="keyword">user</span> (name, age, gender) <span class="keyword">values</span> </span><br><span class="line">(<span class="string">&#x27;王五&#x27;</span>, <span class="number">19</span>, <span class="string">&#x27;男&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;赵六&#x27;</span>, <span class="number">21</span>, <span class="string">&#x27;女&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;孙七&#x27;</span>, <span class="number">18</span>, <span class="string">&#x27;男&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-3-2-修改数据（update）"><a href="#2-3-2-修改数据（update）" class="headerlink" title="2.3.2 修改数据（update）"></a>2.3.2 修改数据（update）</h3><p>必须加where条件，否则会修改表中所有记录（高危操作，谨慎！）</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法：update 表名 set 字段名1=值1, 字段名2=值2 where 条件;</span></span><br><span class="line"><span class="comment">-- 示例1：修改指定id的用户年龄</span></span><br><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> age<span class="operator">=</span><span class="number">23</span> <span class="keyword">where</span> id<span class="operator">=</span><span class="number">1</span>;</span><br><span class="line"><span class="comment">-- 示例2：修改指定用户的性别和年龄</span></span><br><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> gender<span class="operator">=</span><span class="string">&#x27;男&#x27;</span>, age<span class="operator">=</span><span class="number">20</span> <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;李四&#x27;</span>;</span><br><span class="line"><span class="comment">-- 错误示例（无where，会修改所有用户的年龄）</span></span><br><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> age<span class="operator">=</span><span class="number">18</span>; <span class="comment">-- 禁止这样写！</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-3-3-删除数据（delete）"><a href="#2-3-3-删除数据（delete）" class="headerlink" title="2.3.3 删除数据（delete）"></a>2.3.3 删除数据（delete）</h3><p>必须加where条件，否则会删除表中所有记录（高危操作，谨慎！），删除后数据可通过事务回滚恢复（后续讲解）。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法：delete from 表名 where 条件;</span></span><br><span class="line"><span class="comment">-- 示例1：删除指定id的用户</span></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> id<span class="operator">=</span><span class="number">5</span>;</span><br><span class="line"><span class="comment">-- 示例2：删除年龄大于25的用户</span></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> age <span class="operator">&gt;</span> <span class="number">25</span>;</span><br><span class="line"><span class="comment">-- 错误示例（无where，会删除表中所有数据）</span></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="keyword">user</span>; <span class="comment">-- 禁止这样写！</span></span><br></pre></td></tr></table></figure>
-
-<p>补充：truncate 与 delete 的区别（面试常考）：</p>
-<ul>
-<li><p>delete：删除表中数据，保留表结构，可加where条件，支持事务回滚，自增字段不会重置。</p>
-</li>
-<li><p>truncate：删除表中所有数据，保留表结构，不可加where条件，不支持事务回滚，自增字段会重置为1。</p>
-</li>
-</ul>
-<h2 id="2-4-dql语句（数据查询语言）"><a href="#2-4-dql语句（数据查询语言）" class="headerlink" title="2.4 dql语句（数据查询语言）"></a>2.4 dql语句（数据查询语言）</h2><p>sql中最核心、最常用的语句，用于查询表中的数据，语法灵活，重点掌握基础查询、条件查询、排序、分页、聚合函数、分组查询。</p>
-<p>核心语法：<code>select 字段列表 from 表名 \[where 条件\] \[order by 字段\] \[limit 分页\]</code></p>
-<h3 id="2-4-1-基础查询（select）"><a href="#2-4-1-基础查询（select）" class="headerlink" title="2.4.1 基础查询（select）"></a>2.4.1 基础查询（select）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1. 查询所有字段（不推荐，效率低，表结构变化会影响结果）</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="comment">-- 2. 查询指定字段（推荐，高效）</span></span><br><span class="line"><span class="keyword">select</span> id, name, age <span class="keyword">from</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="comment">-- 3. 给字段起别名（简化显示，适合博客展示）</span></span><br><span class="line"><span class="keyword">select</span> id <span class="keyword">as</span> 编号, name <span class="keyword">as</span> 用户名, age <span class="keyword">as</span> 年龄 <span class="keyword">from</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="comment">-- 4. 去重查询（去除重复数据）</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> gender <span class="keyword">from</span> <span class="keyword">user</span>; <span class="comment">-- 查询所有性别，去除重复值</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-4-2-条件查询（where）"><a href="#2-4-2-条件查询（where）" class="headerlink" title="2.4.2 条件查询（where）"></a>2.4.2 条件查询（where）</h3><p>通过where指定条件，筛选符合要求的数据，常用运算符如下：</p>
-<table>
-<thead>
-<tr>
-<th>运算符</th>
-<th>作用</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&#x3D;</td>
-<td>等于、不等于、小于、大于、小于等于、大于等于</td>
-<td>age &amp;gt; 18</td>
-</tr>
-<tr>
-<td>between ... and ...</td>
-<td>在某个范围之间（包含边界）</td>
-<td>age between 18 and 25</td>
-</tr>
-<tr>
-<td>in (...)</td>
-<td>在指定集合中</td>
-<td>id in (1,2,3)</td>
-</tr>
-<tr>
-<td>not in (...)</td>
-<td>不在指定集合中</td>
-<td>id not in (4,5)</td>
-</tr>
-<tr>
-<td>like</td>
-<td>模糊查询（%匹配任意字符，_匹配单个字符）</td>
-<td>name like &amp;#39;张%&amp;#39;（匹配姓张的用户）</td>
-</tr>
-<tr>
-<td>is null</td>
-<td>字段值为null</td>
-<td>gender is null</td>
-</tr>
-<tr>
-<td>is not null</td>
-<td>字段值不为null</td>
-<td>gender is not null</td>
-</tr>
-<tr>
-<td>and</td>
-<td>逻辑与（多个条件同时满足）</td>
-<td>age &amp;gt; 18 and gender&#x3D;&amp;#39;男&amp;#39;</td>
-</tr>
-<tr>
-<td>or</td>
-<td>逻辑或（多个条件满足一个即可）</td>
-<td>age &amp;lt; 18 or age &amp;gt; 30</td>
-</tr>
-</tbody></table>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 示例1：查询年龄大于18且性别为男的用户</span></span><br><span class="line"><span class="keyword">select</span> id, name, age <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> age <span class="operator">&gt;</span> <span class="number">18</span> <span class="keyword">and</span> gender<span class="operator">=</span><span class="string">&#x27;男&#x27;</span>;</span><br><span class="line"><span class="comment">-- 示例2：查询姓张的用户（模糊查询）</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> name <span class="keyword">like</span> <span class="string">&#x27;张%&#x27;</span>;</span><br><span class="line"><span class="comment">-- 示例3：查询年龄在18-25之间的用户</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> age <span class="keyword">between</span> <span class="number">18</span> <span class="keyword">and</span> <span class="number">25</span>;</span><br><span class="line"><span class="comment">-- 示例4：查询性别不为null的用户</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> gender <span class="keyword">is</span> <span class="keyword">not null</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-4-3-排序查询（order-by）"><a href="#2-4-3-排序查询（order-by）" class="headerlink" title="2.4.3 排序查询（order by）"></a>2.4.3 排序查询（order by）</h3><p>用于对查询结果进行排序，默认升序（asc），可指定降序（desc），多字段排序时，先按第一个字段排序，第一个字段相同再按第二个字段排序。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1. 单字段排序（按年龄升序）</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">order</span> <span class="keyword">by</span> age <span class="keyword">asc</span>; <span class="comment">-- asc可省略，默认升序</span></span><br><span class="line"><span class="comment">-- 2. 单字段排序（按年龄降序）</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">order</span> <span class="keyword">by</span> age <span class="keyword">desc</span>;</span><br><span class="line"><span class="comment">-- 3. 多字段排序（先按年龄降序，年龄相同按id升序）</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">order</span> <span class="keyword">by</span> age <span class="keyword">desc</span>, id <span class="keyword">asc</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-4-4-分页查询（limit）"><a href="#2-4-4-分页查询（limit）" class="headerlink" title="2.4.4 分页查询（limit）"></a>2.4.4 分页查询（limit）</h3><p>用于分页展示数据（博客、后台列表常用），语法：<code>limit 起始索引, 每页显示数量</code>，起始索引从0开始。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 示例1：每页显示3条数据，查询第1页（起始索引0）</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">user</span> limit <span class="number">0</span>, <span class="number">3</span>;</span><br><span class="line"><span class="comment">-- 示例2：每页显示3条数据，查询第2页（起始索引3）</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">user</span> limit <span class="number">3</span>, <span class="number">3</span>;</span><br><span class="line"><span class="comment">-- 简化写法（mysql专属）：查询第n页，每页显示m条，limit (n-1)*m, m</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">user</span> limit <span class="number">6</span>, <span class="number">3</span>; <span class="comment">-- 第3页，每页3条</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-4-5-聚合函数（重点）"><a href="#2-4-5-聚合函数（重点）" class="headerlink" title="2.4.5 聚合函数（重点）"></a>2.4.5 聚合函数（重点）</h3><p>用于对数据进行统计、计算，常用聚合函数如下，需配合group by使用（分组查询），也可单独使用。</p>
-<table>
-<thead>
-<tr>
-<th>聚合函数</th>
-<th>作用</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>count()</td>
-<td>统计记录数（非null值）</td>
-<td>count(id) 统计用户总数</td>
-</tr>
-<tr>
-<td>sum()</td>
-<td>计算字段总和（仅数值类型）</td>
-<td>sum(age) 计算所有用户年龄总和</td>
-</tr>
-<tr>
-<td>avg()</td>
-<td>计算字段平均值（仅数值类型）</td>
-<td>avg(age) 计算用户平均年龄</td>
-</tr>
-<tr>
-<td>max()</td>
-<td>获取字段最大值（仅数值类型）</td>
-<td>max(age) 获取最大年龄</td>
-</tr>
-<tr>
-<td>min()</td>
-<td>获取字段最小值（仅数值类型）</td>
-<td>min(age) 获取最小年龄</td>
-</tr>
-</tbody></table>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 示例1：统计用户总数（推荐用count(id)，效率高，id为主键非空）</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(id) <span class="keyword">as</span> 用户总数 <span class="keyword">from</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="comment">-- 示例2：计算用户平均年龄</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">avg</span>(age) <span class="keyword">as</span> 平均年龄 <span class="keyword">from</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="comment">-- 示例3：获取最大年龄和最小年龄</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">max</span>(age) <span class="keyword">as</span> 最大年龄, <span class="built_in">min</span>(age) <span class="keyword">as</span> 最小年龄 <span class="keyword">from</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-4-6-分组查询（group-by）"><a href="#2-4-6-分组查询（group-by）" class="headerlink" title="2.4.6 分组查询（group by）"></a>2.4.6 分组查询（group by）</h3><p>用于按指定字段分组，对每组数据进行聚合统计，常与聚合函数、having（筛选分组结果）配合使用。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 示例1：按性别分组，统计每组的用户数量</span></span><br><span class="line"><span class="keyword">select</span> gender <span class="keyword">as</span> 性别, <span class="built_in">count</span>(id) <span class="keyword">as</span> 人数 <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">group</span> <span class="keyword">by</span> gender;</span><br><span class="line"><span class="comment">-- 示例2：按性别分组，统计每组的平均年龄，筛选平均年龄大于20的分组</span></span><br><span class="line"><span class="keyword">select</span> gender <span class="keyword">as</span> 性别, <span class="built_in">avg</span>(age) <span class="keyword">as</span> 平均年龄 <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">group</span> <span class="keyword">by</span> gender <span class="keyword">having</span> <span class="built_in">avg</span>(age) <span class="operator">&gt;</span> <span class="number">20</span>;</span><br><span class="line"><span class="comment">-- 注意：where 与 having 的区别</span></span><br><span class="line"><span class="comment">-- where：筛选原始数据（分组前筛选）</span></span><br><span class="line"><span class="comment">-- having：筛选分组后的结果（分组后筛选，可使用聚合函数）</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-5-dcl语句（数据控制语言）"><a href="#2-5-dcl语句（数据控制语言）" class="headerlink" title="2.5 dcl语句（数据控制语言）"></a>2.5 dcl语句（数据控制语言）</h2><p>用于控制用户权限和事务管理，基础部分重点掌握事务（权限管理后续进阶内容）。</p>
-<h1 id="三、mysql事务（基础部分完结）"><a href="#三、mysql事务（基础部分完结）" class="headerlink" title="三、mysql事务（基础部分完结）"></a>三、mysql事务（基础部分完结）</h1><h2 id="3-1-事务的定义"><a href="#3-1-事务的定义" class="headerlink" title="3.1 事务的定义"></a>3.1 事务的定义</h2><p>事务（transaction）是一组不可分割的sql操作集合，要么全部执行成功，要么全部执行失败，不会出现部分执行成功、部分失败的情况，用于保证数据的完整性和一致性。</p>
-<p>举个例子：转账操作（从a账户转100元到b账户），包含两个sql操作：</p>
-<ol>
-<li><p>a账户余额减100元（update）</p>
-</li>
-<li><p>b账户余额加100元（update）</p>
-</li>
-</ol>
-<p>这两个操作必须同时成功或同时失败，否则会出现“钱少了”或“钱多了”的问题，这就是事务的作用。</p>
-<h2 id="3-2-事务的四大特性（acid，核心，面试常考）"><a href="#3-2-事务的四大特性（acid，核心，面试常考）" class="headerlink" title="3.2 事务的四大特性（acid，核心，面试常考）"></a>3.2 事务的四大特性（acid，核心，面试常考）</h2><ul>
-<li><p><strong>原子性（atomicity）</strong>：事务是一个不可分割的整体，要么全部执行，要么全部回滚（撤销），不会出现部分执行的情况。</p>
-</li>
-<li><p><strong>一致性（consistency）</strong>：事务执行前后，数据的完整性约束不变。例如：转账前a+b的余额&#x3D;转账后a+b的余额。</p>
-</li>
-<li><p><strong>隔离性（isolation）</strong>：多个事务同时执行时，彼此之间不会相互干扰，每个事务都感觉不到其他事务的存在（后续会讲隔离级别）。</p>
-</li>
-<li><p><strong>持久性（durability）</strong>：事务执行成功后，数据会永久保存到数据库中，即使数据库崩溃，数据也不会丢失（会写入磁盘）。</p>
-</li>
-</ul>
-<h2 id="3-3-事务的操作（核心语法）"><a href="#3-3-事务的操作（核心语法）" class="headerlink" title="3.3 事务的操作（核心语法）"></a>3.3 事务的操作（核心语法）</h2><p>mysql默认是自动提交事务，即执行一条dml语句后，自动提交到数据库，无法回滚；若要手动控制事务，需使用以下语法：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1. 开启事务（关闭自动提交）</span></span><br><span class="line"><span class="keyword">start</span> transaction; <span class="comment">-- 或 begin;</span></span><br><span class="line"><span class="comment">-- 2. 执行一系列sql操作（dml语句，如insert、update、delete）</span></span><br><span class="line"><span class="keyword">update</span> account <span class="keyword">set</span> balance <span class="operator">=</span> balance <span class="operator">-</span> <span class="number">100</span> <span class="keyword">where</span> name <span class="operator">=</span> <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line"><span class="keyword">update</span> account <span class="keyword">set</span> balance <span class="operator">=</span> balance <span class="operator">+</span> <span class="number">100</span> <span class="keyword">where</span> name <span class="operator">=</span> <span class="string">&#x27;b&#x27;</span>;</span><br><span class="line"><span class="comment">-- 3. 提交事务（执行成功，永久保存数据）</span></span><br><span class="line"><span class="keyword">commit</span>;</span><br><span class="line"><span class="comment">-- 4. 回滚事务（执行失败，撤销所有操作，恢复到事务开启前的状态）</span></span><br><span class="line"><span class="keyword">rollback</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-3-1-事务操作示例（转账场景）"><a href="#3-3-1-事务操作示例（转账场景）" class="headerlink" title="3.3.1 事务操作示例（转账场景）"></a>3.3.1 事务操作示例（转账场景）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1. 先创建account表（存储账户信息）</span></span><br><span class="line"><span class="keyword">create table</span> account (</span><br><span class="line">    id <span class="type">int</span> <span class="keyword">primary key</span> auto_increment,</span><br><span class="line">    name <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">not null</span> <span class="keyword">unique</span>,</span><br><span class="line">    balance <span class="type">decimal</span>(<span class="number">10</span>,<span class="number">2</span>) <span class="keyword">not null</span> <span class="keyword">default</span> <span class="number">0.00</span></span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 2. 插入测试数据</span></span><br><span class="line"><span class="keyword">insert into</span> account (name, balance) <span class="keyword">values</span> (<span class="string">&#x27;a&#x27;</span>, <span class="number">1000.00</span>), (<span class="string">&#x27;b&#x27;</span>, <span class="number">500.00</span>);</span><br><span class="line"><span class="comment">-- 3. 开启事务，执行转账操作</span></span><br><span class="line"><span class="keyword">start</span> transaction;</span><br><span class="line"><span class="keyword">update</span> account <span class="keyword">set</span> balance <span class="operator">=</span> balance <span class="operator">-</span> <span class="number">100</span> <span class="keyword">where</span> name <span class="operator">=</span> <span class="string">&#x27;a&#x27;</span>; <span class="comment">-- a账户减100</span></span><br><span class="line"><span class="keyword">update</span> account <span class="keyword">set</span> balance <span class="operator">=</span> balance <span class="operator">+</span> <span class="number">100</span> <span class="keyword">where</span> name <span class="operator">=</span> <span class="string">&#x27;b&#x27;</span>; <span class="comment">-- b账户加100</span></span><br><span class="line"><span class="comment">-- 4. 检查数据是否正确，若正确提交，若错误回滚</span></span><br><span class="line"><span class="keyword">commit</span>; <span class="comment">-- 提交后，数据永久保存</span></span><br><span class="line"><span class="comment">-- rollback; -- 若出现错误，执行rollback，恢复到转账前状态</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="3-4-事务的隔离级别（基础认知）"><a href="#3-4-事务的隔离级别（基础认知）" class="headerlink" title="3.4 事务的隔离级别（基础认知）"></a>3.4 事务的隔离级别（基础认知）</h2><p>mysql默认的事务隔离级别是“可重复读（repeatable read）”，用于解决多个事务同时执行时出现的并发问题（脏读、不可重复读、幻读），基础阶段只需了解隔离级别的作用，无需深入复杂配置。</p>
-<p>四种隔离级别（从低到高）：</p>
-<ol>
-<li><p>读未提交（read uncommitted）：最低级别，允许读取未提交的事务数据，会出现脏读、不可重复读、幻读。</p>
-</li>
-<li><p>读已提交（read committed）：允许读取已提交的事务数据，解决脏读，仍会出现不可重复读、幻读。</p>
-</li>
-<li><p>可重复读（repeatable read）：mysql默认级别，保证同一事务中多次读取同一数据结果一致，解决脏读、不可重复读，仍会出现幻读（mysql已通过mvcc机制解决幻读）。</p>
-</li>
-<li><p>串行化（serializable）：最高级别，事务串行执行，完全解决并发问题，但效率极低，适合数据一致性要求极高的场景（如金融转账）。</p>
-</li>
-</ol>
-<h2 id="3-5-事务的注意事项"><a href="#3-5-事务的注意事项" class="headerlink" title="3.5 事务的注意事项"></a>3.5 事务的注意事项</h2><ul>
-<li><p>事务只能用于dml语句（insert、update、delete），ddl语句（create、drop、alter）会自动提交事务，无法回滚。</p>
-</li>
-<li><p>手动控制事务时，必须先执行start transaction，再执行dml语句，最后用commit或rollback结束。</p>
-</li>
-<li><p>事务开启后，若未执行commit或rollback，关闭mysql连接，事务会自动回滚。</p>
-</li>
-<li><p>避免长时间开启事务，会占用数据库资源，影响其他操作的执行效率。</p>
-</li>
-</ul>
-
-      
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E5%AE%9E%E5%BD%95%EF%BC%9AElasticsearch%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E7%9C%9F%E5%AE%9E%E8%AF%95%E9%94%99%E6%80%BB%E7%BB%93%EF%BC%89/" aria-label="Linux问题解决" title="Linux问题解决"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Linux问题解决" class="lazyload">
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/04/19/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="cuidLUQbFBp81efwaZHo7QhBk" data-title="Linux学习笔记" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-PHP学习笔记/PHP笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/04/19/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PHP%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time class="dt-published" datetime="2026-04-19T13:00:00.000Z" itemprop="datePublished">2026-04-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%85%8D%E5%90%88p/">学习笔记/配合p</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2026/04/19/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PHP%E7%AC%94%E8%AE%B0/">PHP知识点总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="PHP学习笔记（适配网络安全方向·完整全面版）"><a href="#PHP学习笔记（适配网络安全方向·完整全面版）" class="headerlink" title="PHP学习笔记（适配网络安全方向·完整全面版）"></a>PHP学习笔记（适配网络安全方向·完整全面版）</h1><h1 id="第一部分：PHP基础核心（网络安全入门必备）"><a href="#第一部分：PHP基础核心（网络安全入门必备）" class="headerlink" title="第一部分：PHP基础核心（网络安全入门必备）"></a>第一部分：PHP基础核心（网络安全入门必备）</h1><p>网络安全视角下，PHP基础是漏洞挖掘、代码审计的前提，重点掌握变量、常量、函数、超全局数组等基础，明确易被利用的基础语法漏洞点。</p>
-<h2 id="一、基础语法与安全注意事项"><a href="#一、基础语法与安全注意事项" class="headerlink" title="一、基础语法与安全注意事项"></a>一、基础语法与安全注意事项</h2><ol>
-<li><p>PHP标记：优先使用标准标记 <code>\&amp;lt;?php \.\.\. ?\&amp;gt;</code>，禁止使用短标记 <code>\&amp;lt;? \.\.\. ?\&amp;gt;</code>（开启短标记可能导致代码解析异常，增加安全风险，且部分服务器默认关闭）；ASP风格标记 <code>\&amp;lt;% \.\.\. %\&amp;gt;</code> 完全不推荐使用（兼容性差，易被绕过解析）。</p>
-</li>
-<li><p>注释规范：</p>
-<ul>
-<li><p>单行注释：<code>// 注释内容</code>（推荐）、<code>\# 注释内容</code>；</p>
-</li>
-<li><p>多行注释：<code>/\* 注释内容 \*/</code>（禁止嵌套，且避免在注释中泄露敏感信息，如数据库账号、接口密钥等）；</p>
-</li>
-<li><p>安全提醒：生产环境需删除所有调试注释、测试代码，防止攻击者通过注释获取系统逻辑、路径等敏感信息。</p>
-</li>
-</ul>
-</li>
-<li><p>代码规范：语句末尾必须加分号（;），避免语法错误；代码缩进统一，便于后续代码审计时排查漏洞（混乱的代码易遗漏漏洞点）。</p>
-</li>
-</ol>
-<h2 id="二、变量与常量（安全核心考点）"><a href="#二、变量与常量（安全核心考点）" class="headerlink" title="二、变量与常量（安全核心考点）"></a>二、变量与常量（安全核心考点）</h2><h3 id="1-变量"><a href="#1-变量" class="headerlink" title="1. 变量"></a>1. 变量</h3><ul>
-<li><p>定义：以 <code>$</code> 开头，无需声明，第一次赋值自动创建，区分大小写（$a与$A是不同变量）；</p>
-</li>
-<li><p>作用域（重点，安全漏洞易出点）：</p>
-<ul>
-<li><p>全局变量：函数外定义，函数内需用 <code>global $变量名</code> 或 <code>$GLOBALS\[\&amp;\#39;变量名\&amp;\#39;\]</code>访问；</p>
-<pre><code>        安全风险：若全局变量未过滤直接使用（如接收用户输入后直接赋值给全局变量），易导致变量覆盖漏洞，攻击者可篡改全局变量值，绕过权限验证、逻辑判断。
-    
-</code></pre>
-</li>
-<li><p>局部变量：函数内定义，仅在函数内部有效，函数执行结束后自动销毁；</p>
-<pre><code>        安全提醒：局部变量若未初始化，可能被攻击者利用（如未初始化的变量被赋予用户可控值），需养成局部变量初始化的习惯。
-    
-</code></pre>
-</li>
-<li><p>静态变量：函数内用 <code>static $变量名 = 初始值;</code> 定义，函数执行结束后值不销毁；</p>
-<pre><code>        安全风险：静态变量若用于存储敏感信息（如登录状态、验证码），需注意生命周期，避免因值残留导致信息泄露或越权访问。
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>变量赋值：</p>
-<ul>
-<li><p>值赋值（默认）：<code>$a = $b</code>，修改$a不影响$b；</p>
-</li>
-<li><p>引用赋值：<code>$a = \&amp;amp;$b</code>，修改$a会影响$b；</p>
-<pre><code>        安全风险：引用赋值若用于用户可控变量，可能导致变量篡改，进而影响其他依赖该变量的逻辑（如权限控制、数据查询）。
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>安全防护：所有接收用户输入的变量（如GET、POST传参），必须先过滤、转义，再使用；禁止直接将用户输入赋值给全局变量、静态变量。</p>
-</li>
-</ul>
-<h3 id="2-常量"><a href="#2-常量" class="headerlink" title="2. 常量"></a>2. 常量</h3><ul>
-<li><p>定义方式：</p>
-<ul>
-<li><p><code>define\(\&amp;\#34;常量名\&amp;\#34;, 常量值, 大小写不敏感\)</code>：仅能在类外定义；</p>
-</li>
-<li><p><code>const 常量名 = 常量值;</code>：类内、类外均可定义，默认区分大小写（推荐用于类常量）；</p>
-</li>
-</ul>
-</li>
-<li><p>核心特性：值不可修改、不可删除、不可重新定义；全局作用域（类常量除外），无需<code>$</code>修饰符；</p>
-</li>
-<li><p>安全应用：敏感常量（如数据库账号、密钥、接口密钥）必须用常量定义，且禁止在代码中明文硬编码（推荐通过配置文件引入，配置文件权限设为600，禁止对外访问）；</p>
-</li>
-<li><p>类常量：类内定义，通过 <code>类名::常量名</code> 访问，不能用$this访问；安全提醒：类常量若存储敏感信息，需确保类的访问控制修饰符正确（避免public修饰导致外部可直接访问）。</p>
-</li>
-</ul>
-<h2 id="三、数据类型与安全风险"><a href="#三、数据类型与安全风险" class="headerlink" title="三、数据类型与安全风险"></a>三、数据类型与安全风险</h2><h3 id="1-标量类型（重点关注字符串）"><a href="#1-标量类型（重点关注字符串）" class="headerlink" title="1. 标量类型（重点关注字符串）"></a>1. 标量类型（重点关注字符串）</h3><ul>
-<li><p>布尔值（bool）：true（1）、false（0），区分大小写；安全提醒：判断条件中避免直接使用用户可控变量作为布尔值（如 <code>if\($\_GET\[\&amp;\#39;status\&amp;\#39;\]\)</code>），需明确判断（如 <code>if\($\_GET\[\&amp;\#39;status\&amp;\#39;\] === \&amp;\#39;1\&amp;\#39;\)</code>），防止类型自动转换导致逻辑绕过。</p>
-</li>
-<li><p>整数（int）、浮点数（float）：安全风险：整数溢出（如PHP_INT_MAX+1会转为浮点数）、浮点数精度问题，可能被攻击者利用绕过数值验证（如金额、权限等级验证）；防护：数值验证时使用严格类型比较（&#x3D;&#x3D;&#x3D;），限制输入范围。</p>
-</li>
-<li><p>字符串（string）：网络安全核心考点，漏洞高发区，重点掌握：</p>
-<ul>
-<li><p>定义方式：</p>
-<ul>
-<li><p>单引号：不解析变量、转义字符仅<code>\\</code>和<code>\&amp;\#39;</code>有效，安全性略高（避免变量解析漏洞）；</p>
-</li>
-<li><p>双引号：解析变量、转义字符有效，易出现变量注入漏洞（如 <code>echo \&amp;\#34;欢迎你：$\_GET\[name\]\&amp;\#34;</code>，攻击者可构造name参数注入恶意代码）；</p>
-</li>
-<li><p>Heredoc&#x2F;Nowdoc：Heredoc解析变量，Nowdoc不解析；安全提醒：Heredoc中若包含用户可控变量，需先过滤转义，避免注入。</p>
-</li>
-</ul>
-</li>
-<li><p>安全风险：字符串拼接、转义不当，会导致XSS、SQL注入、命令执行等漏洞；</p>
-</li>
-<li><p>防护措施：</p>
-<ul>
-<li><p>输出到页面时，使用<code>htmlspecialchars\(\)</code> 转义（转义&amp;lt;、&amp;gt;、&amp;amp;等特殊字符），防止XSS；</p>
-</li>
-<li><p>拼接SQL语句时，禁止直接拼接字符串，使用预处理语句（PDO、mysqli），防止SQL注入；</p>
-</li>
-<li><p>处理用户输入字符串时，使用 <code>trim\(\)</code> 去除首尾空白字符，避免空格绕过验证。</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-复合类型"><a href="#2-复合类型" class="headerlink" title="2. 复合类型"></a>2. 复合类型</h3><ul>
-<li><p>数组（array）：索引数组、关联数组、多维数组；安全风险：</p>
-<ul>
-<li><p>数组越界：攻击者通过构造超出数组长度的索引，读取&#x2F;修改数组内敏感数据；</p>
-</li>
-<li><p>数组注入：如接收用户输入的数组参数（如<code>$\_POST\[\&amp;\#39;ids\&amp;\#39;\]</code>），未过滤直接用于SQL查询，易导致SQL注入；</p>
-</li>
-<li><p>防护：验证数组索引范围、过滤数组内每个元素，使用预处理语句处理数组参数。</p>
-</li>
-</ul>
-</li>
-<li><p>对象（object）：面向对象相关，后续单独讲解，核心安全风险是对象注入、权限绕过。</p>
-</li>
-</ul>
-<h2 id="四、函数（安全漏洞高频出现点）"><a href="#四、函数（安全漏洞高频出现点）" class="headerlink" title="四、函数（安全漏洞高频出现点）"></a>四、函数（安全漏洞高频出现点）</h2><h3 id="1-输出类函数（XSS漏洞高发）"><a href="#1-输出类函数（XSS漏洞高发）" class="headerlink" title="1. 输出类函数（XSS漏洞高发）"></a>1. 输出类函数（XSS漏洞高发）</h3><ul>
-<li><p><code>echo</code>、<code>print</code>：直接输出内容，若输出用户可控变量且未转义，直接导致XSS漏洞；</p>
-<pre><code>    防护：输出前用 `htmlspecialchars\($var, ENT\_QUOTES\)` 转义（ENT\_QUOTES表示转义单引号和双引号）。
-</code></pre>
-</li>
-<li><p><code>var\_dump\(\)</code>、<code>print\_r\(\)</code>：调试函数，自带输出功能，无需搭配echo；</p>
-<pre><code>    安全风险：生产环境若残留调试代码，会泄露变量值、数组结构等敏感信息；
-
-    防护：生产环境删除所有调试函数，或通过环境变量控制（如仅开发环境允许调试）。
-</code></pre>
-</li>
-</ul>
-<h3 id="2-字符串处理函数（安全防护关键）"><a href="#2-字符串处理函数（安全防护关键）" class="headerlink" title="2. 字符串处理函数（安全防护关键）"></a>2. 字符串处理函数（安全防护关键）</h3><ul>
-<li><p>常用安全相关函数：</p>
-<ul>
-<li><p><code>htmlspecialchars\(\)</code>：转义HTML特殊字符，防止XSS（核心防护函数）；</p>
-</li>
-<li><p><code>htmlentities\(\)</code>：转义所有HTML实体，比htmlspecialchars更严格，适用于特殊场景；</p>
-</li>
-<li><p><code>trim\(\)</code>：去除字符串首尾空白字符，避免空格绕过验证（如验证码、密码验证）；</p>
-</li>
-<li><p><code>strlen\(\)</code>、<code>mb\_strlen\(\)</code>：获取字符串长度，用于限制输入长度（如密码、用户名长度限制）；</p>
-</li>
-<li><p><code>str\_replace\(\)</code>：替换字符串，可用于过滤简单恶意字符（但不能作为唯一防护手段）；</p>
-</li>
-<li><p><code>addslashes\(\)</code>：给单引号、双引号、反斜杠、NULL添加反斜杠，用于防止SQL注入（但优先使用预处理语句，此函数仅作为辅助）。</p>
-</li>
-</ul>
-</li>
-<li><p>危险字符串函数（需谨慎使用）：</p>
-<ul>
-<li><p><code>eval\(\)</code>：执行字符串作为PHP代码，高危函数，禁止直接接收用户可控变量（如 <code>eval\($\_GET\[\&amp;\#39;code\&amp;\#39;\]\)</code>，攻击者可注入任意代码）；</p>
-</li>
-<li><p><code>preg\_replace\(\)</code>：正则替换，若使用&#x2F;e修饰符，会将替换后的字符串作为代码执行，易导致代码执行漏洞；</p>
-</li>
-<li><p><code>strip\_tags\(\)</code>：去除HTML标签，可用于辅助防止XSS，但不能完全依赖（可能被绕过）。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-文件操作函数（文件上传、文件包含漏洞高发）"><a href="#3-文件操作函数（文件上传、文件包含漏洞高发）" class="headerlink" title="3. 文件操作函数（文件上传、文件包含漏洞高发）"></a>3. 文件操作函数（文件上传、文件包含漏洞高发）</h3><ul>
-<li><p>核心函数及安全风险：</p>
-<ul>
-<li><p><code>fopen\(\)</code>、<code>fwrite\(\)</code>、<code>file\_put\_contents\(\)</code>：写入文件，若文件路径、内容可控，易导致恶意文件写入（如上传webshell）；</p>
-</li>
-<li><p><code>file\_get\_contents\(\)</code>、<code>fread\(\)</code>：读取文件，若文件路径可控，易导致文件泄露（如读取&#x2F;etc&#x2F;passwd、配置文件）；</p>
-</li>
-<li><p><code>unlink\(\)</code>：删除文件，若文件路径可控，易导致文件删除漏洞（破坏系统文件）；</p>
-</li>
-<li><p><code>move\_uploaded\_file\(\)</code>：文件上传核心函数，若未验证文件类型、后缀，易导致恶意文件上传。</p>
-</li>
-</ul>
-</li>
-<li><p>防护措施：</p>
-<ul>
-<li><p>文件路径限制：禁止用户可控路径直接拼接，使用固定路径+白名单验证；</p>
-</li>
-<li><p>文件上传验证：验证文件类型（MIME类型）、后缀（白名单）、大小，重命名上传文件（避免恶意文件名）；</p>
-</li>
-<li><p>文件权限控制：上传目录设为只读（禁止执行权限），配置文件设为600，避免恶意文件执行。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="4-超全局数组（网络安全核心，用户输入入口）"><a href="#4-超全局数组（网络安全核心，用户输入入口）" class="headerlink" title="4. 超全局数组（网络安全核心，用户输入入口）"></a>4. 超全局数组（网络安全核心，用户输入入口）</h3><p>超全局数组可在脚本任何地方访问，无需global关键字，是攻击者注入恶意输入的主要入口，必须重点防护。</p>
-<ul>
-<li><p><code>$\_GET</code>：获取URL参数，暴露在地址栏，易被篡改，适用于非敏感数据传递；<br>安全风险：参数未过滤直接使用，易导致SQL注入、XSS、命令执行等漏洞；</p>
-<pre><code>    防护：所有$\_GET参数必须过滤、转义，敏感操作（如登录、删除）禁止使用GET方式。
-</code></pre>
-</li>
-<li><p><code>$\_POST</code>：获取表单POST数据，不暴露在地址栏，适用于敏感数据传递（如密码、账号）；</p>
-<pre><code>    安全风险：同样存在注入漏洞，且可能被CSRF攻击（跨站请求伪造）；
-
-    防护：过滤转义参数，添加CSRF令牌（如表单中添加隐藏字段，验证请求来源）。
-</code></pre>
-</li>
-<li><p><code>$\_FILES</code>：文件上传相关数据，漏洞高发区；</p>
-<pre><code>    核心参数：`name`（原始文件名）、`tmp\_name`（临时路径）、`error`（上传错误码）、`type`（MIME类型）、`size`（文件大小）；
-
-    安全风险：恶意文件上传（如webshell），通过篡改文件名、MIME类型绕过验证；
-</code></pre>
-</li>
-</ul>
-<p> 防护：验证error是否为0（上传成功），验证MIME类型、后缀白名单，重命名文件，限制文件大小。</p>
-<ul>
-<li><p><code>$\_COOKIE</code>：存储客户端数据，易被篡改、窃取；</p>
-<pre><code>    安全风险：Cookie中存储敏感信息（如登录状态）未加密，易导致会话劫持；
-</code></pre>
-</li>
-</ul>
-<p> 防护：敏感信息加密存储，设置HttpOnly（禁止JS访问）、Secure（仅HTTPS传输）、过期时间，验证Cookie完整性。</p>
-<ul>
-<li><p><code>$\_SESSION</code>：服务器端会话数据，相对安全，但需注意配置；</p>
-<pre><code>    安全风险：SessionID泄露导致会话劫持，Session文件权限过高导致信息泄露；
-
-    防护：SessionID通过Cookie传递（设置HttpOnly、Secure），Session文件权限设为600，定期销毁Session，验证Session内容完整性。
-</code></pre>
-</li>
-<li><p><code>$\_SERVER</code>：包含服务器信息（如客户端IP、请求头、脚本路径）；</p>
-<pre><code>    安全风险：部分参数（如`PHP\_SELF`、`REQUEST\_URI`）可被篡改，导致XSS漏洞；
-
-    防护：使用`htmlspecialchars\(\)` 转义后再输出，避免直接使用这些参数拼接URL、HTML内容。
-</code></pre>
-</li>
-<li><p><code>$GLOBALS</code>：包含所有全局变量，安全风险：变量覆盖，攻击者可通过可控变量篡改全局变量；</p>
-<pre><code>    防护：禁止直接将用户输入赋值给$GLOBALS数组，严格验证全局变量的修改权限。
-</code></pre>
-</li>
-</ul>
-<h1 id="第二部分：PHP进阶核心（安全漏洞深度解析）"><a href="#第二部分：PHP进阶核心（安全漏洞深度解析）" class="headerlink" title="第二部分：PHP进阶核心（安全漏洞深度解析）"></a>第二部分：PHP进阶核心（安全漏洞深度解析）</h1><p>本部分聚焦PHP进阶知识点，重点解析面向对象、表单处理、会话管理等模块的安全漏洞，结合实战场景说明防护方法，适配网络安全代码审计、漏洞挖掘需求。</p>
-<h2 id="一、面向对象（OOP）安全漏洞"><a href="#一、面向对象（OOP）安全漏洞" class="headerlink" title="一、面向对象（OOP）安全漏洞"></a>一、面向对象（OOP）安全漏洞</h2><p>面向对象编程中，类、对象、继承、魔术方法等特性，易出现对象注入、权限绕过、敏感信息泄露等漏洞，是代码审计的重点。</p>
-<ol>
-<li><p>核心概念（安全视角）：</p>
-<ul>
-<li><p>类与对象：类是模板，对象是实例；安全风险：对象的属性、方法若访问控制不当，易被外部篡改、调用。</p>
-</li>
-<li><p>$this：代表当前对象，仅能在非静态方法中使用；安全提醒：禁止在静态方法中使用$this，避免报错泄露代码逻辑。</p>
-</li>
-<li><p>访问控制修饰符（核心安全点）：</p>
-<ul>
-<li><p>public：类内、类外、子类均可访问；安全风险：敏感属性（如用户密码、权限等级）若设为public，可被外部直接访问、修改；</p>
-</li>
-<li><p>private：仅类内可访问；推荐用于敏感属性、方法，防止外部篡改；</p>
-</li>
-<li><p>protected：类内、子类可访问；需注意子类继承时的权限控制，避免权限绕过。</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>构造函数与析构函数：</p>
-<ul>
-<li><p>构造函数（__construct）：对象初始化时自动执行，用于赋值；安全风险：若构造函数参数可控，易导致对象注入、变量篡改；</p>
-</li>
-<li><p>析构函数（__destruct）：对象销毁时自动执行，用于释放资源；安全风险：若析构函数中包含文件操作、命令执行等逻辑，且参数可控，易被利用。</p>
-</li>
-</ul>
-</li>
-<li><p>静态属性与方法：</p>
-<ul>
-<li><p>无需实例化即可访问（类名::属性&#x2F;方法）；安全风险：静态属性若存储敏感信息，且未限制访问，易导致信息泄露；静态方法若包含用户可控参数，易出现漏洞；</p>
-</li>
-<li><p>防护：静态敏感属性设为private，静态方法参数严格过滤。</p>
-</li>
-</ul>
-</li>
-<li><p>继承与重写：</p>
-<ul>
-<li><p>继承（extends）：子类继承父类public&#x2F;protected属性、方法；安全风险：子类重写父类方法时，若权限更宽松（如父类为protected，子类改为public），易导致权限绕过；</p>
-</li>
-<li><p>防护：重写方法时，访问控制修饰符不能比父类更宽松，严格控制子类的访问权限。</p>
-</li>
-</ul>
-</li>
-<li><p>魔术方法（漏洞高发区）：</p>
-<ul>
-<li><p>__get、__set：访问&#x2F;赋值不存在或不可访问的属性时自动执行；安全风险：若未过滤参数，易导致XSS、变量注入；</p>
-</li>
-<li><p>__call、__callStatic：调用不存在或不可访问的方法时自动执行；安全风险：若方法参数可控，易导致代码执行、命令执行漏洞；</p>
-</li>
-<li><p>__toString：对象转为字符串时自动执行；安全风险：若返回内容包含用户可控变量且未转义，易导致XSS；</p>
-</li>
-<li><p>__wakeup：反序列化时自动执行；安全风险：反序列化漏洞的核心，攻击者可构造恶意序列化字符串，触发__wakeup执行恶意代码；</p>
-</li>
-<li><p>防护：魔术方法中严格过滤用户可控参数，避免执行危险操作；反序列化时验证序列化字符串的完整性、合法性，禁止反序列化不可信数据。</p>
-</li>
-</ul>
-</li>
-<li><p>抽象类与接口：</p>
-<ul>
-<li><p>抽象类（abstract）：不能实例化，仅能被继承；接口（interface）：不能实例化，仅能被实现；</p>
-</li>
-<li><p>安全提醒：抽象类、接口中的抽象方法，子类&#x2F;实现类必须实现，需确保实现方法的安全性（参数过滤、权限控制）。</p>
-</li>
-</ul>
-</li>
-<li><p>对象注入漏洞（核心高危漏洞）：</p>
-<ul>
-<li><p>原理：通过反序列化（unserialize()）可控数据，构造恶意对象，触发魔术方法（如__wakeup、__destruct）执行恶意代码；</p>
-</li>
-<li><p>防护：禁止反序列化用户可控数据；若必须反序列化，需验证数据完整性（如添加校验码），过滤危险类、危险方法。</p>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="二、表单处理与安全防护（Web安全基础）"><a href="#二、表单处理与安全防护（Web安全基础）" class="headerlink" title="二、表单处理与安全防护（Web安全基础）"></a>二、表单处理与安全防护（Web安全基础）</h2><p>表单是用户与服务器交互的主要方式，表单处理不当会导致SQL注入、XSS、CSRF、文件上传等多种漏洞，是网络安全的重点防护场景。</p>
-<ol>
-<li><p>表单基础规范：</p>
-<ul>
-<li><p>表单提交方式：敏感操作（登录、注册、删除、修改）必须使用POST方式，禁止使用GET方式（参数暴露在地址栏，易被篡改、劫持）；</p>
-</li>
-<li><p>表单编码：文件上传表单必须添加<code>enctype=\&amp;\#34;multipart/form\-data\&amp;\#34;</code>，否则无法获取文件数据；</p>
-</li>
-<li><p>必填项验证：所有必填项（如账号、密码）必须在前端（辅助）和后端（核心）双重验证，前端验证可被绕过，后端验证是关键。</p>
-</li>
-</ul>
-</li>
-<li><p>常见表单元素安全处理：</p>
-<ul>
-<li><p>单选框（radio）：同一组name属性必须相同，提交value值；安全提醒：后端需验证提交的value是否在允许范围内（如性别只能是男&#x2F;女），避免攻击者篡改value值绕过逻辑。</p>
-</li>
-<li><p>复选框（checkbox）：name属性设为数组形式（如name&#x3D;&amp;#34;hobby[]&amp;#34;），后端获取数组后，验证每个元素是否在白名单内，避免注入。</p>
-</li>
-<li><p>输入框（input type&#x3D;&amp;#34;text&amp;#34;）：限制输入长度，过滤特殊字符（如&amp;lt;、&amp;gt;、&amp;#39;、&amp;#34;、;等），防止XSS、SQL注入；敏感输入（如密码）使用type&#x3D;&amp;#34;password&amp;#34;，禁止明文传输（需HTTPS）。</p>
-</li>
-<li><p>下拉框（select）：后端需验证提交的option值，禁止直接使用用户提交的值（攻击者可篡改下拉框选项值）。</p>
-</li>
-</ul>
-</li>
-<li><p>表单过滤与验证（核心防护）：</p>
-<ul>
-<li><p>使用 <code>filter\_input\_array\(\)</code> 过滤表单输入，指定过滤器（如邮箱、整数、URL），非法输入返回false；</p>
-</li>
-<li><p>常用过滤器（安全必备）：</p>
-<ul>
-<li><p>FILTER_VALIDATE_EMAIL：验证邮箱格式，防止邮箱注入；</p>
-</li>
-<li><p>FILTER_VALIDATE_INT：验证是否为整数，用于数值验证（如年龄、权限等级）；</p>
-</li>
-<li><p>FILTER_VALIDATE_URL：验证URL格式，防止URL注入；</p>
-</li>
-<li><p>FILTER_SANITIZE_STRING：过滤HTML标签，辅助防止XSS（不能作为唯一防护）。</p>
-</li>
-</ul>
-</li>
-<li><p>自定义验证：针对特殊场景（如密码强度、手机号格式），编写自定义验证函数，确保输入符合规范。</p>
-</li>
-</ul>
-</li>
-<li><p>常见表单漏洞及防护：</p>
-<ul>
-<li><p>CSRF（跨站请求伪造）：攻击者诱导用户点击恶意链接，伪造用户请求执行操作（如转账、删除）；</p>
-<pre><code>        防护：添加CSRF令牌（表单中添加隐藏字段，存储随机字符串，后端验证令牌一致性）；验证请求来源（Referer、Origin）；使用验证码（敏感操作）。
-   
-</code></pre>
-</li>
-<li><p>XSS（跨站脚本）：攻击者注入恶意JavaScript代码，在用户页面执行（窃取Cookie、篡改页面）；</p>
-<pre><code>        防护：所有用户输入输出到页面时，用htmlspecialchars\(\)转义；禁止使用eval\(\)等危险函数；设置Content\-Security\-Policy（CSP）头，限制脚本执行。
-    
-</code></pre>
-</li>
-<li><p>SQL注入：攻击者通过表单输入注入SQL语句，篡改、窃取数据库数据；</p>
-<pre><code>        防护：使用PDO或mysqli预处理语句（参数绑定），禁止直接拼接SQL字符串；过滤SQL特殊字符（辅助）；最小权限原则（数据库账号仅授予必要权限，禁止root账号）。
-</code></pre>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="三、会话（Session）与Cookie安全（身份认证核心）"><a href="#三、会话（Session）与Cookie安全（身份认证核心）" class="headerlink" title="三、会话（Session）与Cookie安全（身份认证核心）"></a>三、会话（Session）与Cookie安全（身份认证核心）</h2><p>Session和Cookie用于维持用户登录状态，是身份认证的核心，处理不当会导致会话劫持、身份伪造、敏感信息泄露等漏洞，直接影响系统安全。</p>
-<h3 id="1-Session安全"><a href="#1-Session安全" class="headerlink" title="1. Session安全"></a>1. Session安全</h3><ul>
-<li><p>核心操作与安全规范：</p>
-<ul>
-<li><p>启动会话：<code>session\_start\(\)</code> 必须放在&amp;lt;html&amp;gt;标签之前，且页面无任何输出（避免报错）；</p>
-</li>
-<li><p>设置Session：仅存储必要的敏感信息（如用户ID），禁止存储密码、密钥等核心敏感信息；</p>
-</li>
-<li><p>获取Session：使用前验证Session是否存在（如<code>isset\($\_SESSION\[\&amp;\#39;user\_id\&amp;\#39;\]\)</code>），避免未登录用户访问受保护页面；</p>
-</li>
-<li><p>销毁Session：用户退出时，调用 <code>session\_destroy\(\)</code>，并清除$_SESSION数组、删除Session Cookie。</p>
-</li>
-</ul>
-</li>
-<li><p>安全风险与防护：</p>
-<ul>
-<li><p>会话劫持：攻击者获取用户SessionID，冒充用户登录；</p>
-<pre><code>        防护：SessionID通过Cookie传递，设置Cookie的HttpOnly（禁止JS访问）、Secure（仅HTTPS传输）属性；定期更换SessionID（如用户登录后、权限变更时）；限制Session有效期；验证用户IP、浏览器信息（辅助，不可作为唯一防护）。
-    
-</code></pre>
-</li>
-<li><p>Session文件泄露：Session文件默认存储在服务器&#x2F;tmp目录，权限过高易被读取；</p>
-<pre><code>        防护：修改php\.ini中session\.save\_path，设置专用Session存储目录，权限设为700（仅所有者可读写）；定期清理过期Session文件。
-    
-</code></pre>
-</li>
-<li><p>Session固定：攻击者诱导用户使用固定的SessionID，待用户登录后，使用该SessionID冒充用户；<br>        防护：用户登录成功后，调用 <code>session\_regenerate\_id\(true\)</code> 重新生成SessionID，覆盖旧ID。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-Cookie安全"><a href="#2-Cookie安全" class="headerlink" title="2. Cookie安全"></a>2. Cookie安全</h3><ul>
-<li><p>核心操作与安全规范：</p>
-<ul>
-<li><p>设置Cookie：<code>setcookie\(\&amp;\#34;name\&amp;\#34;, \&amp;\#34;value\&amp;\#34;, 过期时间, 路径, 域名, 安全标志, HttpOnly标志\)</code>；</p>
-</li>
-<li><p>参数安全设置：</p>
-<ul>
-<li><p>过期时间：敏感Cookie（如登录状态）设置合理的过期时间（如2小时），避免长期有效；</p>
-</li>
-<li><p>路径：设置为网站根目录（&#x2F;）或指定目录，避免其他目录访问；</p>
-</li>
-<li><p>域名：明确指定域名，避免跨域访问；</p>
-</li>
-<li><p>安全标志（secure）：设为true，仅在HTTPS协议下传输，防止HTTP协议下被窃取；</p>
-</li>
-<li><p>HttpOnly标志：设为true，禁止JavaScript访问，防止XSS攻击窃取Cookie。</p>
-</li>
-</ul>
-</li>
-<li><p>获取Cookie：使用前验证Cookie是否存在、是否合法，避免伪造Cookie；</p>
-</li>
-<li><p>删除Cookie：设置过期时间为过去的时间（如time()-3600），彻底清除Cookie。</p>
-</li>
-</ul>
-</li>
-<li><p>安全风险与防护：</p>
-<ul>
-<li><p>Cookie篡改：攻击者篡改Cookie值（如修改用户ID、权限等级），绕过验证；</p>
-<pre><code>        防护：Cookie中敏感信息加密存储（如使用AES加密用户ID）；添加校验码（如Cookie值\+密钥生成校验码，后端验证）。
-    
-</code></pre>
-</li>
-<li><p>Cookie泄露：通过XSS、网络嗅探等方式窃取Cookie；</p>
-<pre><code>        防护：设置HttpOnly、Secure属性；使用HTTPS传输；敏感Cookie加密存储。
-   
-</code></pre>
-</li>
-<li><p>第三方Cookie：禁止使用第三方Cookie（如广告、统计Cookie），避免用户信息泄露。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="四、运算符与流程控制（漏洞逻辑绕过重点）"><a href="#四、运算符与流程控制（漏洞逻辑绕过重点）" class="headerlink" title="四、运算符与流程控制（漏洞逻辑绕过重点）"></a>四、运算符与流程控制（漏洞逻辑绕过重点）</h2><p>运算符优先级、流程控制逻辑不当，易被攻击者利用绕过验证（如权限验证、登录验证），是代码审计中易忽略的漏洞点。</p>
-<h3 id="1-运算符安全风险"><a href="#1-运算符安全风险" class="headerlink" title="1. 运算符安全风险"></a>1. 运算符安全风险</h3><ul>
-<li><p>比较运算符（重点）：</p>
-<ul>
-<li><p>松散比较（&#x3D;&#x3D;）：会自动转换类型，易被绕过（如 1 &#x3D;&#x3D; &amp;#39;1a&amp;#39; 结果为true，0 &#x3D;&#x3D; &amp;#39;abc&amp;#39; 结果为true）；</p>
-<pre><code>        安全风险：登录验证、权限验证中使用松散比较，攻击者可构造恶意参数绕过（如密码验证 `if\($password == \&amp;\#39;123456\&amp;\#39;\)`，可输入\&amp;\#39;123456a\&amp;\#39;绕过）；
-
-        防护：使用严格比较（===），确保类型和值都一致。
-    
-</code></pre>
-</li>
-<li><p>组合比较运算符（&amp;lt;&#x3D;&amp;gt;）：返回-1、0、1，用于排序场景，需验证返回值范围，避免逻辑错误。</p>
-</li>
-</ul>
-</li>
-<li><p>逻辑运算符：</p>
-<ul>
-<li><p>and&#x2F;or 与 &amp;amp;&amp;amp;&#x2F;|| 优先级不同（&amp;amp;&amp;amp; &amp;gt; || &amp;gt; and &amp;gt; or），易导致逻辑错误；</p>
-<pre><code>        示例：`$a = false and true` 等价于 `\($a = false\) and true`，$a为false；
-
-        安全风险：逻辑判断中使用and/or，可能导致判断逻辑与预期不符，被攻击者绕过；
-</code></pre>
-</li>
-</ul>
-<p>  防护：优先使用&amp;amp;&amp;amp;&#x2F;||，复杂逻辑用括号明确优先级。</p>
-<ul>
-<li>异或运算符（xor）：两个条件有且仅有一个为true，返回true；易被利用绕过逻辑验证，需谨慎使用。</li>
-</ul>
-</li>
-<li><p>赋值运算符：</p>
-<ul>
-<li><p>复合赋值（+&#x3D;、-&#x3D;、.&#x3D; 等）：需注意变量类型，避免类型转换导致逻辑错误；</p>
-</li>
-<li><p>安全风险：若赋值变量可控，易导致变量覆盖（如 <code>$x \.= $\_GET\[\&amp;\#39;a\&amp;\#39;\]</code>，攻击者可拼接恶意内容）。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-流程控制安全"><a href="#2-流程控制安全" class="headerlink" title="2. 流程控制安全"></a>2. 流程控制安全</h3><ul>
-<li><p>if-else、switch-case：</p>
-<ul>
-<li><p>安全风险：条件判断中使用用户可控变量，且未验证范围，易被绕过（如 <code>if\($\_GET\[\&amp;\#39;role\&amp;\#39;\] == 1\)</code>，攻击者可构造role&#x3D;1绕过管理员权限）；</p>
-</li>
-<li><p>防护：验证用户可控变量的范围、合法性，使用严格比较，避免直接使用用户输入作为判断条件。</p>
-</li>
-</ul>
-</li>
-<li><p>循环语句（for、while、foreach）：</p>
-<ul>
-<li><p>安全风险：循环条件可控，易导致无限循环（DoS攻击）；循环中处理用户可控数据，未过滤易导致漏洞；</p>
-</li>
-<li><p>防护：限制循环次数，过滤循环中处理的用户输入，避免无限循环。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="五、错误处理与异常处理（安全防护辅助）"><a href="#五、错误处理与异常处理（安全防护辅助）" class="headerlink" title="五、错误处理与异常处理（安全防护辅助）"></a>五、错误处理与异常处理（安全防护辅助）</h2><p>错误处理与异常处理不仅能避免脚本崩溃，还能防止敏感信息泄露，是网络安全防护的重要辅助手段。</p>
-<ol>
-<li><p>错误处理：</p>
-<ul>
-<li><p>错误级别：</p>
-<ul>
-<li><p>E_ERROR（致命错误）：脚本终止执行，需避免出现（如语法错误、数据库连接失败）；</p>
-</li>
-<li><p>E_WARNING（警告错误）：脚本继续执行，需修复（如使用未定义变量）；</p>
-</li>
-<li><p>E_NOTICE（通知错误）：脚本继续执行，可能泄露敏感信息（如变量未初始化）。</p>
-</li>
-</ul>
-</li>
-<li><p>安全配置：</p>
-<ul>
-<li><p>生产环境：设置 <code>error\_reporting\(E\_ALL \&amp;amp; \~E\_NOTICE\)</code>，隐藏通知错误；设置 <code>display\_errors = Off</code>，禁止在页面显示错误信息（避免泄露代码路径、数据库信息）；</p>
-</li>
-<li><p>错误日志：设置 <code>log\_errors = On</code>，将错误信息写入日志文件，日志文件权限设为600，定期查看日志排查漏洞。</p>
-</li>
-</ul>
-</li>
-<li><p>错误控制：</p>
-<ul>
-<li><p>禁止使用@符号抑制错误（会隐藏潜在安全漏洞，难以排查）；</p>
-</li>
-<li><p>自定义错误处理函数，统一处理错误，避免敏感信息泄露。</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>异常处理：</p>
-<ul>
-<li><p>核心语法：try...catch，捕获可预测异常（如数据库连接失败、文件读取失败），避免脚本崩溃；</p>
-</li>
-<li><p>安全提醒：异常信息仅在开发环境显示，生产环境需隐藏具体异常信息（如只显示“系统错误，请联系管理员”），避免泄露敏感信息；</p>
-</li>
-<li><p>自定义异常类：区分不同类型的异常（如数据库异常、文件异常），便于日志排查和漏洞定位。</p>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="第三部分：PHP安全实战（漏洞挖掘与防护）"><a href="#第三部分：PHP安全实战（漏洞挖掘与防护）" class="headerlink" title="第三部分：PHP安全实战（漏洞挖掘与防护）"></a>第三部分：PHP安全实战（漏洞挖掘与防护）</h1><p>本部分结合网络安全实战场景，归纳PHP常见高危漏洞的挖掘方法、利用方式及防护措施，适配代码审计、渗透测试需求，重点突出实战性。</p>
-<h2 id="一、PHP常见高危漏洞解析"><a href="#一、PHP常见高危漏洞解析" class="headerlink" title="一、PHP常见高危漏洞解析"></a>一、PHP常见高危漏洞解析</h2><h3 id="1-SQL注入漏洞（最常见、最高危）"><a href="#1-SQL注入漏洞（最常见、最高危）" class="headerlink" title="1. SQL注入漏洞（最常见、最高危）"></a>1. SQL注入漏洞（最常见、最高危）</h3><ul>
-<li><p>漏洞原理：用户输入的SQL语句片段，被拼接到服务器端SQL语句中，改变SQL语句的执行逻辑，实现窃取数据、篡改数据、执行命令等操作。</p>
-</li>
-<li><p>常见触发场景：</p>
-<ul>
-<li><p>表单查询（如搜索框、用户查询）；</p>
-</li>
-<li><p>URL参数（如?id&#x3D;1，直接拼接SQL语句）；</p>
-</li>
-<li><p>Cookie、Session中的可控数据。</p>
-</li>
-</ul>
-</li>
-<li><p>示例（漏洞代码）：<br>  &#96;&amp;lt;?php</p>
-</li>
-</ul>
-<p>&#x2F;&#x2F; 漏洞代码：直接拼接SQL语句，未过滤用户输入<br>$id &#x3D; $_GET[&amp;#39;id&amp;#39;];<br>$sql &#x3D; &amp;#34;SELECT * FROM user WHERE id &#x3D; $id&amp;#34;;<br>$result &#x3D; mysqli_query($conn, $sql);<br>?&amp;gt;<code>        攻击者构造</code>?id&#x3D;1 OR 1&#x3D;1<code>，SQL语句变为 </code>SELECT * FROM user WHERE id &#x3D; 1 OR 1&#x3D;1&#96;，查询所有用户数据。</p>
-<ul>
-<li><p>防护措施（核心）：</p>
-<ul>
-<li><p>使用PDO或mysqli预处理语句（参数绑定），禁止直接拼接SQL字符串；</p>
-</li>
-<li><p>示例（安全代码）：<br>      &#96;&amp;lt;?php</p>
-</li>
-</ul>
-<p>  $id &#x3D; $_GET[&amp;#39;id&amp;#39;];<br>  &#x2F;&#x2F; PDO预处理<br>  $pdo &#x3D; new PDO(&amp;#34;mysql:host&#x3D;localhost;dbname&#x3D;test&amp;#34;, &amp;#34;root&amp;#34;, &amp;#34;123456&amp;#34;);<br>  $stmt &#x3D; $pdo-&amp;gt;prepare(&amp;#34;SELECT * FROM user WHERE id &#x3D; :id&amp;#34;);<br>  $stmt-&amp;gt;bindParam(&amp;#39;:id&amp;#39;, $id, PDO::PARAM_INT);<br>  $stmt-&amp;gt;execute();<br>  ?&amp;gt;&#96;</p>
-<ul>
-<li><p>过滤SQL特殊字符（辅助）：如单引号、双引号、分号、OR、AND等，但不能作为唯一防护；</p>
-</li>
-<li><p>数据库最小权限原则：数据库账号仅授予必要权限（如查询、插入），禁止授予DROP、ALTER等高危权限；</p>
-</li>
-<li><p>禁止使用root账号连接数据库，创建专用数据库账号。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-XSS（跨站脚本）漏洞"><a href="#2-XSS（跨站脚本）漏洞" class="headerlink" title="2. XSS（跨站脚本）漏洞"></a>2. XSS（跨站脚本）漏洞</h3><ul>
-<li><p>漏洞原理：攻击者注入恶意JavaScript代码，在用户浏览器中执行，窃取Cookie、篡改页面内容、诱导用户操作等。</p>
-</li>
-<li><p>分类：</p>
-<ul>
-<li><p>存储型XSS：恶意代码被存储到数据库（如评论、留言），所有访问该页面的用户都会执行恶意代码，危害最大；</p>
-</li>
-<li><p>反射型XSS：恶意代码通过URL参数、表单提交，仅在当前请求中执行，需诱导用户点击恶意链接；</p>
-</li>
-<li><p>DOM型XSS：通过篡改DOM结构执行恶意代码，无需与服务器交互，仅在客户端执行。</p>
-</li>
-</ul>
-</li>
-<li><p>示例（漏洞代码）：<br>  &#96;&amp;lt;?php</p>
-</li>
-</ul>
-<p>&#x2F;&#x2F; 漏洞代码：直接输出用户输入，未转义<br>$name &#x3D; $_GET[&amp;#39;name&amp;#39;];<br>echo &amp;#34;欢迎你：$name&amp;#34;;<br>?&amp;gt;<code>        攻击者构造</code>?name&#x3D;&amp;lt;script&amp;gt;alert(document.cookie)&amp;lt;&#x2F;script&amp;gt;&#96;，用户访问后会弹出Cookie信息。</p>
-<ul>
-<li><p>防护措施（核心）：</p>
-<ul>
-<li><p>所有用户输入输出到页面时，使用 <code>htmlspecialchars\($var, ENT\_QUOTES\)</code> 转义；</p>
-</li>
-<li><p>示例（安全代码）：<br>      &#96;&amp;lt;?php</p>
-</li>
-</ul>
-<p>  $name &#x3D; $_GET[&amp;#39;name&amp;#39;];<br>  echo &amp;#34;欢迎你：&amp;#34; . htmlspecialchars($name, ENT_QUOTES);<br>  ?&amp;gt;&#96;</p>
-<ul>
-<li><p>设置Content-Security-Policy（CSP）头，限制脚本执行来源（如仅允许本域名脚本）；</p>
-</li>
-<li><p>禁止使用eval()、preg_replace(&#x2F;e&#x2F;)等危险函数，避免执行恶意代码；</p>
-</li>
-<li><p>过滤恶意标签（如&amp;lt;script&amp;gt;、&amp;lt;iframe&amp;gt;），辅助防护。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-文件上传漏洞"><a href="#3-文件上传漏洞" class="headerlink" title="3. 文件上传漏洞"></a>3. 文件上传漏洞</h3><ul>
-<li><p>漏洞原理：攻击者通过表单上传恶意文件（如webshell、病毒），并在服务器端执行，获取服务器控制权。</p>
-</li>
-<li><p>常见绕过方式：</p>
-<ul>
-<li><p>篡改文件后缀（如将webshell.php改为webshell.php.jpg，绕过后缀验证）；</p>
-</li>
-<li><p>篡改MIME类型（如将PHP文件的MIME类型改为image&#x2F;jpeg，绕过类型验证）；</p>
-</li>
-<li><p>文件内容伪装（在PHP文件开头添加图片头信息，伪装成图片文件）；</p>
-</li>
-<li><p>利用服务器解析漏洞（如Apache的解析漏洞、IIS的解析漏洞）。</p>
-</li>
-</ul>
-</li>
-<li><p>防护措施（核心）：</p>
-<ul>
-<li><p>多重验证：</p>
-<ul>
-<li><p>验证文件后缀：使用白名单（如允许jpg、png、gif），禁止使用黑名单（易被绕过）；</p>
-</li>
-<li><p>验证MIME类型：通过 <code>$\_FILES\[\&amp;\#39;file\&amp;\#39;\]\[\&amp;\#39;type\&amp;\#39;\]</code> 和 <code>finfo\_open\(\)</code> 双重验证文件类型；</p>
-</li>
-<li><p>验证文件内容：如图片文件，可使用getimagesize()验证是否为有效图片。</p>
-</li>
-</ul>
-</li>
-<li><p>文件重命名：上传后重命名文件（如使用随机字符串+后缀），避免攻击者猜测文件名；</p>
-</li>
-<li><p>限制上传目录权限：上传目录设为只读（禁止执行权限），禁止将上传文件放在网站可访问目录（如wwwroot）；</p>
-</li>
-<li><p>限制文件大小：防止超大文件上传导致DoS攻击。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="4-代码执行漏洞"><a href="#4-代码执行漏洞" class="headerlink" title="4. 代码执行漏洞"></a>4. 代码执行漏洞</h3><ul>
-<li><p>漏洞原理：攻击者通过用户可控输入，注入恶意PHP代码，在服务器端执行，获取服务器控制权。</p>
-</li>
-<li><p>常见触发函数（高危）：</p>
-<ul>
-<li><p>eval()：直接执行字符串作为PHP代码，高危，禁止使用用户可控变量；</p>
-</li>
-<li><p>exec()、system()、shell_exec()：执行系统命令，若参数可控，易导致命令执行漏洞；</p>
-</li>
-<li><p>preg_replace(&#x2F;e&#x2F;)：正则替换后执行代码，已被PHP7.0+废弃，禁止使用；</p>
-</li>
-<li><p>include()、require()：文件包含漏洞，若文件路径可控，可包含恶意文件（本地文件包含LFI、远程文件包含RFI）。</p>
-</li>
-</ul>
-</li>
-<li><p>防护措施：</p>
-<ul>
-<li><p>禁止使用高危函数：eval()、preg_replace(&#x2F;e&#x2F;)等，若必须使用，需严格过滤参数；</p>
-</li>
-<li><p>文件包含防护：禁止使用用户可控路径，使用固定路径+白名单验证，关闭allow_url_include（禁止远程文件包含）；</p>
-</li>
-<li><p>命令执行防护：禁止使用用户可控参数执行系统命令，若必须使用，需过滤命令特殊字符（如|、&amp;amp;、;、rm等），使用escapeshellarg()、escapeshellcmd()函数过滤。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="5-反序列化漏洞"><a href="#5-反序列化漏洞" class="headerlink" title="5. 反序列化漏洞"></a>5. 反序列化漏洞</h3><ul>
-<li><p>漏洞原理：攻击者构造恶意序列化字符串，通过unserialize()函数反序列化为对象，触发魔术方法（如__wakeup、__destruct）执行恶意代码。</p>
-</li>
-<li><p>常见触发场景：Session存储序列化数据、Cookie存储序列化数据、接口传递序列化数据。</p>
-</li>
-<li><p>防护措施：</p>
-<ul>
-<li>禁止反序列化用户可控数据；</li>
-</ul>
-</li>
-</ul>
-
-      
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-19</span>
+        <span><span class="icon-pencil"></span>1.7k 字</span>
+        <span><span class="icon-clock"></span>6 分钟</span>
+      </div>
+      <h2 class="post-title">Linux问题解决</h2>
+      <article class="post-article">
+          Linux学习实录：Elasticsearch安装踩坑全记录（真实试错总结）在Linux学习过程中，安装Elasticsearch（ES）是我遇到的第一个大坎。原本以为跟着教程一步步来就能顺利完成，没想到实际操作中频频出错，反复折腾了很久才找到解决办法，以下是我真实踩过的每一个坑，无夸张、无编造，全是实操中实打实遇到的问题，希望能给同样初学的小伙伴避坑。
+一、真实踩坑过程（逐条对应实际报错）我最初选择了压缩包手动安装的方式，本以为手动操作能更熟悉流程，结果从配置到启动，问题接连不断，每一个错误都让我卡壳很久。
+1. 配置文件被注释，导致network.host不生效编辑elasticsearc
+      </article>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/04/19/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PHP%E7%AC%94%E8%AE%B0/" data-id="cuidrUmsi3L9h9PlGSLOEpiPs" data-title="PHP知识点总结" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li></ul>
-
-    </footer>
   </div>
-  
-</article>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" aria-label="Linux学习笔记01" title="Linux学习笔记01"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Linux学习笔记01" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-19</span>
+        <span><span class="icon-pencil"></span>2.9k 字</span>
+        <span><span class="icon-clock"></span>12 分钟</span>
+      </div>
+      <h2 class="post-title">Linux学习笔记01</h2>
+      <article class="post-article">
+          Linux学习全套总结---
+title: Linux学习全套总结
+date: 2026-04-15
+categories: 后端基础
+tags: Linux, 学习笔记, 黑马程序员
+---
+跟着黑马程序员学完Linux，整理了全套核心知识点，涵盖课程重点、实操命令、必背考点，适合新手回顾复盘，也可作为日常开发备查笔记，纯干货无冗余～
+一、Linux基础认知1.1 什么是Linux
+Linux是一款开源、免费、多用户、多任务的操作系统，核心优势是稳定、安全、占用资源少
 
+与Windows的区别：Windows面向桌面用户，Linux面向服务器（占服务器领域90%以上市场）
 
+常见发行版（黑马
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/19/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" aria-label="Linux学习笔记" title="Linux学习笔记"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Linux学习笔记" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-19</span>
+        <span><span class="icon-pencil"></span>4.5k 字</span>
+        <span><span class="icon-clock"></span>19 分钟</span>
+      </div>
+      <h2 class="post-title">Linux学习笔记</h2>
+      <article class="post-article">
+          MySQL基础知识点总结（至事务部分完结）本文总结MySQL基础部分核心知识点，涵盖从MySQL入门到事务的全部基础内容，适合新手入门梳理，适配个人博客呈现，知识点详细且逻辑连贯，重点内容加粗标注，所有sql语句均使用小写，贴合日常使用习惯。
+一、MySQL入门基础1.1 MySQL简介
+mysql是一款开源的关系型数据库管理系统（rdbms），由oracle公司维护，支持多平台（windows、linux、mac）。
 
-  
+核心特点：体积小、速度快、开源免费、支持多用户多线程、兼容性强，广泛应用于中小型网站、后台系统的数据存储。
 
+mysql的核心组件：数据库（database）、表（table
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/19/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PHP%E7%AC%94%E8%AE%B0/" aria-label="PHP知识点总结" title="PHP知识点总结"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="PHP知识点总结" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-19</span>
+        <span><span class="icon-pencil"></span>8.1k 字</span>
+        <span><span class="icon-clock"></span>30 分钟</span>
+      </div>
+      <h2 class="post-title">PHP知识点总结</h2>
+      <article class="post-article">
+          PHP学习笔记（适配网络安全方向·完整全面版）第一部分：PHP基础核心（网络安全入门必备）网络安全视角下，PHP基础是漏洞挖掘、代码审计的前提，重点掌握变量、常量、函数、超全局数组等基础，明确易被利用的基础语法漏洞点。
+一、基础语法与安全注意事项
+PHP标记：优先使用标准标记 \&amp;amp;lt;?php \.\.\. ?\&amp;amp;gt;，禁止使用短标记 \&amp;amp;lt;? \.\.\. ?\&amp;amp;gt;（开启短标记可能导致代码解析异常，增加安全风险，且部分服务器默认关闭）；ASP风格标记 \&amp;amp;lt;% \.\.\. %\&amp;amp;gt; 完全不推荐使用（兼容性差，易被绕过解析）
+      </article>
+    </div>
+  </div>
+</div>
 
 </section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Linux/">学习笔记/Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-MySQL/">学习笔记/MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-PHP/">学习笔记/PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%85%8D%E5%90%88p/">学习笔记/配合p</a></li></ul>
-    </div>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
   </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li></ul>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      祁雪
     </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 20px;">后端</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">四月 2026</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2026/04/19/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PHP%E4%B8%AA%E6%80%A7%E5%8C%96%E9%9A%BE%E7%82%B9%E5%BD%92%E7%BA%B3/">PHP个性化难点分析</a>
-          </li>
-        
-          <li>
-            <a href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E5%AE%9E%E5%BD%95%EF%BC%9AElasticsearch%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E7%9C%9F%E5%AE%9E%E8%AF%95%E9%94%99%E6%80%BB%E7%BB%93%EF%BC%89/">Linux问题解决</a>
-          </li>
-        
-          <li>
-            <a href="/2026/04/19/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Linux学习笔记01</a>
-          </li>
-        
-          <li>
-            <a href="/2026/04/19/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Linux学习笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2026/04/19/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PHP%E7%AC%94%E8%AE%B0/">PHP知识点总结</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2026 祁雪<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
+      <div>
+        <span class="icon-brush"></span>
+        23.6k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        01:33
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
   </div>
 </footer>
 
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+      <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="祁雪" class="lazyload">
+  <div class="sidebar-author-name">祁雪</div>
+  <div class="sidebar-description">记录网络安全，编程，个人生活的个人博客</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">5</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+
+  </div>
 </nav>
+
+    </div>
     
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
 
 
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
 
 
 
@@ -2362,9 +436,82 @@
 <script src="/js/script.js"></script>
 
 
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
 
 
 
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
   </div>
-</body>
-</html>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>

@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   <title>
-    Linux学习笔记 | 祁雪的网安学习笔记
+    MySQL学习笔记 | 祁雪的网安学习笔记
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -19,13 +19,13 @@
 
     <meta name="description" content="MySQL基础知识点总结（至事务部分完结）本文总结MySQL基础部分核心知识点，涵盖从MySQL入门到事务的全部基础内容，适合新手入门梳理，适配个人博客呈现，知识点详细且逻辑连贯，重点内容加粗标注，所有sql语句均使用小写，贴合日常使用习惯。 一、MySQL入门基础1.1 MySQL简介 mysql是一款开源的关系型数据库管理系统（rdbms），由oracle公司维护，支持多平台（windows、">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux学习笔记">
+<meta property="og:title" content="MySQL学习笔记">
 <meta property="og:url" content="http://example.com/2026/04/19/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="祁雪的网安学习笔记">
 <meta property="og:description" content="MySQL基础知识点总结（至事务部分完结）本文总结MySQL基础部分核心知识点，涵盖从MySQL入门到事务的全部基础内容，适合新手入门梳理，适配个人博客呈现，知识点详细且逻辑连贯，重点内容加粗标注，所有sql语句均使用小写，贴合日常使用习惯。 一、MySQL入门基础1.1 MySQL简介 mysql是一款开源的关系型数据库管理系统（rdbms），由oracle公司维护，支持多平台（windows、">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-04-19T13:00:41.330Z">
-<meta property="article:modified_time" content="2026-04-27T13:10:36.958Z">
+<meta property="article:modified_time" content="2026-04-29T11:46:18.732Z">
 <meta property="article:author" content="祁雪">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -128,11 +128,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="Linux学习笔记">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="MySQL学习笔记">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">Linux学习笔记</h1>
+            <h1 data-aos="slide-up">MySQL学习笔记</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -158,15 +158,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">4</div>
+    <div class="sidebar-state-number">5</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">4</div>
+    <div class="sidebar-state-number">5</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -219,7 +219,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-04-19T13:00:41.330Z" itemprop="datePublished">2026-04-19</time>
-    <time style="display: none;" id="post-update-time">2026-04-27</time>
+    <time style="display: none;" id="post-update-time">2026-04-29</time>
   </span>
 </div>
 
@@ -597,10 +597,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        23.6k
+        28.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        01:33
+        01:57
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -633,15 +633,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">4</div>
+    <div class="sidebar-state-number">5</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">4</div>
+    <div class="sidebar-state-number">5</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -744,13 +744,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "祁雪",
-          title: "Linux学习笔记",
+          title: "MySQL学习笔记",
           url: "http://example.com/2026/04/19/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/",
           excerpt: "",
           description: "",
           stripContent: "MySQL基础知识点总结（至事务部分完结）本文总结MySQL基础部分核心知识点，涵盖从MySQL入门到事务的全部基础内容，适合新手入门梳理，适配个人博客呈现，知识点详细且逻辑连贯，重点内容加粗标注，所有sql语句均使用小写，贴合日常使用习惯。 一、MySQL入门基础1.1 MySQL简介 mysql是一款开源的关系型数据库管理系统（rdbms），由oracle公司维护，支持多平台（windows、linux、mac）。  核心特点：体积小、速度快、开源免费、支持多用户多线程、兼容性强，广泛应用于",
           date: "Sun Apr 19 2026 21:00:41 GMT+0800",
-          updated: "Mon Apr 27 2026 21:10:36 GMT+0800",
+          updated: "Wed Apr 29 2026 19:46:18 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

@@ -1,0 +1,1080 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <title>
+    祁雪的网安学习笔记
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="Java 全面个性化学习笔记（含知识点总结+学习疑惑解答）一、学习疑惑及解答学习过程中，针对Java知识点的理解、操作细节等提出了相关疑问，解答整理如下，均为学习中的重点难点，助力巩固记忆。  疑惑1：Java注释有几种？各自的用法和注意事项是什么？解答：Java注释共3种，核心区别的用法如下：  单行注释（&#x2F;&#x2F;）：仅注释一行，用于简单说明代码含义，&#x2F;&#x2F;后内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="祁雪的网安学习笔记">
+<meta property="og:url" content="http://example.com/2026/05/08/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="祁雪的网安学习笔记">
+<meta property="og:description" content="Java 全面个性化学习笔记（含知识点总结+学习疑惑解答）一、学习疑惑及解答学习过程中，针对Java知识点的理解、操作细节等提出了相关疑问，解答整理如下，均为学习中的重点难点，助力巩固记忆。  疑惑1：Java注释有几种？各自的用法和注意事项是什么？解答：Java注释共3种，核心区别的用法如下：  单行注释（&#x2F;&#x2F;）：仅注释一行，用于简单说明代码含义，&#x2F;&#x2F;后内">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-08T11:27:00.473Z">
+<meta property="article:modified_time" content="2026-05-08T11:25:56.096Z">
+<meta property="article:author" content="祁雪">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+      <meta name="keywords" content="网络安全">
+    <link rel="alternate" href="/atom.xml" title="祁雪的网安学习笔记" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">祁雪的网安学习笔记</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+              <span id="subtitle">持续成长中</span>
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java-%E5%85%A8%E9%9D%A2%E4%B8%AA%E6%80%A7%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%90%AB%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93-%E5%AD%A6%E4%B9%A0%E7%96%91%E6%83%91%E8%A7%A3%E7%AD%94%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">Java 全面个性化学习笔记（含知识点总结+学习疑惑解答）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AD%A6%E4%B9%A0%E7%96%91%E6%83%91%E5%8F%8A%E8%A7%A3%E7%AD%94"><span class="toc-number">2.</span> <span class="toc-text">一、学习疑惑及解答</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Java-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">二、Java 核心知识点总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%971%EF%BC%9AJava-AI-%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B"><span class="toc-number">3.1.</span> <span class="toc-text">模块1：Java AI 编程助手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%B8%B8%E7%94%A8Java-AI%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B"><span class="toc-number">3.1.1.</span> <span class="toc-text">1.1 常用Java AI编程助手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE%EF%BC%88%E7%BB%93%E5%90%88%E8%87%AA%E8%BA%AB%E5%AD%A6%E4%B9%A0%E4%BD%93%E9%AA%8C%EF%BC%89"><span class="toc-number">3.1.2.</span> <span class="toc-text">1.2 学习使用建议（结合自身学习体验）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%972%EF%BC%9AJava-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">模块2：Java 基础语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Java-%E6%B3%A8%E9%87%8A"><span class="toc-number">3.2.1.</span> <span class="toc-text">2.1 Java 注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%96%87%E6%A1%A3%E6%B3%A8%E9%87%8A%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE"><span class="toc-number">3.2.2.</span> <span class="toc-text">2.2 文档注释常用标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Java-%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB"><span class="toc-number">3.2.3.</span> <span class="toc-text">2.3 Java 对象和类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Java-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.2.4.</span> <span class="toc-text">2.4 Java 基本数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-Java-%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.2.5.</span> <span class="toc-text">2.5 Java 变量类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-Java-%E5%8F%98%E9%87%8F%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-number">3.2.6.</span> <span class="toc-text">2.6 Java 变量命名规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-1-%E5%BF%85%E9%A1%BB%E9%81%B5%E5%AE%88%E7%9A%84%E8%A7%84%E5%88%99%EF%BC%88%E6%8A%A5%E9%94%99%E9%A3%8E%E9%99%A9%EF%BC%89"><span class="toc-number">3.2.6.1.</span> <span class="toc-text">2.6.1 必须遵守的规则（报错风险）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-2-%E6%8E%A8%E8%8D%90%E9%81%B5%E5%AE%88%E7%9A%84%E8%A7%84%E8%8C%83"><span class="toc-number">3.2.6.2.</span> <span class="toc-text">2.6.2 推荐遵守的规范</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-3-%E9%94%99%E8%AF%AF%E5%AE%9E%E4%BE%8B%EF%BC%88%E9%81%BF%E5%85%8D%E8%B8%A9%E5%9D%91%EF%BC%89"><span class="toc-number">3.2.6.3.</span> <span class="toc-text">2.6.3 错误实例（避免踩坑）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-Java-%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">3.2.7.</span> <span class="toc-text">2.7 Java 修饰符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-1-%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6%EF%BC%88%E6%8E%A7%E5%88%B6%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%EF%BC%89"><span class="toc-number">3.2.7.1.</span> <span class="toc-text">2.7.1 访问修饰符（控制访问权限）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-2-%E9%9D%9E%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6%EF%BC%88%E6%8E%A7%E5%88%B6%E8%A1%8C%E4%B8%BA%E3%80%81%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%89"><span class="toc-number">3.2.7.2.</span> <span class="toc-text">2.7.2 非访问修饰符（控制行为、生命周期）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-Java-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">3.2.8.</span> <span class="toc-text">2.8 Java 运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-1-%E5%B8%B8%E7%94%A8%E8%BF%90%E7%AE%97%E7%AC%A6%E5%88%86%E7%B1%BB%E5%8F%8A%E7%94%A8%E6%B3%95"><span class="toc-number">3.2.8.1.</span> <span class="toc-text">2.8.1 常用运算符分类及用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-2-%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%88%E4%BB%8E%E9%AB%98%E5%88%B0%E4%BD%8E%EF%BC%89"><span class="toc-number">3.2.8.2.</span> <span class="toc-text">2.8.2 运算符优先级（从高到低）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-Java-%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="toc-number">3.2.9.</span> <span class="toc-text">2.9 Java 循环结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-Java-%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="toc-number">3.2.10.</span> <span class="toc-text">2.10 Java 条件语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-Java-switch-case"><span class="toc-number">3.2.11.</span> <span class="toc-text">2.11 Java switch case</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-Java-Number-amp-Math-%E7%B1%BB"><span class="toc-number">3.2.12.</span> <span class="toc-text">2.12 Java Number &amp; Math 类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-1-Number%E7%B1%BB%EF%BC%88%E5%8C%85%E8%A3%85%E7%B1%BB%EF%BC%89"><span class="toc-number">3.2.12.1.</span> <span class="toc-text">2.12.1 Number类（包装类）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-2-Math%E7%B1%BB%EF%BC%88%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%EF%BC%89"><span class="toc-number">3.2.12.2.</span> <span class="toc-text">2.12.2 Math类（常用静态方法）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-Java-Character-%E7%B1%BB"><span class="toc-number">3.2.13.</span> <span class="toc-text">2.13 Java Character 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-14-Java-String-%E7%B1%BB"><span class="toc-number">3.2.14.</span> <span class="toc-text">2.14 Java String 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-Java-StringBuffer"><span class="toc-number">3.2.15.</span> <span class="toc-text">2.15 Java StringBuffer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-16-Java-%E6%95%B0%E7%BB%84"><span class="toc-number">3.2.16.</span> <span class="toc-text">2.16 Java 数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-17-Java-%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4"><span class="toc-number">3.2.17.</span> <span class="toc-text">2.17 Java 日期时间</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-17-1-%E6%97%A7API%EF%BC%88%E4%BA%86%E8%A7%A3%E5%8D%B3%E5%8F%AF%EF%BC%8C%E4%B8%8D%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-number">3.2.17.1.</span> <span class="toc-text">2.17.1 旧API（了解即可，不推荐使用）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-17-2-%E6%96%B0API%EF%BC%88Java-8-%EF%BC%8C%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-number">3.2.17.2.</span> <span class="toc-text">2.17.2 新API（Java 8+，推荐使用）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-18-Java-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">3.2.18.</span> <span class="toc-text">2.18 Java 正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-19-Java-%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.19.</span> <span class="toc-text">2.19 Java 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-20-Java-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.20.</span> <span class="toc-text">2.20 Java 构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-21-Java-Stream%E3%80%81File%E3%80%81IO"><span class="toc-number">3.2.21.</span> <span class="toc-text">2.21 Java Stream、File、IO</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-21-1-File%E7%B1%BB%EF%BC%88%E6%96%87%E4%BB%B6-%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%EF%BC%89"><span class="toc-number">3.2.21.1.</span> <span class="toc-text">2.21.1 File类（文件&#x2F;目录操作）</span></a></li></ol></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="祁雪" class="lazyload">
+  <div class="sidebar-author-name">祁雪</div>
+  <div class="sidebar-description">记录网络安全，编程，个人生活的个人博客</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">5</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">5</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-Java学习笔记/Java学习笔记" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-05-08T11:27:00.473Z" itemprop="datePublished">2026-05-08</time>
+    <time style="display: none;" id="post-update-time">2026-05-08</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="Java-全面个性化学习笔记（含知识点总结-学习疑惑解答）"><a href="#Java-全面个性化学习笔记（含知识点总结-学习疑惑解答）" class="headerlink" title="Java 全面个性化学习笔记（含知识点总结+学习疑惑解答）"></a>Java 全面个性化学习笔记（含知识点总结+学习疑惑解答）</h1><h1 id="一、学习疑惑及解答"><a href="#一、学习疑惑及解答" class="headerlink" title="一、学习疑惑及解答"></a>一、学习疑惑及解答</h1><p>学习过程中，针对Java知识点的理解、操作细节等提出了相关疑问，解答整理如下，均为学习中的重点难点，助力巩固记忆。</p>
+<ul>
+<li><p><strong>疑惑1：Java注释有几种？各自的用法和注意事项是什么？</strong><br>解答：Java注释共3种，核心区别的用法如下：</p>
+<ul>
+<li><p>单行注释（&#x2F;&#x2F;）：仅注释一行，用于简单说明代码含义，&#x2F;&#x2F;后内容均为注释，换行失效。</p>
+</li>
+<li><p>多行注释（&#x2F;* *&#x2F;）：可注释多行，用于说明代码块，不可嵌套使用，否则会导致注释异常。</p>
+</li>
+<li><p>文档注释（&#x2F;** *&#x2F;）：仅用于类、方法、接口，可配合javadoc工具生成API文档，支持@author、@param等标签，不能用于代码行中间。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>疑惑2：基本数据类型和引用数据类型的区别是什么？8种基本数据类型的取值范围和用法有哪些注意点？</strong><br>解答：核心区别：基本数据类型直接存储值，引用数据类型存储对象的地址（如String、数组）；</p>
+</li>
+</ul>
+<p>8种基本数据类型注意点：</p>
+<pre><code>- long类型末尾必须加L/l，否则默认视为int，超出int范围会报错；
+
+- float类型末尾必须加F/f，否则默认视为double，虽可赋值但不规范；
+
+- char类型用单引号包裹，可存储中文（Unicode编码），用双引号会视为String报错；
+
+- boolean类型仅存true/false，不能用0/1代替，与C/C\+\+不同。
+</code></pre>
+<ul>
+<li><strong>疑惑3：三种变量类型（局部、成员、类变量）的区别的是什么？默认值规则是什么？</strong><br>解答：区别核心在定义位置、作用域和归属：</li>
+</ul>
+<p>默认值规则：整数0、浮点0.0、char&amp;#39;\u0000&amp;#39;、boolean false、引用类型null。</p>
+<pre><code>- 局部变量：定义在方法/代码块中，作用域仅限当前区域，无默认值，必须初始化后使用；
+
+- 成员变量：定义在类中、方法外，属于对象，作用域覆盖整个类，有默认值；
+
+- 类变量：用static修饰，属于类，可通过类名直接访问，所有对象共享，有默认值。
+</code></pre>
+<ul>
+<li><p><strong>疑惑4：switch case语句的注意事项有哪些？容易出错的点是什么？</strong><br>解答：核心注意事项，也是易错点：</p>
+<ul>
+<li><p>表达式类型只能是byte、short、int、char、enum、String（Java7+）；</p>
+</li>
+<li><p>case后必须是常量，不能是变量，且不能重复；</p>
+</li>
+<li><p>break不能省略，否则会出现“case穿透”，执行当前case后继续执行后续所有case；</p>
+</li>
+<li><p>default可选，建议放最后，所有case不匹配时执行。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>疑惑5：String、StringBuffer的区别是什么？各自适合什么场景？</strong><br>解答：核心区别在“可变性”和效率：</p>
+<ul>
+<li><p>String：不可变字符串，修改（拼接、替换）会创建新对象，适合不频繁修改的场景；</p>
+</li>
+<li><p>StringBuffer：可变字符串，修改不会创建新对象，线程安全但效率低，适合频繁修改字符串的场景（如循环拼接）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>疑惑6：访问修饰符有4种，各自的访问权限范围是什么？</strong><br>解答：从高到低排序：</p>
+<ul>
+<li><p>public：全项目可访问（当前类、同包、不同包子类、不同包非子类）；</p>
+</li>
+<li><p>protected：当前类、同包、不同包子类可访问，不同包非子类不可；</p>
+</li>
+<li><p>default（无关键字）：仅当前类、同包可访问；</p>
+</li>
+<li><p>private：仅当前类可访问，同包、子类均不可。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>疑惑7：Overload（重载）和Override（重写）的区别是什么？容易混淆的点是什么？</strong><br>解答：核心区别在“是否在同一类、方法签名是否改变”：</p>
+</li>
+</ul>
+<p>易错点：重写时参数列表必须完全一致，否则会变成重载。</p>
+<pre><code>- Overload（重载）：同一类中，方法名相同，参数列表（个数、类型、顺序）不同，返回值可不同，与修饰符无关；
+
+- Override（重写）：子类与父类中，方法名、参数列表、返回值完全相同，子类修饰符权限不能低于父类，不能重写final方法。
+</code></pre>
+<ul>
+<li><p><strong>疑惑8：抽象类和接口的区别是什么？各自的使用场景是什么？</strong><br>解答：核心区别在“继承&#x2F;实现、方法类型、成员变量”：</p>
+<ul>
+<li><p>抽象类：用abstract修饰，可继承（单继承），可包含抽象方法（无方法体）和普通方法，可有成员变量；适合定义有共性的类，子类需实现抽象方法。</p>
+</li>
+<li><p>接口：用interface修饰，可实现（多实现），所有方法默认是public abstract（Java8前），无成员变量（只能有常量）；适合定义规范、实现多继承效果。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>疑惑9：集合框架中，ArrayList、LinkedList、HashSet、HashMap的区别和使用场景是什么？</strong><br>解答：分List和Set、Map两类区分：</p>
+<ul>
+<li><p>ArrayList：List接口，数组实现，查询快、增删慢，适合频繁查询、少增删的场景；</p>
+</li>
+<li><p>LinkedList：List接口，链表实现，查询慢、增删快，适合频繁增删、少查询的场景；</p>
+</li>
+<li><p>HashSet：Set接口，哈希表实现，元素唯一、无序，无索引，适合去重、无需排序的场景；</p>
+</li>
+<li><p>HashMap：Map接口，哈希表实现，键值对存储，键唯一、值可重复，适合存储键值映射关系（如用户ID和用户信息）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>疑惑10：Java 8新特性有哪些？核心重点是什么？</strong><br>解答：核心重点新特性，贴合学习常用场景：</p>
+<ul>
+<li><p>Lambda表达式：简化匿名内部类写法，简化代码（如集合遍历）；</p>
+</li>
+<li><p>Stream API：简化集合、数组的操作（过滤、排序、映射等）；</p>
+</li>
+<li><p>接口默认方法：接口中可定义带方法体的默认方法（用default修饰），无需所有实现类都实现；</p>
+</li>
+<li><p>方法引用：简化Lambda表达式，如::语法，进一步精简代码。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="二、Java-核心知识点总结"><a href="#二、Java-核心知识点总结" class="headerlink" title="二、Java 核心知识点总结"></a>二、Java 核心知识点总结</h1><h2 id="模块1：Java-AI-编程助手"><a href="#模块1：Java-AI-编程助手" class="headerlink" title="模块1：Java AI 编程助手"></a>模块1：Java AI 编程助手</h2><p>Java AI编程助手是辅助Java学习和开发的工具，依托人工智能技术，可高效解决学习和开发中的问题，提升效率，尤其适合新手排查疑惑、巩固知识点。</p>
+<h3 id="1-1-常用Java-AI编程助手"><a href="#1-1-常用Java-AI编程助手" class="headerlink" title="1.1 常用Java AI编程助手"></a>1.1 常用Java AI编程助手</h3><ul>
+<li><p>IntelliJ IDEA 内置AI（CodeGeeX、Copilot）：集成在开发工具中，实时提示代码、补全语法、解释代码含义，可生成类、方法，适配开发场景。</p>
+</li>
+<li><p>豆包AI：适合学习场景，可直接提问知识点、代码报错原因、逻辑疑问，给出详细解答和实例，贴合新手学习节奏。</p>
+</li>
+<li><p>ChatGPT：可生成代码、排查bug、优化代码结构，解释复杂知识点（如反射、多线程），适合进阶学习和实战开发。</p>
+</li>
+</ul>
+<h3 id="1-2-学习使用建议（结合自身学习体验）"><a href="#1-2-学习使用建议（结合自身学习体验）" class="headerlink" title="1.2 学习使用建议（结合自身学习体验）"></a>1.2 学习使用建议（结合自身学习体验）</h3><ul>
+<li><p>新手阶段：不要过度依赖AI生成代码，先自主编写，遇到报错、逻辑不通时，用AI排查问题，理解错误原因，避免失去动手能力。</p>
+</li>
+<li><p>知识点巩固：用AI提问易混淆知识点（如重载与重写、抽象类与接口），结合笔记对比记忆，加深理解。</p>
+</li>
+<li><p>实战练习：用AI生成基础代码框架，自己补充逻辑、调试修改，提升实战能力，同时借助AI优化代码结构。</p>
+</li>
+</ul>
+<h2 id="模块2：Java-基础语法"><a href="#模块2：Java-基础语法" class="headerlink" title="模块2：Java 基础语法"></a>模块2：Java 基础语法</h2><p>Java基础语法是学习的核心基石，所有后续知识点均基于此，需熟练掌握，避免基础错误，重点关注易错点和实操细节。</p>
+<h3 id="2-1-Java-注释"><a href="#2-1-Java-注释" class="headerlink" title="2.1 Java 注释"></a>2.1 Java 注释</h3><p>注释用于说明代码，不参与程序编译和运行，便于阅读和维护，分3种类型，细节如下：</p>
+<ul>
+<li>单行注释：&#x2F;&#x2F; 注释内容，仅作用于一行，简洁高效，适合简单说明（如变量含义）。</li>
+</ul>
+<p>实例：<code>// 定义整数变量，存储年龄</code></p>
+<ul>
+<li>多行注释：&#x2F;* 注释内容 *&#x2F;，可跨多行，适合说明代码块、类的作用，不可嵌套。</li>
+</ul>
+<p>实例：<br>        <code>/\*  \* 该方法用于计算两数之和  \* 接收两个int类型参数，返回求和结果  \*/</code></p>
+<ul>
+<li>文档注释：&#x2F;** 注释内容 *&#x2F;，仅用于类、方法、接口，可配合javadoc工具生成API文档，支持多种标签。</li>
+</ul>
+<p>实例：<br>        <code>/\*\*  \* @author 自己的名字  \* @param a 第一个求和参数  \* @param b 第二个求和参数  \* @return int 两数之和  \*/</code></p>
+<h3 id="2-2-文档注释常用标签"><a href="#2-2-文档注释常用标签" class="headerlink" title="2.2 文档注释常用标签"></a>2.2 文档注释常用标签</h3><p>标签规范文档注释结构，生成的API文档更清晰，常用标签及用法：</p>
+<ul>
+<li><p>@author：标识类的作者，可多个（用逗号分隔），仅用于类注释。</p>
+</li>
+<li><p>@version：指定类的版本（如1.0.0），用于版本管理，仅用于类注释。</p>
+</li>
+<li><p>@param：说明方法参数，格式「@param 参数名 说明」，有多少参数写多少个。</p>
+</li>
+<li><p>@return：说明方法返回值，仅用于有返回值的方法，需明确返回值类型和含义。</p>
+</li>
+<li><p>@throws：说明方法可能抛出的异常，与方法声明中throws的异常对应。</p>
+</li>
+<li><p>补充标签：@see（关联其他类&#x2F;方法）、@since（标记引入的Java版本）。</p>
+</li>
+</ul>
+<p>API文档生成步骤：编写带文档注释的Java文件 → 打开CMD进入文件目录 → 执行命令<code>javadoc \-d 输出目录 文件名\.java</code> → 打开输出目录的index.html查看。</p>
+<h3 id="2-3-Java-对象和类"><a href="#2-3-Java-对象和类" class="headerlink" title="2.3 Java 对象和类"></a>2.3 Java 对象和类</h3><p>Java是面向对象编程语言，类是对象的模板，对象是类的实例，核心是“封装、继承、多态”。</p>
+<ul>
+<li>类的定义：用class关键字，包含成员变量（属性）和成员方法（行为）。</li>
+</ul>
+<p>实例：<br><code>public class Student \{     // 成员变量（属性）     String name;     int age;     // 成员方法（行为）     public void show\(\) \{         System\.out\.println\(\&amp;\#34;姓名：\&amp;\#34; \+ name \+ \&amp;\#34;，年龄：\&amp;\#34; \+ age\);     \} \}</code></p>
+<ul>
+<li>对象的创建：用new关键字，格式「类名 对象名 &#x3D; new 类名();」，创建后通过「对象名.成员变量」「对象名.成员方法()」访问。</li>
+</ul>
+<p>实例：<code>Student student = new Student\(\); student\.name = \&amp;\#34;张三\&amp;\#34;; student\.show\(\);</code></p>
+<ul>
+<li>类的特性：封装（隐藏属性，通过getter&#x2F;setter访问）、继承（子类继承父类属性和方法）、多态（同一方法有不同实现）。</li>
+</ul>
+<h3 id="2-4-Java-基本数据类型"><a href="#2-4-Java-基本数据类型" class="headerlink" title="2.4 Java 基本数据类型"></a>2.4 Java 基本数据类型</h3><p>Java数据类型分基本数据类型（8种）和引用数据类型（类、接口、数组等），基本数据类型直接存储值，具体分类及细节：</p>
+<table>
+<thead>
+<tr>
+<th>类型分类</th>
+<th>具体类型</th>
+<th>字节数</th>
+<th>取值范围</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整数类型</td>
+<td>byte</td>
+<td>1</td>
+<td>-128 ~ 127</td>
+<td>常用作节省内存的小整数</td>
+</tr>
+<tr>
+<td></td>
+<td>short</td>
+<td>2</td>
+<td>-32768 ~ 32767</td>
+<td>较少使用</td>
+</tr>
+<tr>
+<td></td>
+<td>int</td>
+<td>4</td>
+<td>-2³¹ ~ 2³¹-1（约±21亿）</td>
+<td>最常用的整数类型</td>
+</tr>
+<tr>
+<td></td>
+<td>long</td>
+<td>8</td>
+<td>-2⁶³ ~ 2⁶³-1</td>
+<td>末尾必须加L&#x2F;l</td>
+</tr>
+<tr>
+<td>浮点类型</td>
+<td>float</td>
+<td>4</td>
+<td>单精度，精度较低</td>
+<td>末尾必须加F&#x2F;f</td>
+</tr>
+<tr>
+<td></td>
+<td>double</td>
+<td>8</td>
+<td>双精度，精度较高</td>
+<td>最常用的浮点类型</td>
+</tr>
+<tr>
+<td>字符类型</td>
+<td>char</td>
+<td>2</td>
+<td>0 ~ 65535</td>
+<td>单引号包裹，可存中文</td>
+</tr>
+<tr>
+<td>布尔类型</td>
+<td>boolean</td>
+<td>无明确字节数</td>
+<td>true&#x2F;false</td>
+<td>不可用0&#x2F;1代替</td>
+</tr>
+</tbody></table>
+<h3 id="2-5-Java-变量类型"><a href="#2-5-Java-变量类型" class="headerlink" title="2.5 Java 变量类型"></a>2.5 Java 变量类型</h3><p>变量是存储数据的容器，根据定义位置和作用域，分为3种类型，核心区别如下：</p>
+<ul>
+<li>局部变量</li>
+</ul>
+<p>- 定义：方法、代码块（for、if）中</p>
+<p>- 作用域：仅限当前方法&#x2F;代码块</p>
+<p>- 特点：无默认值，必须初始化后使用</p>
+<p>- 实例：<code>public void test\(\) \{ int num = 10; \}</code></p>
+<ul>
+<li>成员变量（实例变量）</li>
+</ul>
+<p>- 定义：类中、方法外</p>
+<p>- 作用域：整个类</p>
+<p>- 特点：有默认值（按数据类型），属于对象，创建对象后访问</p>
+<p>- 实例：<code>public class Student \{ String name; \}</code></p>
+<ul>
+<li>类变量（静态变量）</li>
+</ul>
+<p>- 定义：类中、方法外，用static修饰</p>
+<p>- 作用域：整个类</p>
+<p>- 特点：有默认值，属于类，无需创建对象，通过类名访问</p>
+<p>- 实例：<code>public class Student \{ static String school; \}</code></p>
+<h3 id="2-6-Java-变量命名规则"><a href="#2-6-Java-变量命名规则" class="headerlink" title="2.6 Java 变量命名规则"></a>2.6 Java 变量命名规则</h3><p>命名需遵循规则（避免报错）和规范（提升可读性），具体如下：</p>
+<h4 id="2-6-1-必须遵守的规则（报错风险）"><a href="#2-6-1-必须遵守的规则（报错风险）" class="headerlink" title="2.6.1 必须遵守的规则（报错风险）"></a>2.6.1 必须遵守的规则（报错风险）</h4><ul>
+<li><p>由字母（A-Z、a-z）、数字（0-9）、下划线（_）、美元符号（$）组成，不能以数字开头。</p>
+</li>
+<li><p>不能使用Java关键字（class、int、if等）和保留字（goto、const）。</p>
+</li>
+<li><p>区分大小写（name和Name是两个不同变量）。</p>
+</li>
+</ul>
+<h4 id="2-6-2-推荐遵守的规范"><a href="#2-6-2-推荐遵守的规范" class="headerlink" title="2.6.2 推荐遵守的规范"></a>2.6.2 推荐遵守的规范</h4><ul>
+<li><p>局部变量、成员变量：驼峰命名法（首字母小写，后续单词首字母大写），如studentName、userAge。</p>
+</li>
+<li><p>类变量（静态变量）：全大写，单词间用下划线分隔，如SCHOOL_NAME、MAX_NUM。</p>
+</li>
+<li><p>见名知意，避免无意义命名（如a、b、c），如存储密码用password，存储成绩用score。</p>
+</li>
+</ul>
+<h4 id="2-6-3-错误实例（避免踩坑）"><a href="#2-6-3-错误实例（避免踩坑）" class="headerlink" title="2.6.3 错误实例（避免踩坑）"></a>2.6.3 错误实例（避免踩坑）</h4><ul>
+<li><p><code>int 1num = 10;</code>（以数字开头，报错）</p>
+</li>
+<li><p><code>String class = \&amp;\#34;Java\&amp;\#34;;</code>（使用关键字class，报错）</p>
+</li>
+<li><p><code>double $score = 95\.5;</code>（合法但不推荐）</p>
+</li>
+</ul>
+<h3 id="2-7-Java-修饰符"><a href="#2-7-Java-修饰符" class="headerlink" title="2.7 Java 修饰符"></a>2.7 Java 修饰符</h3><p>修饰符用于修饰类、方法、变量，控制其访问权限、生命周期和行为，分访问修饰符和非访问修饰符两类。</p>
+<h4 id="2-7-1-访问修饰符（控制访问权限）"><a href="#2-7-1-访问修饰符（控制访问权限）" class="headerlink" title="2.7.1 访问修饰符（控制访问权限）"></a>2.7.1 访问修饰符（控制访问权限）</h4><table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>当前类</th>
+<th>同包</th>
+<th>不同包子类</th>
+<th>不同包非子类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public</td>
+<td>可访问</td>
+<td>可访问</td>
+<td>可访问</td>
+<td>可访问</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>可访问</td>
+<td>可访问</td>
+<td>可访问</td>
+<td>不可访问</td>
+</tr>
+<tr>
+<td>default（无关键字）</td>
+<td>可访问</td>
+<td>可访问</td>
+<td>不可访问</td>
+<td>不可访问</td>
+</tr>
+<tr>
+<td>private</td>
+<td>可访问</td>
+<td>不可访问</td>
+<td>不可访问</td>
+<td>不可访问</td>
+</tr>
+</tbody></table>
+<h4 id="2-7-2-非访问修饰符（控制行为、生命周期）"><a href="#2-7-2-非访问修饰符（控制行为、生命周期）" class="headerlink" title="2.7.2 非访问修饰符（控制行为、生命周期）"></a>2.7.2 非访问修饰符（控制行为、生命周期）</h4><ul>
+<li><p>static（静态）：修饰类变量、方法、代码块，属于类，无需创建对象访问；static方法不能访问非static成员。</p>
+</li>
+<li><p>final（最终）：修饰类（不能继承）、方法（不能重写）、变量（变为常量，赋值后不可修改）。</p>
+</li>
+<li><p>abstract（抽象）：修饰类（抽象类，不能实例化）、方法（抽象方法，无方法体，需子类实现）。</p>
+</li>
+<li><p>transient（瞬态）：修饰成员变量，序列化时会被忽略（后续序列化章节详细说明）。</p>
+</li>
+</ul>
+<h3 id="2-8-Java-运算符"><a href="#2-8-Java-运算符" class="headerlink" title="2.8 Java 运算符"></a>2.8 Java 运算符</h3><p>运算符用于对变量进行运算，分6大类，重点掌握常用运算符的用法和优先级，避免运算错误。</p>
+<h4 id="2-8-1-常用运算符分类及用法"><a href="#2-8-1-常用运算符分类及用法" class="headerlink" title="2.8.1 常用运算符分类及用法"></a>2.8.1 常用运算符分类及用法</h4><ul>
+<li>算术运算符：+（加）、-（减）、*（乘）、&#x2F;（除）、%（取余）、++（自增）、--（自减）</li>
+</ul>
+<p>- 注意：整数除法舍去小数部分；++&#x2F;--前缀（先运算后使用）、后缀（先使用后运算）。</p>
+<p>- 实例：<code>int a=10, b=3; System\.out\.println\(a%b\); // 1</code></p>
+<ul>
+<li>赋值运算符：&#x3D;、+&#x3D;、-&#x3D;、*&#x3D;、&#x2F;&#x3D;、%&#x3D;</li>
+</ul>
+<p>- 简化赋值操作，如<code>a \+= 5</code> 等价于 <code>a = a \+ 5</code>。</p>
+<ul>
+<li>比较运算符：&#x3D;&#x3D;、!&#x3D;、&amp;gt;、&amp;lt;、&amp;gt;&#x3D;、&amp;lt;&#x3D;</li>
+</ul>
+<p>- 返回boolean值（true&#x2F;false）；&#x3D;&#x3D;比较基本类型比“值”，比较引用类型比“地址”。</p>
+<ul>
+<li>逻辑运算符：&amp;amp;（与）、|（或）、!（非）、&amp;amp;&amp;amp;（短路与）、||（短路或）</li>
+</ul>
+<p>- 短路与&#x2F;或效率更高（左边可判断结果时，右边不执行）。</p>
+<p>- 实例：<code>true \|\| false; // true（短路或，右边不执行）</code></p>
+<ul>
+<li>三元运算符：条件表达式 ? 表达式1 : 表达式2</li>
+</ul>
+<p>- 简化if-else，条件为true执行表达式1，否则执行表达式2。<br>- 实例：<code>int max = \(a\&amp;gt;b\) ? a : b;</code>（获取最大值）</p>
+<ul>
+<li>位运算符：&amp;amp;、|、^、~、&amp;lt;&amp;lt;、&amp;gt;&amp;gt;（较少用，了解即可）。</li>
+</ul>
+<h4 id="2-8-2-运算符优先级（从高到低）"><a href="#2-8-2-运算符优先级（从高到低）" class="headerlink" title="2.8.2 运算符优先级（从高到低）"></a>2.8.2 运算符优先级（从高到低）</h4><p>算术运算符 &amp;gt; 比较运算符 &amp;gt; 逻辑运算符 &amp;gt; 赋值运算符（无需死记，用括号可改变优先级）。</p>
+<h3 id="2-9-Java-循环结构"><a href="#2-9-Java-循环结构" class="headerlink" title="2.9 Java 循环结构"></a>2.9 Java 循环结构</h3><p>循环结构用于重复执行一段代码，Java有3种循环，根据循环次数是否已知选择使用，核心掌握循环逻辑和控制方式。</p>
+<ul>
+<li>for循环：已知循环次数，语法规范，结构清晰。</li>
+</ul>
+<p>语法：<code>for \(初始化表达式; 条件表达式; 更新表达式\) \{ 循环体; \}</code><br>实例（输出1-10）：<br>        <code>for \(int i=1; i\&amp;lt;=10; i\+\+\) \{     System\.out\.println\(i\); \}</code></p>
+<ul>
+<li>while循环：未知循环次数，仅知道循环条件。</li>
+</ul>
+<p>语法：<code>初始化表达式; while \(条件表达式\) \{ 循环体; 更新表达式; \}</code><br>实例（输出1-10）：<br>       <code>int i=1; while \(i\&amp;lt;=10\) \{     System\.out\.println\(i\);     i\+\+; \}</code><br>注意：条件为false时，循环体一次不执行。</p>
+<ul>
+<li>do-while循环：未知循环次数，循环体至少执行一次。</li>
+</ul>
+<p>语法：<code>初始化表达式; do \{ 循环体; 更新表达式; \} while \(条件表达式\);</code><br>实例（输出1-10）：<br>        <code>int i=1; do \{     System\.out\.println\(i\);     i\+\+; \} while \(i\&amp;lt;=10\);</code></p>
+<ul>
+<li>循环控制：</li>
+</ul>
+<p>- break：跳出当前循环，结束循环执行；</p>
+<p>- continue：跳过当前循环剩余部分，进入下一次循环。</p>
+<h3 id="2-10-Java-条件语句"><a href="#2-10-Java-条件语句" class="headerlink" title="2.10 Java 条件语句"></a>2.10 Java 条件语句</h3><p>条件语句用于根据不同条件执行不同代码块，分if语句、if-else语句、if-else if-else语句，核心是逻辑判断。</p>
+<ul>
+<li>if语句：单条件判断，条件为true执行代码块。</li>
+</ul>
+<p>语法：<code>if \(条件表达式\) \{ 代码块; \}</code><br>实例：<code>if \(score \&amp;gt;= 60\) \{ System\.out\.println\(\&amp;\#34;合格\&amp;\#34;\); \}</code></p>
+<ul>
+<li>if-else语句：双条件判断，条件为true执行if块，否则执行else块。</li>
+</ul>
+<p>语法：<code>if \(条件表达式\) \{ 代码块1; \} else \{ 代码块2; \}</code></p>
+<ul>
+<li>if-else if-else语句：多条件判断，依次判断条件，匹配则执行对应块，均不匹配执行else块。</li>
+</ul>
+<p>实例（成绩分级）：<br>        <code>if \(score \&amp;gt;= 90\) \{     System\.out\.println\(\&amp;\#34;优秀\&amp;\#34;\); \} else if \(score \&amp;gt;= 80\) \{     System\.out\.println\(\&amp;\#34;良好\&amp;\#34;\); \} else if \(score \&amp;gt;= 60\) \{     System\.out\.println\(\&amp;\#34;合格\&amp;\#34;\); \} else \{     System\.out\.println\(\&amp;\#34;不合格\&amp;\#34;\); \}</code></p>
+<h3 id="2-11-Java-switch-case"><a href="#2-11-Java-switch-case" class="headerlink" title="2.11 Java switch case"></a>2.11 Java switch case</h3><p>switch case用于多值判断，替代复杂的if-else if-else，适用于变量有多个固定值的场景，重点注意break的使用。</p>
+<ul>
+<li>语法：<br>  &#96;switch (表达式) {<br>  case 值1:<br>  代码块1;<br>  break; &#x2F;&#x2F; 跳出switch<br>  case 值2:<br>  代码块2;<br>  break;<br>  default:<br>  代码块n; &#x2F;&#x2F; 所有case不匹配时执行<br>  break;</li>
+</ul>
+<p>}&#96;</p>
+<ul>
+<li>实例（判断星期）：<br>  &#96;int week &#x3D; 3;</li>
+</ul>
+<p>switch (week) {<br>    case 1: System.out.println(&amp;#34;星期一&amp;#34;); break;<br>    case 2: System.out.println(&amp;#34;星期二&amp;#34;); break;<br>    case 3: System.out.println(&amp;#34;星期三&amp;#34;); break;<br>    default: System.out.println(&amp;#34;输入错误&amp;#34;); break;<br>}&#96;</p>
+<ul>
+<li>注意事项（易错点）：</li>
+</ul>
+<p>- 表达式类型：byte、short、int、char、enum、String（Java7+）；</p>
+<p>- case后必须是常量，不能重复；</p>
+<p>- break不能省略，否则出现“case穿透”；</p>
+<p>- default可选，建议放最后。</p>
+<h3 id="2-12-Java-Number-amp-Math-类"><a href="#2-12-Java-Number-amp-Math-类" class="headerlink" title="2.12 Java Number &amp;amp; Math 类"></a>2.12 Java Number &amp;amp; Math 类</h3><p>Number类是基本数据类型包装类的父类（抽象类），Math类是数学工具类，无需创建对象，直接通过类名调用方法。</p>
+<h4 id="2-12-1-Number类（包装类）"><a href="#2-12-1-Number类（包装类）" class="headerlink" title="2.12.1 Number类（包装类）"></a>2.12.1 Number类（包装类）</h4><p>用于将基本数据类型转换为引用数据类型，方便在集合中使用（集合仅存引用类型），对应关系如下：</p>
+<ul>
+<li><p>byte→Byte、short→Short、int→Integer、long→Long、float→Float、double→Double、char→Character、boolean→Boolean</p>
+</li>
+<li><p>核心功能（以Integer为例）：</p>
+</li>
+</ul>
+<p>- 自动装箱&#x2F;拆箱（Java5+）：<code>Integer num = 10; int n = num;</code>（自动装箱&#x2F;拆箱）；</p>
+<p>- 字符串与基本类型转换：<code>int num = Integer\.parseInt\(\&amp;\#34;123\&amp;\#34;\); String str = Integer\.toString\(123\);</code>。</p>
+<h4 id="2-12-2-Math类（常用静态方法）"><a href="#2-12-2-Math类（常用静态方法）" class="headerlink" title="2.12.2 Math类（常用静态方法）"></a>2.12.2 Math类（常用静态方法）</h4><ul>
+<li><p>Math.abs(x)：返回x的绝对值（如Math.abs(-5) → 5）；</p>
+</li>
+<li><p>Math.max(x,y)、Math.min(x,y)：返回最大值、最小值；</p>
+</li>
+<li><p>Math.random()：返回0.0（含）~1.0（不含）随机数；</p>
+</li>
+<li><p>Math.round(x)：四舍五入取整（如Math.round(95.5) → 96）；</p>
+</li>
+<li><p>Math.pow(x,y)：返回x的y次方（如Math.pow(2,3) → 8.0）；</p>
+</li>
+<li><p>Math.sqrt(x)：返回x的平方根（如Math.sqrt(16) → 4.0）。</p>
+</li>
+</ul>
+<h3 id="2-13-Java-Character-类"><a href="#2-13-Java-Character-类" class="headerlink" title="2.13 Java Character 类"></a>2.13 Java Character 类</h3><p>Character类是char类型的包装类，提供大量静态方法，用于判断、转换字符，简化字符操作。</p>
+<ul>
+<li>常用静态方法：</li>
+</ul>
+<p>- Character.isLetter(c)：判断是否为字母；</p>
+<p>- Character.isDigit(c)：判断是否为数字；</p>
+<p>- Character.isUpperCase(c)、Character.isLowerCase(c)：判断大小写；</p>
+<p>- Character.toUpperCase(c)、Character.toLowerCase(c)：转换大小写。</p>
+<ul>
+<li>实例（判断字符类型）：<br> &#96;char c &#x3D; &amp;#39;5&amp;#39;;</li>
+</ul>
+<p>if (Character.isDigit(c)) {<br>    System.out.println(&amp;#34;数字&amp;#34;);<br>} else if (Character.isLetter(c)) {<br>    System.out.println(&amp;#34;字母&amp;#34;);<br>} else {<br>    System.out.println(&amp;#34;其他符号&amp;#34;);<br>}&#96;</p>
+<h3 id="2-14-Java-String-类"><a href="#2-14-Java-String-类" class="headerlink" title="2.14 Java String 类"></a>2.14 Java String 类</h3><p>String类用于表示字符串，是最常用的引用数据类型，核心特点：字符串不可变（创建后内容不能修改），所有字符串常量存储在字符串常量池。</p>
+<ul>
+<li>创建方式（2种）：</li>
+</ul>
+<p>- 直接赋值（推荐）：<code>String str1 = \&amp;\#34;Java\&amp;\#34;;</code>（存储在常量池）；</p>
+<p>- new关键字创建：<code>String str2 = new String\(\&amp;\#34;Java\&amp;\#34;\);</code>（存储在堆内存）；</p>
+<p>- 区别：<code>str1 == str2</code>（false，地址不同），<code>str1\.equals\(str2\)</code>（true，内容相同）。</p>
+<ul>
+<li>常用方法（重点）：</li>
+</ul>
+<p>- length()：返回字符串长度；</p>
+<p>- equals(str)：判断内容是否相同（区分大小写）；</p>
+<p>- equalsIgnoreCase(str)：判断内容是否相同（不区分大小写）；</p>
+<p>- concat(str)：拼接字符串（等价于+）；</p>
+<p>- charAt(index)：返回指定索引的字符（索引从0开始）；</p>
+<p>- substring(start, end)：截取字符串（不含end索引）；</p>
+<p>- trim()：去除前后空格（不除中间）；</p>
+<p>- replace(old, new)：替换字符串；<br>- split(regex)：根据正则拆分字符串，返回数组。</p>
+<ul>
+<li>注意：所有修改字符串的方法（concat、replace等），都会创建新字符串，原字符串不变。</li>
+</ul>
+<h3 id="2-15-Java-StringBuffer"><a href="#2-15-Java-StringBuffer" class="headerlink" title="2.15 Java StringBuffer"></a>2.15 Java StringBuffer</h3><p>StringBuffer类用于表示可变字符串，解决String类不可变的问题，适合频繁修改字符串的场景（如循环拼接）。</p>
+<ul>
+<li><p>核心特点：可变、线程安全（效率较低），修改字符串时不会创建新对象。</p>
+</li>
+<li><p>常用方法：</p>
+</li>
+</ul>
+<p>- append(str)：拼接字符串（核心方法）；</p>
+<p>- insert(index, str)：在指定索引插入字符串；</p>
+<p>- delete(start, end)：删除指定范围的字符串；</p>
+<p>- reverse()：反转字符串。</p>
+<ul>
+<li>实例：<br>  &#96;StringBuffer sb &#x3D; new StringBuffer();</li>
+</ul>
+<p>sb.append(&amp;#34;Java&amp;#34;);<br>sb.append(&amp;#34;教程&amp;#34;);<br>System.out.println(sb.toString()); &#x2F;&#x2F; Java教程&#96;</p>
+<h3 id="2-16-Java-数组"><a href="#2-16-Java-数组" class="headerlink" title="2.16 Java 数组"></a>2.16 Java 数组</h3><p>数组是存储多个相同类型数据的容器，长度固定，可存储基本数据类型和引用数据类型，核心掌握数组的创建、初始化和遍历。</p>
+<ul>
+<li>数组的创建（3种方式）：</li>
+</ul>
+<p>- 方式1：<code>int\[\] arr = new int\[5\];</code>（指定长度，默认初始化）；</p>
+<p>- 方式2：<code>int\[\] arr = new int\[\]\{1,2,3,4,5\};</code>（指定元素，长度自动匹配）；</p>
+<p>- 方式3：<code>int\[\] arr = \{1,2,3,4,5\};</code>（简化写法，最常用）。</p>
+<ul>
+<li>数组的遍历（3种方式）：</li>
+</ul>
+<p>- for循环：<code>for \(int i=0; i\&amp;lt;arr\.length; i\+\+\) \{ System\.out\.println\(arr\[i\]\); \}</code>；</p>
+<p>- 增强for循环（foreach）：<code>for \(int num : arr\) \{ System\.out\.println\(num\); \}</code>；</p>
+<p>- Arrays.toString(arr)：将数组转为字符串（需导入java.util.Arrays）。</p>
+<ul>
+<li><p>二维数组：数组的数组，创建方式：<code>int\[\]\[\] arr = \{\{1,2\},\{3,4\},\{5,6\}\};</code>，遍历需嵌套循环。</p>
+</li>
+<li><p>注意：数组长度固定，不能动态增减；数组索引从0开始，越界会报错（ArrayIndexOutOfBoundsException）。</p>
+</li>
+</ul>
+<h3 id="2-17-Java-日期时间"><a href="#2-17-Java-日期时间" class="headerlink" title="2.17 Java 日期时间"></a>2.17 Java 日期时间</h3><p>Java提供日期时间相关类，用于处理日期、时间的获取、转换和格式化，重点掌握Java 8新增的LocalDateTime类（替代旧API）。</p>
+<h4 id="2-17-1-旧API（了解即可，不推荐使用）"><a href="#2-17-1-旧API（了解即可，不推荐使用）" class="headerlink" title="2.17.1 旧API（了解即可，不推荐使用）"></a>2.17.1 旧API（了解即可，不推荐使用）</h4><ul>
+<li><p>Date类：表示特定的瞬间，如<code>Date date = new Date\(\);</code>（获取当前时间）；</p>
+</li>
+<li><p>SimpleDateFormat类：格式化日期，如<code>SimpleDateFormat sdf = new SimpleDateFormat\(\&amp;\#34;yyyy\-MM\-dd HH:mm:ss\&amp;\#34;\);</code>。</p>
+</li>
+</ul>
+<h4 id="2-17-2-新API（Java-8-，推荐使用）"><a href="#2-17-2-新API（Java-8-，推荐使用）" class="headerlink" title="2.17.2 新API（Java 8+，推荐使用）"></a>2.17.2 新API（Java 8+，推荐使用）</h4><ul>
+<li><p>LocalDate：处理日期（年、月、日），如<code>LocalDate now = LocalDate\.now\(\);</code>（获取当前日期）；</p>
+</li>
+<li><p>LocalTime：处理时间（时、分、秒），如<code>LocalTime now = LocalTime\.now\(\);</code>；</p>
+</li>
+<li><p>LocalDateTime：处理日期+时间（最常用），如<code>LocalDateTime now = LocalDateTime\.now\(\);</code>；</p>
+</li>
+<li><p>DateTimeFormatter：格式化日期时间，如：<br> &#96;DateTimeFormatter formatter &#x3D; DateTimeFormatter.ofPattern(&amp;#34;yyyy-MM-dd HH:mm:ss&amp;#34;);</p>
+</li>
+</ul>
+<p>String nowStr &#x3D; now.format(formatter);&#96;</p>
+<ul>
+<li>常用方法：</li>
+</ul>
+<p>- plusDays(n)：增加n天；</p>
+<p>- minusMonths(n)：减少n个月；</p>
+<p>- getYear()、getMonthValue()、getDayOfMonth()：获取年、月、日。</p>
+<h3 id="2-18-Java-正则表达式"><a href="#2-18-Java-正则表达式" class="headerlink" title="2.18 Java 正则表达式"></a>2.18 Java 正则表达式</h3><p>正则表达式是用于匹配字符串的模式，可用于验证、查找、替换字符串，Java中通过Pattern和Matcher类实现。</p>
+<ul>
+<li>核心元字符（常用）：</li>
+</ul>
+<p>- .：匹配任意单个字符（除换行）；</p>
+<p>- *：匹配前面的字符0次或多次；</p>
+<p>- +：匹配前面的字符1次或多次；</p>
+<p>- ?：匹配前面的字符0次或1次；</p>
+<p>- []：匹配括号内的任意一个字符（如[0-9]匹配数字）；</p>
+<p>- ^：匹配字符串开头；</p>
+<p>- $：匹配字符串结尾；</p>
+<p>- \d：匹配数字（等价于[0-9]）；</p>
+<p>- \w：匹配字母、数字、下划线（等价于[a-zA-Z0-9_]）。</p>
+<ul>
+<li>常用场景（实例）：</li>
+</ul>
+<p>- 验证手机号：<code>String regex = \&amp;\#34;^1\[3\-9\]\\\\d\{9\}$\&amp;\#34;;</code>；</p>
+<p>- 验证邮箱：<code>String regex = \&amp;\#34;^\[a\-zA\-Z0\-9\_\-\]\+@\[a\-zA\-Z0\-9\_\-\]\+\(\\\\\.\[a\-zA\-Z0\-9\_\-\]\+\)\+$\&amp;\#34;;</code>；</p>
+<p>- 验证身份证（18位）：<code>String regex = \&amp;\#34;^\[1\-9\]\\\\d\{5\}\(19\|20\)\\\\d\{2\}\(\(0\[1\-9\]\)\|\(1\[0\-2\]\)\)\(\(\[0\-2\]\[1\-9\]\)\|10\|20\|30\|31\)\\\\d\{3\}\[0\-9Xx\]$\&amp;\#34;;</code>。</p>
+<ul>
+<li>Java中使用：<br>  &#96;&#x2F;&#x2F; 方式1：使用String的matches方法（简单场景）</li>
+</ul>
+<p>boolean isPhone &#x3D; &amp;#34;13800138000&amp;#34;.matches(&amp;#34;^1[3-9]\\d{9}$&amp;#34;);<br>&#x2F;&#x2F; 方式2：使用Pattern和Matcher（复杂场景）<br>Pattern pattern &#x3D; Pattern.compile(&amp;#34;^1[3-9]\\d{9}$&amp;#34;);<br>Matcher matcher &#x3D; pattern.matcher(&amp;#34;13800138000&amp;#34;);<br>boolean isPhone &#x3D; matcher.matches();&#96;</p>
+<h3 id="2-19-Java-方法"><a href="#2-19-Java-方法" class="headerlink" title="2.19 Java 方法"></a>2.19 Java 方法</h3><p>方法是一段可重复执行的代码块，用于实现特定功能，提高代码复用性和可读性，核心掌握方法的定义、调用和重载。</p>
+<ul>
+<li>方法的定义语法：<br>  <code>修饰符 返回值类型 方法名\(参数列表\) \{   方法体;   return 返回值; // 无返回值（void）时可省略 \}</code><br>- 修饰符：可选（如public、static）；</li>
+</ul>
+<p>- 返回值类型：无返回值写void，有返回值写对应数据类型；</p>
+<p>- 参数列表：可选，多个参数用逗号分隔。</p>
+<ul>
+<li>方法的调用：</li>
+</ul>
+<p>- 无返回值：<code>方法名\(参数\);</code>；</p>
+<p>- 有返回值：<code>返回值类型 变量名 = 方法名\(参数\);</code>。</p>
+<ul>
+<li>方法的重载（Overload）：</li>
+</ul>
+<p>- 定义：同一类中，方法名相同，参数列表（个数、类型、顺序）不同，返回值可不同；</p>
+<p>- 实例：<br>        <code>public int add\(int a, int b\) \{ return a\+b; \} public double add\(double a, double b\) \{ return a\+b; \}</code></p>
+<ul>
+<li>方法的参数传递：</li>
+</ul>
+<p>- 基本数据类型：值传递（修改形参不影响实参）；</p>
+<p>- 引用数据类型：引用传递（修改形参影响实参，因为传递的是地址）。</p>
+<h3 id="2-20-Java-构造方法"><a href="#2-20-Java-构造方法" class="headerlink" title="2.20 Java 构造方法"></a>2.20 Java 构造方法</h3><p>构造方法是类的特殊方法，用于创建对象时初始化对象的成员变量，与类名相同，无返回值，无需手动调用（new对象时自动调用）。</p>
+<ul>
+<li>构造方法的特点：</li>
+</ul>
+<p>- 方法名与类名完全相同；</p>
+<p>- 无返回值（不能写void）；</p>
+<p>- 若未手动定义，编译器会自动生成无参构造方法；</p>
+<p>- 可重载（多个构造方法，参数列表不同）。</p>
+<ul>
+<li><p>实例：<br>  <code>public class Student \{   String name;   int age;   // 无参构造   public Student\(\) \{\}   // 有参构造（重载）   public Student\(String name, int age\) \{   this\.name = name;   this\.age = age;   \} \} // 调用构造方法创建对象 Student s1 = new Student\(\); // 调用无参构造 Student s2 = new Student\(\&amp;\#34;张三\&amp;\#34;, 18\); // 调用有参构造</code></p>
+</li>
+<li><p>注意：手动定义有参构造后，编译器不会再生成无参构造，需手动添加（避免报错）。</p>
+</li>
+</ul>
+<h3 id="2-21-Java-Stream、File、IO"><a href="#2-21-Java-Stream、File、IO" class="headerlink" title="2.21 Java Stream、File、IO"></a>2.21 Java Stream、File、IO</h3><p>IO（输入&#x2F;输出）用于实现程序与外部设备（文件、键盘、网络）的数据交互，Stream是Java 8新增的流操作，简化集合、数组的处理；File类用于操作文件和目录。</p>
+<h4 id="2-21-1-File类（文件-目录操作）"><a href="#2-21-1-File类（文件-目录操作）" class="headerlink" title="2.21.1 File类（文件&#x2F;目录操作）"></a>2.21.1 File类（文件&#x2F;目录操作）</h4><ul>
+<li>核心功能：创建文件&#x2F;目录、删除文件&#x2F;目录、判断文件&#x2F;目录是否存在、获取文件</li>
+</ul>
+<blockquote>
+<p>（注：文档部分内容可能由 AI 生成）</p>
+</blockquote>
+
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="python" class="lazyload">
+      <a href="/2026/04/29/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Python%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20/" aria-label="后一篇: python"  title="后一篇: python"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          python
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      祁雪
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        35.5k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        02:24
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java-%E5%85%A8%E9%9D%A2%E4%B8%AA%E6%80%A7%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%90%AB%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93-%E5%AD%A6%E4%B9%A0%E7%96%91%E6%83%91%E8%A7%A3%E7%AD%94%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">Java 全面个性化学习笔记（含知识点总结+学习疑惑解答）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AD%A6%E4%B9%A0%E7%96%91%E6%83%91%E5%8F%8A%E8%A7%A3%E7%AD%94"><span class="toc-number">2.</span> <span class="toc-text">一、学习疑惑及解答</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Java-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">二、Java 核心知识点总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%971%EF%BC%9AJava-AI-%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B"><span class="toc-number">3.1.</span> <span class="toc-text">模块1：Java AI 编程助手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%B8%B8%E7%94%A8Java-AI%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B"><span class="toc-number">3.1.1.</span> <span class="toc-text">1.1 常用Java AI编程助手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE%EF%BC%88%E7%BB%93%E5%90%88%E8%87%AA%E8%BA%AB%E5%AD%A6%E4%B9%A0%E4%BD%93%E9%AA%8C%EF%BC%89"><span class="toc-number">3.1.2.</span> <span class="toc-text">1.2 学习使用建议（结合自身学习体验）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%972%EF%BC%9AJava-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">模块2：Java 基础语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Java-%E6%B3%A8%E9%87%8A"><span class="toc-number">3.2.1.</span> <span class="toc-text">2.1 Java 注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%96%87%E6%A1%A3%E6%B3%A8%E9%87%8A%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE"><span class="toc-number">3.2.2.</span> <span class="toc-text">2.2 文档注释常用标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Java-%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB"><span class="toc-number">3.2.3.</span> <span class="toc-text">2.3 Java 对象和类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Java-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.2.4.</span> <span class="toc-text">2.4 Java 基本数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-Java-%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.2.5.</span> <span class="toc-text">2.5 Java 变量类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-Java-%E5%8F%98%E9%87%8F%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-number">3.2.6.</span> <span class="toc-text">2.6 Java 变量命名规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-1-%E5%BF%85%E9%A1%BB%E9%81%B5%E5%AE%88%E7%9A%84%E8%A7%84%E5%88%99%EF%BC%88%E6%8A%A5%E9%94%99%E9%A3%8E%E9%99%A9%EF%BC%89"><span class="toc-number">3.2.6.1.</span> <span class="toc-text">2.6.1 必须遵守的规则（报错风险）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-2-%E6%8E%A8%E8%8D%90%E9%81%B5%E5%AE%88%E7%9A%84%E8%A7%84%E8%8C%83"><span class="toc-number">3.2.6.2.</span> <span class="toc-text">2.6.2 推荐遵守的规范</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-3-%E9%94%99%E8%AF%AF%E5%AE%9E%E4%BE%8B%EF%BC%88%E9%81%BF%E5%85%8D%E8%B8%A9%E5%9D%91%EF%BC%89"><span class="toc-number">3.2.6.3.</span> <span class="toc-text">2.6.3 错误实例（避免踩坑）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-Java-%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">3.2.7.</span> <span class="toc-text">2.7 Java 修饰符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-1-%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6%EF%BC%88%E6%8E%A7%E5%88%B6%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%EF%BC%89"><span class="toc-number">3.2.7.1.</span> <span class="toc-text">2.7.1 访问修饰符（控制访问权限）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-2-%E9%9D%9E%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6%EF%BC%88%E6%8E%A7%E5%88%B6%E8%A1%8C%E4%B8%BA%E3%80%81%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%89"><span class="toc-number">3.2.7.2.</span> <span class="toc-text">2.7.2 非访问修饰符（控制行为、生命周期）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-Java-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">3.2.8.</span> <span class="toc-text">2.8 Java 运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-1-%E5%B8%B8%E7%94%A8%E8%BF%90%E7%AE%97%E7%AC%A6%E5%88%86%E7%B1%BB%E5%8F%8A%E7%94%A8%E6%B3%95"><span class="toc-number">3.2.8.1.</span> <span class="toc-text">2.8.1 常用运算符分类及用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-2-%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%88%E4%BB%8E%E9%AB%98%E5%88%B0%E4%BD%8E%EF%BC%89"><span class="toc-number">3.2.8.2.</span> <span class="toc-text">2.8.2 运算符优先级（从高到低）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-Java-%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="toc-number">3.2.9.</span> <span class="toc-text">2.9 Java 循环结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-Java-%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="toc-number">3.2.10.</span> <span class="toc-text">2.10 Java 条件语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-Java-switch-case"><span class="toc-number">3.2.11.</span> <span class="toc-text">2.11 Java switch case</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-Java-Number-amp-Math-%E7%B1%BB"><span class="toc-number">3.2.12.</span> <span class="toc-text">2.12 Java Number &amp; Math 类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-1-Number%E7%B1%BB%EF%BC%88%E5%8C%85%E8%A3%85%E7%B1%BB%EF%BC%89"><span class="toc-number">3.2.12.1.</span> <span class="toc-text">2.12.1 Number类（包装类）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-2-Math%E7%B1%BB%EF%BC%88%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%EF%BC%89"><span class="toc-number">3.2.12.2.</span> <span class="toc-text">2.12.2 Math类（常用静态方法）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-Java-Character-%E7%B1%BB"><span class="toc-number">3.2.13.</span> <span class="toc-text">2.13 Java Character 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-14-Java-String-%E7%B1%BB"><span class="toc-number">3.2.14.</span> <span class="toc-text">2.14 Java String 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-Java-StringBuffer"><span class="toc-number">3.2.15.</span> <span class="toc-text">2.15 Java StringBuffer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-16-Java-%E6%95%B0%E7%BB%84"><span class="toc-number">3.2.16.</span> <span class="toc-text">2.16 Java 数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-17-Java-%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4"><span class="toc-number">3.2.17.</span> <span class="toc-text">2.17 Java 日期时间</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-17-1-%E6%97%A7API%EF%BC%88%E4%BA%86%E8%A7%A3%E5%8D%B3%E5%8F%AF%EF%BC%8C%E4%B8%8D%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-number">3.2.17.1.</span> <span class="toc-text">2.17.1 旧API（了解即可，不推荐使用）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-17-2-%E6%96%B0API%EF%BC%88Java-8-%EF%BC%8C%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-number">3.2.17.2.</span> <span class="toc-text">2.17.2 新API（Java 8+，推荐使用）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-18-Java-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">3.2.18.</span> <span class="toc-text">2.18 Java 正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-19-Java-%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.19.</span> <span class="toc-text">2.19 Java 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-20-Java-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.20.</span> <span class="toc-text">2.20 Java 构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-21-Java-Stream%E3%80%81File%E3%80%81IO"><span class="toc-number">3.2.21.</span> <span class="toc-text">2.21 Java Stream、File、IO</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-21-1-File%E7%B1%BB%EF%BC%88%E6%96%87%E4%BB%B6-%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%EF%BC%89"><span class="toc-number">3.2.21.1.</span> <span class="toc-text">2.21.1 File类（文件&#x2F;目录操作）</span></a></li></ol></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="祁雪" class="lazyload">
+  <div class="sidebar-author-name">祁雪</div>
+  <div class="sidebar-description">记录网络安全，编程，个人生活的个人博客</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">5</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">5</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "祁雪",
+          title: "",
+          url: "http://example.com/2026/05/08/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/",
+          excerpt: "",
+          description: "",
+          stripContent: "Java 全面个性化学习笔记（含知识点总结+学习疑惑解答）一、学习疑惑及解答学习过程中，针对Java知识点的理解、操作细节等提出了相关疑问，解答整理如下，均为学习中的重点难点，助力巩固记忆。  疑惑1：Java注释有几种？各自的用法和注意事项是什么？解答：Java注释共3种，核心区别的用法如下：  单行注释（&amp;#x2F;&amp;#x2F;）：仅注释一行，用于简单说明代码含义，&amp;#x2F;&amp;#x2F;后内容均为注释，换行失效。  多行注释（&amp;#x2F;* *&amp;#x2F;）：可注释多行，用于说明代码块，不",
+          date: "Fri May 08 2026 19:27:00 GMT+0800",
+          updated: "Fri May 08 2026 19:25:56 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
